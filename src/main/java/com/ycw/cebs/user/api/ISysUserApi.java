@@ -7,7 +7,7 @@ import com.ycw.cebs.user.vo.SysUserDetailVO;
 import com.ycw.cebs.user.vo.SysUserListVO;
 import com.ycw.cebs.user.vo.param.SysUserListParamVO;
 import com.ycw.cebs.user.vo.param.SysUserParamVO;
-import com.ycw.common.exception.MsgException;
+import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
@@ -42,7 +42,7 @@ public interface ISysUserApi {
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
 	 */
-	ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws MsgException;
+	ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
 
 	/**
 	 * @方法名称 findSysUserList
@@ -53,7 +53,7 @@ public interface ISysUserApi {
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
 	 */
-	ResponseVO<List<SysUserListVO>> querySysUserList(SysUserListParamVO vo) throws MsgException;
+	ResponseVO<List<SysUserListVO>> querySysUserList(SysUserListParamVO vo) throws SysException;
 
 	/**
 	 * @方法名称 getSysUser
@@ -62,9 +62,9 @@ public interface ISysUserApi {
 	 * @创建时间 2019年12月27日 14:17
 	 * @param id 主键id
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
-	ResponseVO<SysUserDetailVO> getSysUser(Long id) throws MsgException;
+	ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException;
 
 	/**
 	 * @方法名称 saveSysUser
@@ -74,7 +74,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> saveSysUser(SysUserParamVO vo) throws MsgException;
+	ResponseVO<Long> saveSysUser(SysUserParamVO vo) throws SysException;
 
 	/**
 	 * @方法名称 updateSysUser
@@ -84,7 +84,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> updateSysUser(SysUserParamVO vo) throws MsgException;
+	ResponseVO<Long> updateSysUser(SysUserParamVO vo) throws SysException;
 
 	/**
 	 * @方法名称 deleteSysUser
@@ -93,8 +93,8 @@ public interface ISysUserApi {
 	 * @创建时间 2019年12月27日 上午10:53:11
 	 * @param id
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
-	ResponseVO<String> deleteSysUser(Long id) throws MsgException;
+	ResponseVO<String> deleteSysUser(Long id) throws SysException;
 
 }

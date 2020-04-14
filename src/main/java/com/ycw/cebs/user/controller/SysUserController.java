@@ -15,7 +15,7 @@ import com.ycw.cebs.user.vo.SysUserListVO;
 import com.ycw.cebs.user.vo.param.SysUserListParamVO;
 import com.ycw.cebs.user.vo.param.SysUserParamVO;
 import com.ycw.common.base.BaseController;
-import com.ycw.common.exception.MsgException;
+import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
@@ -50,10 +50,10 @@ public class SysUserController extends BaseController {
 	 * @param vo         查询参数
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@GetMapping("/user/list")
-	public ResponseVO<PageInfo<SysUserListVO>> findSysUserPage(SysUserListParamVO vo, PageParams pageParams) throws MsgException {
+	public ResponseVO<PageInfo<SysUserListVO>> findSysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
 		return sysUserApi.querySysUserPage(vo, pageParams);
 	}
 
@@ -64,10 +64,10 @@ public class SysUserController extends BaseController {
 	 * @创建时间 2019年12月27日 下午12:20:28
 	 * @param id
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@GetMapping("/user")
-	public ResponseVO<SysUserDetailVO> getSysUser(Long id) throws MsgException {
+	public ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException {
 		return sysUserApi.getSysUser(id);
 	}
 
@@ -78,10 +78,10 @@ public class SysUserController extends BaseController {
 	 * @创建时间 2019年12月27日 上午10:25:18
 	 * @param vo
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@PostMapping("/user")
-	public ResponseVO<Long> saveOrUpdateSysUser(@Validated SysUserParamVO vo) throws MsgException {
+	public ResponseVO<Long> saveOrUpdateSysUser(@Validated SysUserParamVO vo) throws SysException {
 		Long id = vo.getId();
 		if (null == id) {
 			return sysUserApi.saveSysUser(vo);
@@ -97,10 +97,10 @@ public class SysUserController extends BaseController {
 	 * @创建时间 2019年12月27日 上午10:53:11
 	 * @param id
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@DeleteMapping("/user")
-	public ResponseVO<String> deleteSysUser(Long id) throws MsgException {
+	public ResponseVO<String> deleteSysUser(Long id) throws SysException {
 		return sysUserApi.deleteSysUser(id);
 	}
 

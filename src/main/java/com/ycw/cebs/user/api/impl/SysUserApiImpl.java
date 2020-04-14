@@ -13,7 +13,7 @@ import com.ycw.cebs.user.vo.SysUserDetailVO;
 import com.ycw.cebs.user.vo.SysUserListVO;
 import com.ycw.cebs.user.vo.param.SysUserListParamVO;
 import com.ycw.cebs.user.vo.param.SysUserParamVO;
-import com.ycw.common.exception.MsgException;
+import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
@@ -48,10 +48,10 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @param vo         查询参数
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@Override
-	public ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws MsgException {
+	public ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
 		List<SysUserListVO> page = sysUserService.querySysUserList(vo);
 		return ResponseVO.success(new PageInfo<>(page));
 	}
@@ -64,10 +64,10 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @param vo         查询参数
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@Override
-	public ResponseVO<List<SysUserListVO>> querySysUserList(SysUserListParamVO vo) throws MsgException {
+	public ResponseVO<List<SysUserListVO>> querySysUserList(SysUserListParamVO vo) throws SysException {
 		List<SysUserListVO> list = sysUserService.querySysUserList(vo);
 		return ResponseVO.success(list);
 	}
@@ -79,12 +79,12 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @创建时间 2019年12月27日 14:17
 	 * @param id 主键id
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@Override
-	public ResponseVO<SysUserDetailVO> getSysUser(Long id) throws MsgException {
+	public ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException {
 		if (id == null) {
-			throw new MsgException(ResponseCode.ERR_418.getCode(), "id不能为空");
+			throw new SysException(ResponseCode.ERR_418.getCode(), "id不能为空");
 		}
 		SysUserEntity sysUser = sysUserService.getById(id);
 		SysUserDetailVO vo = BeanHandleUtils.beanCopy(sysUser, SysUserDetailVO.class);
@@ -128,12 +128,12 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @创建时间 2019年12月27日 上午10:53:11
 	 * @param id
 	 * @return
-	 * @throws MsgException
+	 * @throws SysException
 	 */
 	@Override
-	public ResponseVO<String> deleteSysUser(Long id) throws MsgException {
+	public ResponseVO<String> deleteSysUser(Long id) throws SysException {
 		if (id == null) {
-			throw new MsgException(ResponseCode.ERR_418.getCode(), "id不能为空");
+			throw new SysException(ResponseCode.ERR_418.getCode(), "id不能为空");
 		}
 		sysUserService.removeById(id);
 		return ResponseVO.success(null, "删除成功");

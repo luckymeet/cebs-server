@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.user.entity.SysUserEntity;
 import com.ycw.cebs.user.vo.SysUserListVO;
 import com.ycw.cebs.user.vo.param.SysUserListParamVO;
-import com.ycw.common.exception.MsgException;
+import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 
 /**
@@ -40,7 +40,7 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
 	 */
-	List<SysUserListVO> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws MsgException;
+	List<SysUserListVO> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
 
 	/**
 	 * @方法名称 findSysUserList
@@ -51,6 +51,6 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param pageParams 分页参数(为null时查询所有)
 	 * @return
 	 */
-	List<SysUserListVO> querySysUserList(SysUserListParamVO vo) throws MsgException;
+	List<SysUserListVO> querySysUserList(SysUserListParamVO vo) throws SysException;
 
 }

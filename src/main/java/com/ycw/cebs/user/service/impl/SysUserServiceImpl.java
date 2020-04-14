@@ -13,7 +13,7 @@ import com.ycw.cebs.user.vo.SysUserDetailVO;
 import com.ycw.cebs.user.vo.SysUserListVO;
 import com.ycw.cebs.user.vo.param.SysUserListParamVO;
 import com.ycw.cebs.user.vo.param.SysUserParamVO;
-import com.ycw.common.exception.MsgException;
+import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.utils.BeanHandleUtils;
