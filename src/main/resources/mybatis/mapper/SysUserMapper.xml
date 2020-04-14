@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycw.cebs.user.mapper.ISysUserMapper">
+
+	<sql id="column_list">
+		t.id id, <!-- 主键 -->
+		t.user_num userNum, <!-- 用户编号 -->
+		t.real_name realName, <!-- 真实姓名 -->
+		t.nick_name nickName, <!-- 昵称 -->
+		t.login_name loginName, <!-- 登录名 -->
+		t.password password, <!-- 登录密码 -->
+		t.salt salt, <!-- 盐 -->
+		t.profile_photo_url profilePhotoUrl, <!-- 头像url -->
+		t.sex sex, <!-- 性别 -->
+		t.birthday birthday, <!-- 生日 -->
+		t.mobile_phone mobilePhone, <!-- 手机号 -->
+		t.e_mail eMail, <!-- 电子邮箱 -->
+		t.id_card idCard, <!-- 身份证号 -->
+		t.qq qq, <!-- QQ -->
+		t.wechat wechat, <!-- 微信 -->
+		t.token token, <!-- 登录token -->
+		t.status status, <!-- 状态：0-失效；1-生效 -->
+		t.login_status loginStatus, <!-- 登录状态 -->
+		t.last_login_time lastLoginTime, <!-- 最后登录时间 -->
+		t.del_ind delInd, <!-- 删除标识：0-未删除；1-删除 -->
+		t.create_user createUser, <!-- 创建人 -->
+		t.create_time createTime, <!-- 创建时间 -->
+		t.update_user updateUser, <!-- 更新人 -->
+		t.update_time updateTime, <!-- 更新时间 -->
+		t.version version <!-- 版本号 -->
+	</sql>
+
+	<!--根据条件查询列表 -->
+	<select id="querySysUserList" resultType="com.ycw.cebs.user.vo.SysUserListVO">
+		SELECT
+		<include refid="column_list" />
+		FROM sys_user t
+		WHERE
+			t.del_ind = '0'
+		<if test="params.id != null">
+			AND t.id = #{params.id}
+		</if>
+		<if test="params.userNum != null and params.userNum != ''">
+			AND t.user_num = #{params.userNum}
+		</if>
+		<if test="params.realName != null and params.realName != ''">
+			AND t.real_name LIKE CONCAT('%', #{params.realName}, '%')
+		</if>
+		ORDER BY t.create_time DESC
+	</select>
+
+</mapper>

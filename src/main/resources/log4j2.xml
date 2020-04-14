@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+	<Properties>
+		<Property name="springAppName">cebs</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-4level [${springAppName},%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-Span-Export}] ${sys:PID} --- [%t] %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+		</Root>
+		<logger name="druid.sql.Statement" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="druid.sql.ResultSet" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+	</Loggers>
+
+	<bean id="log-filter"
+		class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+		<property name="connectionLogEnabled" value="false" />
+		<property name="statementLogEnabled" value="false" />
+		<property name="resultSetLogEnabled" value="true" />
+		<!-- 启用 -->
+		<property name="statementExecutableSqlLogEnable" value="true" />
+	</bean>
+</Configuration>
