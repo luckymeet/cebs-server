@@ -33,6 +33,6 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param pageParams 分页参数（为空时默认查询所有）
 	 * @return
 	 */
-	List<SysUserListVO> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
+	List<SysUserListVO> querySysUserList(SysUserListParamVO vo, PageParams pageParams) throws SysException;
 
 }

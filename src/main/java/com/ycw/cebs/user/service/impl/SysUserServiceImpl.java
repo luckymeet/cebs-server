@@ -42,7 +42,7 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntit
 	 * @return
 	 */
 	@Override
-	public List<SysUserListVO> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) {
+	public List<SysUserListVO> querySysUserList(SysUserListParamVO vo, PageParams pageParams) {
 		return sysUserMapper.querySysUserList(vo);
 	}
 

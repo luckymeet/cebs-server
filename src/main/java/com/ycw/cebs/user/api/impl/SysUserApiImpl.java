@@ -41,43 +41,24 @@ public class SysUserApiImpl implements ISysUserApi {
 	private ISysUserService sysUserService;
 
 	/**
-	 * @方法名称 querySysUserPage
-	 * @功能描述 【系统用户表】分页查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午5:49:58
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
+	 * 用户列表分页查询
+	 * @author yuminjun
+	 * @date 2020/04/21 14:52:30
+	 * @param vo 查询参数
+	 * @param pageParams 分页参数（为空时默认查询所有）
 	 * @return
-	 * @throws SysException
 	 */
 	@Override
 	public ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
-		List<SysUserListVO> page = sysUserService.querySysUserList(vo);
+		List<SysUserListVO> page = sysUserService.querySysUserList(vo, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
 	}
 
 	/**
-	 * @方法名称 findSysUserList
-	 * @功能描述 【系统用户表】列表查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午5:49:58
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
-	 * @return
-	 * @throws SysException
-	 */
-	@Override
-	public ResponseVO<List<SysUserListVO>> querySysUserList(SysUserListParamVO vo) throws SysException {
-		List<SysUserListVO> list = sysUserService.querySysUserList(vo);
-		return ResponseVO.success(list);
-	}
-
-	/**
-	 * @方法名称 getSysUser
-	 * @功能描述 根据id查询【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 14:17
-	 * @param id 主键id
+	 * 根据id查询系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:55:11
+	 * @param id
 	 * @return
 	 * @throws SysException
 	 */
@@ -92,10 +73,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	}
 
 	/**
-	 * @方法名称 saveSysUser
-	 * @功能描述 保存【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:25:18
+	 * 保存系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:55:37
 	 * @param vo
 	 * @return
 	 */
@@ -107,10 +87,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	}
 
 	/**
-	 * @方法名称 updateSysUser
-	 * @功能描述 修改【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:35:08
+	 * 修改系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:55:59
 	 * @param vo
 	 * @return
 	 */
@@ -122,10 +101,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	}
 
 	/**
-	 * @方法名称 deleteSysUser
-	 * @功能描述 删除【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:53:11
+	 * 删除系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:56:15
 	 * @param id
 	 * @return
 	 * @throws SysException

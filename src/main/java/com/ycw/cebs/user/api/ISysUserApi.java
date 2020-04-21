@@ -12,85 +12,64 @@ import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
 /**
- * @类名称 SysUserService
- * @类描述
+ * 系统用户Api接口
+ * @author yuminjun
+ * @date 2020/04/21 16:45:22
+ * @version 1.00
  *
- *      <pre>
- * 【系统用户表】Service接口
- *      </pre>
- *
- * @作者 yuminjun
- * @创建时间 2019年12月27日
- * @版本 v1.00
- * @修改记录
- *
- *       <pre>
- * 版本     		修改人 	修改时间    	 	修改内容	描述
- * ----------------------------------------------
- * 1.00 	yuminjun     	2019年12月27日 	新建
- * ----------------------------------------------
- *       </pre>
+ * @record
+ * <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/04/21    新建
+ * -------------------------------------------------
+ * </pre>
  */
 public interface ISysUserApi {
 
 	/**
-	 * @方法名称 querySysUserPage
-	 * @功能描述 【系统用户表】分页查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午5:49:58
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
+	 * 系统用户列表查询
+	 * @author yuminjun
+	 * @date 2020/04/21 16:50:16
+	 * @param vo
+	 * @param pageParams 分页参数（为null时默认查所有）
 	 * @return
+	 * @throws SysException
 	 */
 	ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
 
 	/**
-	 * @方法名称 findSysUserList
-	 * @功能描述 【系统用户表】列表查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午5:49:58
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
-	 * @return
-	 */
-	ResponseVO<List<SysUserListVO>> querySysUserList(SysUserListParamVO vo) throws SysException;
-
-	/**
-	 * @方法名称 getSysUser
-	 * @功能描述 根据id查询【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 14:17
-	 * @param id 主键id
+	 * 根据id查询系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:55:11
+	 * @param id
 	 * @return
 	 * @throws SysException
 	 */
 	ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException;
 
 	/**
-	 * @方法名称 saveSysUser
-	 * @功能描述 保存【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:25:18
+	 * 保存系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:55:37
 	 * @param vo
 	 * @return
 	 */
 	ResponseVO<Long> saveSysUser(SysUserParamVO vo) throws SysException;
 
 	/**
-	 * @方法名称 updateSysUser
-	 * @功能描述 修改【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:35:08
+	 * 修改系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:55:59
 	 * @param vo
 	 * @return
 	 */
 	ResponseVO<Long> updateSysUser(SysUserParamVO vo) throws SysException;
 
 	/**
-	 * @方法名称 deleteSysUser
-	 * @功能描述 删除【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:53:11
+	 * 删除系统用户数据
+	 * @author yuminjun
+	 * @date 2020/04/21 16:56:15
 	 * @param id
 	 * @return
 	 * @throws SysException
