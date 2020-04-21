@@ -11,26 +11,26 @@ import com.ycw.cebs.user.vo.param.SysUserListParamVO;
 import com.ycw.common.base.BaseCrudMapper;
 
 /**
- * @类名称 SysUserMapper
- * @类描述 <pre> 【系统用户表】Mapper接口</pre>
- * @作者 yuminjun
- * @创建时间 2019年12月27日
- * @版本 v1.00
- * @修改记录 <pre>
- * 版本     		修改人 	修改时间    	 	修改内容	描述
- * ----------------------------------------------
- * 1.00 	yuminjun     	2019年12月27日 	新建
- * ----------------------------------------------
+ * 系统用户Mapper接口
+ * @author yuminjun
+ * @date 2020/04/21 16:39:47
+ * @version 1.00
+ *
+ * @record
+ * <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/04/21    新建
+ * -------------------------------------------------
  * </pre>
  */
 @Mapper
 public interface ISysUserMapper extends BaseCrudMapper<SysUserEntity> {
 
 	/**
-	 * @方法名称 querySysUserList
-	 * @功能描述 【系统用户表】列表查询
-	 * @作者     yuminjun
-	 * @创建时间 2019年12月27日 下午3:09:42
+	 * 系统用户列表查询
+	 * @author yuminjun
+	 * @date 2020/04/21 16:40:19
 	 * @param sysUserListParamVO
 	 * @return
 	 */

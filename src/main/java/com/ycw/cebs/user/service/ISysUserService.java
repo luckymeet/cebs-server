@@ -10,47 +10,29 @@ import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 
 /**
- * @类名称 SysUserService
- * @类描述
+ * 系统用户Service接口
+ * @author yuminjun
+ * @date 2020/04/21 15:50:44
+ * @version 1.00
  *
- *      <pre>
- * 【系统用户表】Service接口
- *      </pre>
- *
- * @作者 yuminjun
- * @创建时间 2019年12月27日
- * @版本 v1.00
- * @修改记录
- *
- *       <pre>
- * 版本     		修改人 	修改时间    	 	修改内容	描述
- * ----------------------------------------------
- * 1.00 	yuminjun     	2019年12月27日 	新建
- * ----------------------------------------------
- *       </pre>
+ * @record
+ * <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/04/21    新建
+ * -------------------------------------------------
+ * </pre>
  */
 public interface ISysUserService extends IService<SysUserEntity>{
 
 	/**
-	 * @方法名称 querySysUserPage
-	 * @功能描述 【系统用户表】分页查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午5:49:58
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
+	 * 用户列表分页查询
+	 * @author yuminjun
+	 * @date 2020/04/21 14:52:30
+	 * @param vo 查询参数
+	 * @param pageParams 分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	List<SysUserListVO> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
-
-	/**
-	 * @方法名称 findSysUserList
-	 * @功能描述 【系统用户表】列表查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午5:49:58
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
-	 * @return
-	 */
-	List<SysUserListVO> querySysUserList(SysUserListParamVO vo) throws SysException;
 
 }

@@ -12,18 +12,18 @@ public class SysUserListParamVO extends BaseVO{
 	private static final long serialVersionUID = 1L;
 
 	/**
- 	 *主键
- 	 */
+	 * 主键
+	 */
 	private Long id;
 
- 	/**
- 	 *用户编号
- 	 */
+	/**
+	 * 用户编号
+	 */
 	private String userNum;
 
- 	/**
- 	 *真实姓名
- 	 */
+	/**
+	 * 真实姓名
+	 */
 	private String realName;
 
 }

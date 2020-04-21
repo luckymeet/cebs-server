@@ -44,7 +44,7 @@
 			AND t.user_num = #{params.userNum}
 		</if>
 		<if test="params.realName != null and params.realName != ''">
-			AND t.real_name LIKE CONCAT('%', #{params.realName}, '%')
+			AND INSTR(t.real_name, #{params.realName}) > 0
 		</if>
 		ORDER BY t.create_time DESC
 	</select>
