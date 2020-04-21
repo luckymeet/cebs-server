@@ -1,7 +1,5 @@
 package com.ycw.cebs.user.api;
 
-import java.util.List;
-
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.user.vo.SysUserDetailVO;
 import com.ycw.cebs.user.vo.SysUserListVO;

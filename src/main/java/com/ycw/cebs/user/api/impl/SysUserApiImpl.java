@@ -20,19 +20,18 @@ import com.ycw.common.response.ResponseVO;
 import com.ycw.common.utils.BeanHandleUtils;
 
 /**
- * @类名称 SysUserServiceImpl
- * @类描述 【系统用户表】Service接口实现类
- * @作者 yuminjun
- * @创建时间 2019年12月27日
- * @版本 v1.00
- * @修改记录
+ * 系统用户Api接口实现类
+ * @author yuminjun
+ * @date 2020/04/21 17:25:56
+ * @version 1.00
  *
- *       <pre>
- * 版本     		修改人 	修改时间    	 	修改内容	描述
- * ----------------------------------------------
- * 1.00 	yuminjun     	2019年12月27日 	新建
- * ----------------------------------------------
- *       </pre>
+ * @record
+ * <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/04/21    新建
+ * -------------------------------------------------
+ * </pre>
  */
 @Service("sysUserApi")
 public class SysUserApiImpl implements ISysUserApi {
