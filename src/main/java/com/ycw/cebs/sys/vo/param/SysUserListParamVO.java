@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserListParamVO extends BaseVO{
+public class SysUserListParamVO extends BaseVO {
 
 	private static final long serialVersionUID = 1L;
 

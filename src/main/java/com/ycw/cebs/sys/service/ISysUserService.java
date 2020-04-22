@@ -33,7 +33,7 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param pageParams 分页参数（为空时默认查询所有）
 	 * @return
 	 */
-	List<SysUserListVO> querySysUserList(SysUserListParamVO vo, PageParams pageParams) throws SysException;
+	List<SysUserListVO> queryUserList(SysUserListParamVO vo, PageParams pageParams);
 
 	/**
 	 * 根据登录令牌获取用户
@@ -42,6 +42,6 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param principal 登录令牌
 	 * @return
 	 */
-	SysUserEntity getSysUserByPrincipal(String principal);
+	SysUserEntity getUserByPrincipal(String principal);
 
 }

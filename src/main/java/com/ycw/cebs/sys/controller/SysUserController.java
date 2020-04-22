@@ -5,6 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,27 +14,25 @@ import com.ycw.cebs.sys.api.ISysUserApi;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
 import com.ycw.common.base.BaseController;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
 /**
- * @类名称 SysUserController.java
- * @类描述  用户信息Controller
- * @作者 yuminjun yuminjun@lexiangbao.com
- * @创建时间 2019年12月27日 下午12:19:16
- * @版本 1.00
+ * 用户管理Controller
+ * @author yuminjun
+ * @date 2020/04/22 14:13:24
+ * @version 1.00
  *
- * @修改记录
- *
- *       <pre>
- *     版本                       修改人 		修改日期 		 修改内容描述
- *     ----------------------------------------------
- *     1.00 	yuminjun 	2019年12月27日
- *     ----------------------------------------------
- *       </pre>
+ * @record
+ * <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/04/22    新建
+ * -------------------------------------------------
+ * </pre>
  */
 @RestController
 @RequestMapping("/sys")
@@ -43,65 +42,69 @@ public class SysUserController extends BaseController {
 	private ISysUserApi sysUserApi;
 
 	/**
-	 * @方法名称 findSysUserPage
-	 * @功能描述 用户信息分页查询
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午12:18:17
-	 * @param vo         查询参数
-	 * @param pageParams 分页参数(为null时查询所有)
+	 * 用户列表分页查询
+	 * @author yuminjun
+	 * @date 2020/04/22 14:13:35
+	 * @param vo 查询参数
+	 * @param pageParams 分页参数
 	 * @return
 	 * @throws SysException
 	 */
 	@GetMapping("/user/list")
-	public ResponseVO<PageInfo<SysUserListVO>> findSysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
-		return sysUserApi.querySysUserPage(vo, pageParams);
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
+		return sysUserApi.queryUserPage(vo, pageParams);
 	}
 
 	/**
-	 * @方法名称 getSysUser
-	 * @功能描述 获取用户基本
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 下午12:20:28
+	 * 用户详情
+	 * @author yuminjun
+	 * @date 2020/04/22 14:13:50
 	 * @param id
 	 * @return
 	 * @throws SysException
 	 */
 	@GetMapping("/user")
-	public ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException {
-		return sysUserApi.getSysUser(id);
+	public ResponseVO<SysUserDetailVO> getUser(Long id) throws SysException {
+		return sysUserApi.getUser(id);
 	}
 
 	/**
-	 * @方法名称 saveOrUpdateSysUser
-	 * @功能描述 保存/修改用户数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:25:18
+	 * 用户新增
+	 * @author yuminjun
+	 * @date 2020/04/22 14:24:46
 	 * @param vo
 	 * @return
 	 * @throws SysException
 	 */
 	@PostMapping("/user")
-	public ResponseVO<Long> saveOrUpdateSysUser(@Validated SysUserParamVO vo) throws SysException {
-		Long id = vo.getId();
-		if (null == id) {
-			return sysUserApi.saveSysUser(vo);
-		} else {
-			return sysUserApi.updateSysUser(vo);
-		}
+	public ResponseVO<Long> saveUser(@Validated SysUserAddParamVO vo) throws SysException {
+		return sysUserApi.saveUser(vo);
 	}
 
 	/**
-	 * @方法名称 deleteSysUser
-	 * @功能描述 删除【系统用户表】数据
-	 * @作者 yuminjun
-	 * @创建时间 2019年12月27日 上午10:53:11
+	 * 用户修改
+	 * @author yuminjun
+	 * @date 2020/04/22 14:24:57
+	 * @param vo
+	 * @return
+	 * @throws SysException
+	 */
+	@PutMapping("/user")
+	public ResponseVO<Long> updateUser(@Validated SysUserAddParamVO vo) throws SysException {
+		return sysUserApi.updateUser(vo);
+	}
+
+	/**
+	 * 用户删除
+	 * @author yuminjun
+	 * @date 2020/04/22 14:14:40
 	 * @param id
 	 * @return
 	 * @throws SysException
 	 */
 	@DeleteMapping("/user")
-	public ResponseVO<String> deleteSysUser(Long id) throws SysException {
-		return sysUserApi.deleteSysUser(id);
+	public ResponseVO<String> deleteUser(Long id) throws SysException {
+		return sysUserApi.deleteUser(id);
 	}
 
 }

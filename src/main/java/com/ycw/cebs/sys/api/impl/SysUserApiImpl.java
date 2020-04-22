@@ -12,7 +12,7 @@ import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
@@ -48,8 +48,8 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
-		List<SysUserListVO> page = sysUserService.querySysUserList(vo, pageParams);
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
+		List<SysUserListVO> page = sysUserService.queryUserList(vo, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
 	}
 
@@ -62,7 +62,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @throws SysException
 	 */
 	@Override
-	public ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException {
+	public ResponseVO<SysUserDetailVO> getUser(Long id) throws SysException {
 		if (id == null) {
 			throw new SysException(ResponseCode.ERR_418.getCode(), "id不能为空");
 		}
@@ -79,7 +79,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<Long> saveSysUser(SysUserParamVO vo) {
+	public ResponseVO<Long> saveUser(SysUserAddParamVO vo) {
 		SysUserEntity sysUser = BeanHandleUtils.beanCopy(vo, SysUserEntity.class);
 		sysUserService.save(sysUser);
 		return ResponseVO.success(sysUser.getId(), "新增成功");
@@ -93,7 +93,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<Long> updateSysUser(SysUserParamVO vo) {
+	public ResponseVO<Long> updateUser(SysUserAddParamVO vo) {
 		SysUserEntity sysUser = BeanHandleUtils.beanCopy(vo, SysUserEntity.class);
 		sysUserService.updateById(sysUser);
 		return ResponseVO.success(sysUser.getId(), "修改成功");
@@ -108,7 +108,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @throws SysException
 	 */
 	@Override
-	public ResponseVO<String> deleteSysUser(Long id) throws SysException {
+	public ResponseVO<String> deleteUser(Long id) throws SysException {
 		if (id == null) {
 			throw new SysException(ResponseCode.ERR_418.getCode(), "id不能为空");
 		}

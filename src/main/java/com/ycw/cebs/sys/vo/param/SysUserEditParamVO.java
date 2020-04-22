@@ -1,29 +1,20 @@
 package com.ycw.cebs.sys.vo.param;
 
-import com.ycw.common.base.BaseVO;
+import javax.validation.constraints.Null;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserPageParamVO extends BaseVO {
+public class SysUserEditParamVO extends SysUserAddParamVO {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 主键
 	 */
+	@Null(message = "id不能为空")
 	private Long id;
-
-	/**
-	 * 用户编号
-	 */
-	private String userNum;
-
-	/**
-	 * 真实姓名
-	 */
-	private String realName;
 
 }

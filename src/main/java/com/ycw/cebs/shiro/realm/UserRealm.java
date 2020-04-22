@@ -24,7 +24,9 @@ import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ycw.cebs.sys.entity.SysMenuEntity;
 import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.service.ISysMenuService;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.common.constants.CommonConstants;
 
@@ -33,6 +35,9 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Autowired
 	private ISysUserService sysUserService;
+
+	@Autowired
+	private ISysMenuService sysMenuService;
 
 	public UserRealm() {
 		// 默认采用MD5散列加密算法
@@ -51,7 +56,12 @@ public class UserRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 身份认证/登录
+	 * 身份认证
+	 * @author yuminjun
+	 * @date 2020/04/22 11:18:39
+	 * @param token
+	 * @return
+	 * @throws AuthenticationException
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
@@ -61,16 +71,14 @@ public class UserRealm extends AuthorizingRealm {
 		String principal = (String) token.getPrincipal();
 		SysUserEntity sysUser = null;
 		try {
-			sysUser = this.sysUserService.getSysUserByPrincipal(principal);
-		} catch (Exception ex) {
-			throw new AuthenticationException(ex);
+			sysUser = this.sysUserService.getUserByPrincipal(principal);
+		} catch (Exception e) {
+			throw new AuthenticationException(e);
 		}
 		if (sysUser == null) {
-			// 用户名错误
 			throw new UnknownAccountException();
 		}
 		if (CommonConstants.INT_NO == sysUser.getStatus()) {
-			// 用户禁用
 			throw new LockedAccountException();
 		}
 		SimpleAuthenticationInfo authInfo = new SimpleAuthenticationInfo(sysUser, sysUser.getPassword(), getName());
@@ -80,6 +88,10 @@ public class UserRealm extends AuthorizingRealm {
 
 	/**
 	 * 授权
+	 * @author yuminjun
+	 * @date 2020/04/22 11:17:28
+	 * @param principals
+	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -89,31 +101,16 @@ public class UserRealm extends AuthorizingRealm {
 		Collection<SysUserEntity> userPrincipals = principals.fromRealm(getName());
 		if (!CollectionUtils.isEmpty(userPrincipals)) {
 			SysUserEntity user = userPrincipals.iterator().next();
-			List<SysMenuEntity> menuList = this.userRealmService.queryMenusByUserId(user.getId());
-            if (!CollectionUtils.isEmpty(menuList)) {
-                // 遍历权限，进行授权
-                Set<String> permissions = new LinkedHashSet<String>();
-                menuList.stream().filter(menu -> StringUtils.isNotBlank(menu.getPerms()))
-                        .forEach(menu -> permissions.add(menu.getPerms()));
-                authorizationInfo.setStringPermissions(permissions);
-            }
+			List<SysMenuEntity> menuList = this.sysMenuService.queryMenuListByUserId(user.getId());
+			if (!CollectionUtils.isEmpty(menuList)) {
+				// 遍历权限，进行授权
+				Set<String> permissions = new LinkedHashSet<>();
+				menuList.stream().filter(menu -> StringUtils.isNotBlank(menu.getPerms()))
+						.forEach(menu -> permissions.add(menu.getPerms()));
+				authorizationInfo.setStringPermissions(permissions);
+			}
 		}
-
 		return authorizationInfo;
-	}
-
-	/**
-	 * 清空指定用户授权缓存
-	 */
-	public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
-		super.clearCachedAuthorizationInfo(principals);
-	}
-
-	/**
-	 * 清空所有用户授权缓存
-	 */
-	public void clearAllCachedAuthorizationInfo() {
-		getAuthorizationCache().clear();
 	}
 
 }

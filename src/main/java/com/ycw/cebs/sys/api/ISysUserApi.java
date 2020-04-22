@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
@@ -34,7 +34,7 @@ public interface ISysUserApi {
 	 * @return
 	 * @throws SysException
 	 */
-	ResponseVO<PageInfo<SysUserListVO>> querySysUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
+	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
 
 	/**
 	 * 根据id查询系统用户数据
@@ -44,7 +44,7 @@ public interface ISysUserApi {
 	 * @return
 	 * @throws SysException
 	 */
-	ResponseVO<SysUserDetailVO> getSysUser(Long id) throws SysException;
+	ResponseVO<SysUserDetailVO> getUser(Long id) throws SysException;
 
 	/**
 	 * 保存系统用户数据
@@ -53,7 +53,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> saveSysUser(SysUserParamVO vo) throws SysException;
+	ResponseVO<Long> saveUser(SysUserAddParamVO vo) throws SysException;
 
 	/**
 	 * 修改系统用户数据
@@ -62,7 +62,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> updateSysUser(SysUserParamVO vo) throws SysException;
+	ResponseVO<Long> updateUser(SysUserAddParamVO vo) throws SysException;
 
 	/**
 	 * 删除系统用户数据
@@ -72,6 +72,6 @@ public interface ISysUserApi {
 	 * @return
 	 * @throws SysException
 	 */
-	ResponseVO<String> deleteSysUser(Long id) throws SysException;
+	ResponseVO<String> deleteUser(Long id) throws SysException;
 
 }

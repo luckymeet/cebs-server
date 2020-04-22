@@ -138,4 +138,16 @@ public class SysUserEntity extends BaseEntity {
 	@TableField("last_login_time")
 	private LocalDateTime lastLoginTime;
 
+	/**
+	 * 客户端id：1-后台，2-门户
+	 */
+	@TableField("client_id")
+	private Integer clientId;
+
+	/**
+	 * 创建链，后台用户有值
+	 */
+	@TableField("create_chain")
+	private Integer createChain;
+
 }

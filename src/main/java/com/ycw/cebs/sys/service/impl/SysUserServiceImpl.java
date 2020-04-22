@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ycw.cebs.common.constants.sys.ClientTypeEnum;
 import com.ycw.cebs.sys.entity.SysUserEntity;
 import com.ycw.cebs.sys.mapper.ISysUserMapper;
 import com.ycw.cebs.sys.service.ISysUserService;
@@ -46,7 +47,7 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntit
 	 * @return
 	 */
 	@Override
-	public List<SysUserListVO> querySysUserList(SysUserListParamVO vo, PageParams pageParams) {
+	public List<SysUserListVO> queryUserList(SysUserListParamVO vo, PageParams pageParams) {
 		return sysUserMapper.querySysUserList(vo);
 	}
 
@@ -58,13 +59,14 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntit
 	 * @return
 	 */
 	@Override
-	public SysUserEntity getSysUserByPrincipal(String principal) {
+	public SysUserEntity getUserByPrincipal(String principal) {
 		LambdaQueryWrapper<SysUserEntity> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.eq(SysUserEntity::getLoginName, principal).or()
 					.eq(SysUserEntity::getMobilePhone, principal)
+					.eq(SysUserEntity::getClientId, ClientTypeEnum.BACK_END.getCode())
 					.eq(SysUserEntity::getDelInd, CommonConstants.INT_NO);
-		SysUserEntity sysUser = sysUserMapper.selectOne(queryWrapper);
-		return sysUser;
+		SysUserEntity user = sysUserMapper.selectOne(queryWrapper);
+		return user;
 	}
 
 }

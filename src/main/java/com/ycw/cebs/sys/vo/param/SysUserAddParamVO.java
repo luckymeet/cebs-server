@@ -15,14 +15,9 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserParamVO extends BaseVO{
+public class SysUserAddParamVO extends BaseVO {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 主键
-	 */
-	private Long id;
 
 	/**
 	 * 用户编号

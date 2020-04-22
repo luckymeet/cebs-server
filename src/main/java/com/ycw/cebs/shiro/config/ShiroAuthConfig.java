@@ -18,8 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
-import com.geeorange.cbbs.shiro.realm.UserRealm;
 import com.ycw.cebs.shiro.filter.LocalFormAuthenticationFilter;
+import com.ycw.cebs.shiro.realm.UserRealm;
 
 @Configuration
 public class ShiroAuthConfig {
@@ -77,8 +77,12 @@ public class ShiroAuthConfig {
 
     /**
      * <p>配置核心安全事务管理器</p>
-     * <p>如果有多个relam可以在此处扩展，
-     * 并通过  ModularRealmAuthenticator(securityManager.authenticator) 指定认证策略(默认FirstSuccessfulStrategy) </p>
+     * <p>如果有多个relam可以在此处扩展，并通过ModularRealmAuthenticator(securityManager.authenticator)
+     * 指定认证策略(默认FirstSuccessfulStrategy)</p>
+     * @author yuminjun
+     * @date 2020/04/22 11:30:24
+     * @param authRealm
+     * @return
      */
     @DependsOn("userRealm")
     @Bean(name = "securityManager")
@@ -90,42 +94,40 @@ public class ShiroAuthConfig {
 		return securityManager;
 	}
 
-    /**
-     * <p>ShiroFilter</p>
-     * <p>直接使用ShiroFilterFactoryBean，无法自己定义UrlPattern，默认拦截 /*</p>
-     * <p>如需定义拦裁，通过 FilterRegistrationBean 去注册一个 DelegatingFilterProxy</p>
-     */
+	/**
+	 * <p>直接使用ShiroFilterFactoryBean，无法自己定义UrlPattern，默认拦截 如需定义拦裁，
+	 * 通过FilterRegistrationBean 去注册一个 DelegatingFilterProxy</p>
+	 * @author yuminjun
+	 * @date 2020/04/22 11:24:44
+	 * @param securityManager
+	 * @return
+	 */
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") SecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-        shiroFilter.setSecurityManager(securityManager);
-        // 配置登录的URI
-        shiroFilter.setUnauthorizedUrl("/sys/unauthorized");
-        //配置访问权限
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        filterChainDefinitionMap.put("/sys/login", "anon"); // 表示可以匿名访问
-        filterChainDefinitionMap.put("/druid/**", "anon");
-        filterChainDefinitionMap.put("/actuator/**", "anon");
-        filterChainDefinitionMap.put("/sys/captcha/pre", "anon");
-        filterChainDefinitionMap.put("/sys/captcha/check", "anon");
-        filterChainDefinitionMap.put("/code.html", "anon");
-        filterChainDefinitionMap.put("/rsa.html", "anon");
-        filterChainDefinitionMap.put("/sys/rsa/generate", "anon");
-        filterChainDefinitionMap.put("/sys/logo/get", "anon");// 登录页信息获取
-        filterChainDefinitionMap.put("/sys/app/version/download/**", "anon");// 下载app安装包文件
-        filterChainDefinitionMap.put("/ins/policy/yian/pay/callback", "anon");
-        filterChainDefinitionMap.put("/ins/policy/btxl/callback", "anon");
-        filterChainDefinitionMap.put("/**", "authc"); // 表示需要认证才可以访问
-        Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
-        filters.put("authc", new LocalFormAuthenticationFilter());
-        shiroFilter.setFilters(filters);
+		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+		shiroFilter.setSecurityManager(securityManager);
+		// 配置登录的URI
+		shiroFilter.setUnauthorizedUrl("/sys/unauthorized");
 
-        shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
-        return shiroFilter;
+		/* 配置访问权限 */
+		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+		filterChainDefinitionMap.put("/sys/login", "anon");
+		filterChainDefinitionMap.put("/druid/**", "anon");
+		filterChainDefinitionMap.put("/actuator/**", "anon");
+		filterChainDefinitionMap.put("/**", "authc");
+
+		Map<String, Filter> filters = new LinkedHashMap<>();
+		filters.put("authc", new LocalFormAuthenticationFilter());
+		shiroFilter.setFilters(filters);
+		shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
+		return shiroFilter;
     }
 
     /**
      * 开启 Shiro Spring AOP 权限注解的支持
+     * @author yuminjun
+     * @date 2020/04/22 11:33:40
+     * @return
      */
     @Bean("lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
