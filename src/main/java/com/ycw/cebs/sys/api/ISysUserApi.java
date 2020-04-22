@@ -1,10 +1,10 @@
-package com.ycw.cebs.user.api;
+package com.ycw.cebs.sys.api;
 
 import com.github.pagehelper.PageInfo;
-import com.ycw.cebs.user.vo.SysUserDetailVO;
-import com.ycw.cebs.user.vo.SysUserListVO;
-import com.ycw.cebs.user.vo.param.SysUserListParamVO;
-import com.ycw.cebs.user.vo.param.SysUserParamVO;
+import com.ycw.cebs.sys.vo.SysUserDetailVO;
+import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;

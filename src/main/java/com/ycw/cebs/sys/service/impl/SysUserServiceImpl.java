@@ -1,16 +1,20 @@
-package com.ycw.cebs.user.service.impl;
+package com.ycw.cebs.sys.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ycw.cebs.user.entity.SysUserEntity;
-import com.ycw.cebs.user.mapper.ISysUserMapper;
-import com.ycw.cebs.user.service.ISysUserService;
-import com.ycw.cebs.user.vo.SysUserListVO;
-import com.ycw.cebs.user.vo.param.SysUserListParamVO;
+import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.mapper.ISysUserMapper;
+import com.ycw.cebs.sys.service.ISysUserService;
+import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
+import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.page.PageParams;
 
 /**
@@ -44,6 +48,23 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntit
 	@Override
 	public List<SysUserListVO> querySysUserList(SysUserListParamVO vo, PageParams pageParams) {
 		return sysUserMapper.querySysUserList(vo);
+	}
+
+	/**
+	 * 根据登录令牌获取用户
+	 * @author yuminjun
+	 * @date 2020/04/21 17:33:46
+	 * @param principal 登录令牌
+	 * @return
+	 */
+	@Override
+	public SysUserEntity getSysUserByPrincipal(String principal) {
+		LambdaQueryWrapper<SysUserEntity> queryWrapper = Wrappers.lambdaQuery();
+		queryWrapper.eq(SysUserEntity::getLoginName, principal).or()
+					.eq(SysUserEntity::getMobilePhone, principal)
+					.eq(SysUserEntity::getDelInd, CommonConstants.INT_NO);
+		SysUserEntity sysUser = sysUserMapper.selectOne(queryWrapper);
+		return sysUser;
 	}
 
 }

@@ -1,146 +1,141 @@
-package com.ycw.cebs.user.vo;
+package com.ycw.cebs.sys.entity;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ycw.common.base.BaseVO;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.ycw.common.base.BaseEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * 系统用户实体类
+ * @author yuminjun
+ * @date 2020/04/21 15:53:53
+ * @version 1.00
+ *
+ * @record
+ * <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/04/21    新建
+ * -------------------------------------------------
+ * </pre>
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserPageVO extends BaseVO{
+@TableName("sys_user")
+public class SysUserEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 主键
-	 */
-	private Long id;
-
-	/**
 	 * 用户编号
 	 */
+	@TableField("user_num")
 	private String userNum;
 
 	/**
 	 * 真实姓名
 	 */
+	@TableField("real_name")
 	private String realName;
 
 	/**
 	 * 昵称
 	 */
+	@TableField("nick_name")
 	private String nickName;
 
 	/**
 	 * 登录名
 	 */
+	@TableField("login_name")
 	private String loginName;
 
 	/**
 	 * 登录密码
 	 */
+	@TableField("password")
 	private String password;
 
 	/**
 	 * 盐
 	 */
+	@TableField("salt")
 	private String salt;
 
 	/**
 	 * 头像url
 	 */
+	@TableField("profile_photo_url")
 	private String profilePhotoUrl;
 
 	/**
 	 * 性别
 	 */
+	@TableField("sex")
 	private Integer sex;
 
 	/**
 	 * 生日
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	@TableField("birthday")
 	private LocalDateTime birthday;
 
 	/**
 	 * 手机号
 	 */
+	@TableField("mobile_phone")
 	private String mobilePhone;
 
 	/**
 	 * 电子邮箱
 	 */
+	@TableField("e_mail")
 	private String eMail;
 
 	/**
 	 * 身份证号
 	 */
+	@TableField("id_card")
 	private String idCard;
 
 	/**
 	 * QQ
 	 */
+	@TableField("qq")
 	private String qq;
 
 	/**
 	 * 微信
 	 */
+	@TableField("wechat")
 	private String wechat;
 
 	/**
 	 * 登录token
 	 */
+	@TableField("token")
 	private String token;
 
 	/**
 	 * 状态：0-失效；1-生效
 	 */
+	@TableField("status")
 	private Integer status;
 
 	/**
 	 * 登录状态
 	 */
+	@TableField("login_status")
 	private Integer loginStatus;
 
 	/**
 	 * 最后登录时间
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@TableField("last_login_time")
 	private LocalDateTime lastLoginTime;
-
-	/**
-	 * 删除标识：0-未删除；1-删除
-	 */
-	private Integer delInd;
-
-	/**
-	 * 创建人
-	 */
-	private String createUser;
-
-	/**
-	 * 创建时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private LocalDateTime createTime;
-
-	/**
-	 * 更新人
-	 */
-	private String updateUser;
-
-	/**
-	 * 更新时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private LocalDateTime updateTime;
-
-	/**
-	 * 版本号
-	 */
-	private Integer version;
 
 }

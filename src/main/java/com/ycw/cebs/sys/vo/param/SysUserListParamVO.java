@@ -1,4 +1,4 @@
-package com.ycw.cebs.user.vo.param;
+package com.ycw.cebs.sys.vo.param;
 
 import com.ycw.common.base.BaseVO;
 

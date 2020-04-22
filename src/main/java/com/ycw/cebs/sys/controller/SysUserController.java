@@ -1,4 +1,4 @@
-package com.ycw.cebs.user.controller;
+package com.ycw.cebs.sys.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
-import com.ycw.cebs.user.api.ISysUserApi;
-import com.ycw.cebs.user.vo.SysUserDetailVO;
-import com.ycw.cebs.user.vo.SysUserListVO;
-import com.ycw.cebs.user.vo.param.SysUserListParamVO;
-import com.ycw.cebs.user.vo.param.SysUserParamVO;
+import com.ycw.cebs.sys.api.ISysUserApi;
+import com.ycw.cebs.sys.vo.SysUserDetailVO;
+import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserParamVO;
 import com.ycw.common.base.BaseController;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;

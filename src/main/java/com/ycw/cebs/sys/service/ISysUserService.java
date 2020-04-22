@@ -1,11 +1,11 @@
-package com.ycw.cebs.user.service;
+package com.ycw.cebs.sys.service;
 
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ycw.cebs.user.entity.SysUserEntity;
-import com.ycw.cebs.user.vo.SysUserListVO;
-import com.ycw.cebs.user.vo.param.SysUserListParamVO;
+import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 
@@ -34,5 +34,14 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @return
 	 */
 	List<SysUserListVO> querySysUserList(SysUserListParamVO vo, PageParams pageParams) throws SysException;
+
+	/**
+	 * 根据登录令牌获取用户
+	 * @author yuminjun
+	 * @date 2020/04/21 17:33:46
+	 * @param principal 登录令牌
+	 * @return
+	 */
+	SysUserEntity getSysUserByPrincipal(String principal);
 
 }

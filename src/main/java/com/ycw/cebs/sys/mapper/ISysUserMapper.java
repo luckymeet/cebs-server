@@ -1,13 +1,13 @@
-package com.ycw.cebs.user.mapper;
+package com.ycw.cebs.sys.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.ycw.cebs.user.entity.SysUserEntity;
-import com.ycw.cebs.user.vo.SysUserListVO;
-import com.ycw.cebs.user.vo.param.SysUserListParamVO;
+import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.base.BaseCrudMapper;
 
 /**

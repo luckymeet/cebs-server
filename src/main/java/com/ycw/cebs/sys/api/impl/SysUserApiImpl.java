@@ -1,4 +1,4 @@
-package com.ycw.cebs.user.api.impl;
+package com.ycw.cebs.sys.api.impl;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
-import com.ycw.cebs.user.api.ISysUserApi;
-import com.ycw.cebs.user.entity.SysUserEntity;
-import com.ycw.cebs.user.service.ISysUserService;
-import com.ycw.cebs.user.vo.SysUserDetailVO;
-import com.ycw.cebs.user.vo.SysUserListVO;
-import com.ycw.cebs.user.vo.param.SysUserListParamVO;
-import com.ycw.cebs.user.vo.param.SysUserParamVO;
+import com.ycw.cebs.sys.api.ISysUserApi;
+import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.service.ISysUserService;
+import com.ycw.cebs.sys.vo.SysUserDetailVO;
+import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
