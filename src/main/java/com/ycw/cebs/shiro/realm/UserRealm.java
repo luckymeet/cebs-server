@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -71,15 +71,15 @@ public class UserRealm extends AuthorizingRealm {
 		String principal = (String) token.getPrincipal();
 		SysUserEntity sysUser = null;
 		try {
-			sysUser = this.sysUserService.getUserByPrincipal(principal);
+			sysUser = this.sysUserService.getUserByLoginAccount(principal);
 		} catch (Exception e) {
 			throw new AuthenticationException(e);
 		}
 		if (sysUser == null) {
 			throw new UnknownAccountException();
 		}
-		if (CommonConstants.INT_NO == sysUser.getStatus()) {
-			throw new LockedAccountException();
+		if (CommonConstants.INT_NO.equals(sysUser.getStatus())) {
+			throw new DisabledAccountException();
 		}
 		SimpleAuthenticationInfo authInfo = new SimpleAuthenticationInfo(sysUser, sysUser.getPassword(), getName());
 		authInfo.setCredentialsSalt(ByteSource.Util.bytes(sysUser.getSalt()));

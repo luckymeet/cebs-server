@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ycw.cebs.user.mapper.ISysUserMapper">
+<mapper namespace="com.ycw.cebs.sys.mapper.ISysUserMapper">
 
 	<sql id="column_list">
 		t.id id, <!-- 主键 -->
@@ -22,6 +22,8 @@
 		t.status status, <!-- 状态：0-失效；1-生效 -->
 		t.login_status loginStatus, <!-- 登录状态 -->
 		t.last_login_time lastLoginTime, <!-- 最后登录时间 -->
+		t.client_id clientId, <!-- 创建链，后台用户有值 -->
+		t.create_chain createChain, <!-- 删除标识：0-未删除，1-删除 -->
 		t.del_ind delInd, <!-- 删除标识：0-未删除；1-删除 -->
 		t.create_user createUser, <!-- 创建人 -->
 		t.create_time createTime, <!-- 创建时间 -->

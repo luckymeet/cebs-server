@@ -52,17 +52,17 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntit
 	}
 
 	/**
-	 * 根据登录令牌获取用户
+	 * 根据登录账号获取用户
 	 * @author yuminjun
 	 * @date 2020/04/21 17:33:46
-	 * @param principal 登录令牌
+	 * @param account 登录账号
 	 * @return
 	 */
 	@Override
-	public SysUserEntity getUserByPrincipal(String principal) {
+	public SysUserEntity getUserByLoginAccount(String account) {
 		LambdaQueryWrapper<SysUserEntity> queryWrapper = Wrappers.lambdaQuery();
-		queryWrapper.eq(SysUserEntity::getLoginName, principal).or()
-					.eq(SysUserEntity::getMobilePhone, principal)
+		queryWrapper.eq(SysUserEntity::getLoginName, account).or()
+					.eq(SysUserEntity::getMobilePhone, account)
 					.eq(SysUserEntity::getClientId, ClientTypeEnum.BACK_END.getCode())
 					.eq(SysUserEntity::getDelInd, CommonConstants.INT_NO);
 		SysUserEntity user = sysUserMapper.selectOne(queryWrapper);

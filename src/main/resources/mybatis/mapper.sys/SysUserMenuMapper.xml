@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycw.cebs.sys.mapper.ISysUserMenuMapper">
+
+    <sql id="column_list">
+        t.id id, <!-- ID -->
+        t.user_id userId, <!-- 用户id -->
+        t.menu_id menuId, <!-- 菜单id -->
+        t.del_ind delInd, <!-- 删除标识：0-未删除，1-删除 -->
+        t.create_user createUser, <!-- 创建人 -->
+        t.create_time createTime, <!-- 创建时间 -->
+        t.update_user updateUser, <!-- 更新人 -->
+        t.update_time updateTime, <!-- 更新时间 -->
+        t.version version, <!-- 版本号 -->
+        t.is_deleted isDeleted <!-- 删除标志：0-未删除，1-已删除 -->
+	</sql>
+
+    <sql id="where_filters">
+        <where>
+    		t.is_deleted = '0'
+			<if test="params.id != null">
+				AND t.id = #{params.id}
+			</if>
+			<if test="params.userId != null">
+				AND t.user_id = #{params.userId}
+			</if>
+			<if test="params.menuId != null">
+				AND t.menu_id = #{params.menuId}
+			</if>
+			<if test="params.delInd != null">
+				AND t.del_ind = #{params.delInd}
+			</if>
+			<if test="params.createUser != null">
+				AND t.create_user = #{params.createUser}
+			</if>
+			<if test="params.createTime != null">
+				AND t.create_time = #{params.createTime}
+			</if>
+			<if test="params.updateUser != null">
+				AND t.update_user = #{params.updateUser}
+			</if>
+			<if test="params.updateTime != null">
+				AND t.update_time = #{params.updateTime}
+			</if>
+			<if test="params.version != null">
+				AND t.version = #{params.version}
+			</if>
+        </where>
+        ORDER BY t.create_time DESC
+    </sql>
+
+</mapper>

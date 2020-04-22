@@ -42,6 +42,6 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param principal 登录令牌
 	 * @return
 	 */
-	SysUserEntity getUserByPrincipal(String principal);
+	SysUserEntity getUserByLoginAccount(String principal);
 
 }
