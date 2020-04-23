@@ -1,6 +1,6 @@
 package com.ycw.cebs;
 
-import com.ycw.cebs.common.constants.sys.utils.PasswordUtil;
+import com.ycw.cebs.common.utils.PasswordUtil;
 
 class MainTests {
 

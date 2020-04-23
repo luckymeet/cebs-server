@@ -1,4 +1,4 @@
-package com.ycw.cebs.common.constants.sys.utils;
+package com.ycw.cebs.common.utils;
 
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Md5Hash;

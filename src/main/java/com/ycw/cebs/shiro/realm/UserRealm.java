@@ -113,4 +113,24 @@ public class UserRealm extends AuthorizingRealm {
 		return authorizationInfo;
 	}
 
+	/**
+	 * 清空指定用户授权缓存
+	 * @author yuminjun
+	 * @date 2020/04/23 14:39:08
+	 * @param principals
+	 */
+	@Override
+	public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+		super.clearCachedAuthorizationInfo(principals);
+	}
+
+	/**
+	 * 清空所有用户授权缓存
+	 * @author yuminjun
+	 * @date 2020/04/23 14:40:11
+	 */
+	public void clearAllCachedAuthorizationInfo() {
+		getAuthorizationCache().clear();
+	}
+
 }
