@@ -1,11 +1,10 @@
 package com.ycw.cebs.shiro.realm;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -24,9 +23,9 @@ import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ycw.cebs.sys.entity.SysMenuEntity;
+import com.ycw.cebs.sys.entity.SysPermEntity;
 import com.ycw.cebs.sys.entity.SysUserEntity;
-import com.ycw.cebs.sys.service.ISysMenuService;
+import com.ycw.cebs.sys.service.ISysPermService;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.common.constants.CommonConstants;
 
@@ -37,7 +36,7 @@ public class UserRealm extends AuthorizingRealm {
 	private ISysUserService sysUserService;
 
 	@Autowired
-	private ISysMenuService sysMenuService;
+	private ISysPermService sysPermService;
 
 	public UserRealm() {
 		// 默认采用MD5散列加密算法
@@ -101,12 +100,10 @@ public class UserRealm extends AuthorizingRealm {
 		Collection<SysUserEntity> userPrincipals = principals.fromRealm(getName());
 		if (!CollectionUtils.isEmpty(userPrincipals)) {
 			SysUserEntity user = userPrincipals.iterator().next();
-			List<SysMenuEntity> menuList = this.sysMenuService.queryMenuListByUserId(user.getId());
-			if (!CollectionUtils.isEmpty(menuList)) {
+			List<SysPermEntity> permList = this.sysPermService.queryPermListByUserId(user.getId());
+			if (!CollectionUtils.isEmpty(permList)) {
 				// 遍历权限，进行授权
-				Set<String> permissions = new LinkedHashSet<>();
-				menuList.stream().filter(menu -> StringUtils.isNotBlank(menu.getPerms()))
-						.forEach(menu -> permissions.add(menu.getPerms()));
+				Set<String> permissions = permList.stream().map(SysPermEntity::getValue).collect(Collectors.toSet());
 				authorizationInfo.setStringPermissions(permissions);
 			}
 		}

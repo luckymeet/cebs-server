@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户菜单关联实体类
+ * 用户权限关联实体类
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:31:06
  * @version v1.00
@@ -23,8 +23,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("sys_user_menu")
-public class SysUserMenuEntity extends BaseEntity {
+@TableName("sys_user_perm")
+public class SysUserPermEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,10 +35,10 @@ public class SysUserMenuEntity extends BaseEntity {
 	private Long userId;
 
  	/**
- 	 * 菜单id
+ 	 * 权限id
  	 */
-	@TableField("menu_id")
-	private Long menuId;
+	@TableField("perm_id")
+	private Long permId;
 
  	/**
  	 * 删除标识：0-未删除，1-删除

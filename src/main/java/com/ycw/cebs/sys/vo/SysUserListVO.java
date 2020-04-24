@@ -1,17 +1,17 @@
 package com.ycw.cebs.sys.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ycw.common.base.BaseVO;
 import com.ycw.common.constants.CommonConstants;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SysUserListVO extends BaseVO{
+@EqualsAndHashCode(callSuper = false)
+public class SysUserListVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

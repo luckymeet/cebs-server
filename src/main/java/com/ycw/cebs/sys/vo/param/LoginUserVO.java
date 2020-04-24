@@ -7,23 +7,18 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysUserPageParamVO implements Serializable {
+public class LoginUserVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 主键
+	 * 昵称
 	 */
-	private Long id;
+	private String nickName;
 
 	/**
-	 * 用户编号
+	 * 头像url
 	 */
-	private String userNum;
-
-	/**
-	 * 真实姓名
-	 */
-	private String realName;
+	private String profilePhotoUrl;
 
 }

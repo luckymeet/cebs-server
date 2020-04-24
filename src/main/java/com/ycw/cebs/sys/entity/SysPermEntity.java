@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 菜单实体类
+ * 系统权限实体类
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:30:50
  * @version v1.00
@@ -23,13 +23,13 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("sys_menu")
-public class SysMenuEntity extends BaseEntity {
+@TableName("sys_perm")
+public class SysPermEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
  	/**
- 	 * 上级菜单
+ 	 * 上级权限
  	 */
 	@TableField("parent_id")
 	private Long parentId;
@@ -41,40 +41,22 @@ public class SysMenuEntity extends BaseEntity {
 	private Integer orderNum;
 
  	/**
- 	 * 菜单名称
+ 	 * 权限名称
  	 */
-	@TableField("menu_name")
-	private String menuName;
+	@TableField("perm_name")
+	private String permName;
 
  	/**
- 	 * 请求地址
+ 	 * 权限类型：1-菜单，2-按钮
  	 */
-	@TableField("url")
-	private String url;
-
- 	/**
- 	 * 打开方式：1-页签，2-新窗口
- 	 */
-	@TableField("open_type")
-	private Integer openType;
-
- 	/**
- 	 * 菜单类型：1-目录，2-菜单，3-按钮
- 	 */
-	@TableField("menu_type")
-	private Integer menuType;
+	@TableField("perm_type")
+	private Integer permType;
 
  	/**
  	 * 权限标识
  	 */
-	@TableField("perms")
-	private String perms;
-
- 	/**
- 	 * 图标
- 	 */
-	@TableField("icon")
-	private String icon;
+	@TableField("value")
+	private String value;
 
  	/**
  	 * 删除标识：0-未删除，1-删除

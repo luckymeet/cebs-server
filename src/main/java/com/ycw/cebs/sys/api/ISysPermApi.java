@@ -5,7 +5,7 @@ import java.util.List;
 import com.ycw.common.response.ResponseVO;
 
 /**
- * 菜单Api接口
+ * 权限Api接口
  * @author yuminjun
  * @date 2020/04/23 14:51:23
  * @version 1.00
@@ -18,15 +18,15 @@ import com.ycw.common.response.ResponseVO;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysMenuApi {
+public interface ISysPermApi {
 
 	/**
-	 * 查询菜单路由
+	 * 查询权限
 	 * @author yuminjun
 	 * @date 2020/04/23 15:21:27
-	 * @param menuType 菜单类型（为null时查询所有）
+	 * @param permType 权限类型（为null时查询所有）
 	 * @return
 	 */
-	ResponseVO<List<String>> queryRouteList(Integer menuType);
+	ResponseVO<List<String>> queryPermList(Integer permType);
 
 }

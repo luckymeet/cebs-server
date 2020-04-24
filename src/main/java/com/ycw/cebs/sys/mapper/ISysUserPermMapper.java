@@ -1,14 +1,16 @@
-package com.ycw.cebs.sys.service;
+package com.ycw.cebs.sys.mapper;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.ycw.cebs.sys.entity.SysUserMenuEntity;
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.common.base.BaseCrudMapper;
 
 /**
- * 用户菜单关联Service接口
+ * 用户权限关联Mapper接口
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:31:06
  * @version v1.00
- *
+
  * @record
  * <pre>
  * version  author      date          desc
@@ -17,6 +19,8 @@ import com.ycw.cebs.sys.entity.SysUserMenuEntity;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysUserMenuService extends IService<SysUserMenuEntity>{
+@Mapper
+public interface ISysUserPermMapper extends BaseCrudMapper<SysUserPermEntity> {
 
 }
+

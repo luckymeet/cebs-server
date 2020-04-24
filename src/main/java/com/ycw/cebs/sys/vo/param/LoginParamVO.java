@@ -1,17 +1,17 @@
 package com.ycw.cebs.sys.vo.param;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
-
-import com.ycw.common.base.BaseVO;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class LoginParamVO extends BaseVO {
+@EqualsAndHashCode(callSuper = false)
+public class LoginParamVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

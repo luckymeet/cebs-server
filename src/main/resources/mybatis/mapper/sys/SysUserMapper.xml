@@ -33,7 +33,7 @@
 	</sql>
 
 	<!--根据条件查询列表 -->
-	<select id="querySysUserList" resultType="com.ycw.cebs.user.vo.SysUserListVO">
+	<select id="querySysUserList" resultType="com.ycw.cebs.sys.vo.SysUserListVO">
 		SELECT
 		<include refid="column_list" />
 		FROM sys_user t

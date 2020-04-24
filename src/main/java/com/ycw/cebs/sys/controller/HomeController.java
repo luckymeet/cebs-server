@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ycw.cebs.common.constants.sys.MenuTypeEnum;
-import com.ycw.cebs.sys.api.ISysMenuApi;
+import com.ycw.cebs.common.constants.sys.PermTypeEnum;
+import com.ycw.cebs.common.utils.SessionUtil;
+import com.ycw.cebs.sys.api.ISysPermApi;
 import com.ycw.cebs.sys.vo.param.LoginParamVO;
+import com.ycw.cebs.sys.vo.param.LoginUserVO;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
+import com.ycw.common.utils.BeanHandleUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 
 	@Autowired
-	private ISysMenuApi sysMenuApi;
+	private ISysPermApi sysPermApi;
 
 	/**
 	 * 未授权
@@ -55,13 +58,14 @@ public class HomeController {
 	 * @return
 	 */
 	@PostMapping("/login")
-	public ResponseVO<String> login(@Validated LoginParamVO loginParamVO) {
+	public ResponseVO<LoginUserVO> login(@Validated LoginParamVO loginParamVO) {
 		Subject user = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(loginParamVO.getUsername(), loginParamVO.getPassword());
 		try {
 			// 跳入入自己实现的域即shiroRealm中验证
 			user.login(token);
-			return ResponseVO.success("登录成功");
+			LoginUserVO vo = BeanHandleUtils.beanCopy(SessionUtil.getCurrentUser(), LoginUserVO.class);
+			return ResponseVO.success(vo);
 		} catch (UnknownAccountException e) {
 			return ResponseVO.fail(ResponseCode.ERR_LOGIN.getCode(), "账号不存在");
 		} catch (IncorrectCredentialsException e) {
@@ -94,14 +98,14 @@ public class HomeController {
 	}
 
 	/**
-	 * 查询当前用户菜单路由权限
+	 * 查询当前用户权限路由权限
 	 * @author yuminjun
 	 * @date 2020/04/23 15:34:29
 	 * @return
 	 */
-	@GetMapping("/routes/menu")
-	public ResponseVO<List<String>> queryMenuPerm() {
-		ResponseVO<List<String>> routeList = sysMenuApi.queryRouteList(MenuTypeEnum.MENU.getCode());
+	@GetMapping("/perm/menu")
+	public ResponseVO<List<String>> queryPermPerm() {
+		ResponseVO<List<String>> routeList = sysPermApi.queryPermList(PermTypeEnum.MENU.getCode());
 		return routeList;
 	}
 
@@ -111,9 +115,9 @@ public class HomeController {
 	 * @date 2020/04/23 15:34:44
 	 * @return
 	 */
-	@GetMapping("/routes/button")
+	@GetMapping("/perm/button")
 	public ResponseVO<List<String>> queryButtonPerm() {
-		ResponseVO<List<String>> routeList = sysMenuApi.queryRouteList(MenuTypeEnum.BUTTON.getCode());
+		ResponseVO<List<String>> routeList = sysPermApi.queryPermList(PermTypeEnum.BUTTON.getCode());
 		return routeList;
 	}
 

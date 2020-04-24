@@ -2,13 +2,13 @@ package com.ycw.cebs.sys.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ycw.cebs.sys.entity.SysUserMenuEntity;
+import com.ycw.cebs.sys.entity.SysPermEntity;
 import com.ycw.common.base.BaseCrudMapper;
 
 /**
- * 用户菜单关联Mapper接口
+ * 系统权限Mapper接口
  * @author yuminjun yuminjun@lexiangbao.com
- * @date 2020/04/22 09:31:06
+ * @date 2020/04/22 09:30:50
  * @version v1.00
 
  * @record
@@ -20,7 +20,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface ISysUserMenuMapper extends BaseCrudMapper<SysUserMenuEntity> {
+public interface ISysPermMapper extends BaseCrudMapper<SysPermEntity> {
 
 }
 

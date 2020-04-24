@@ -1,5 +1,6 @@
 package com.ycw.cebs.sys.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,6 +53,7 @@ public class SysUserController extends BaseController {
 	 * @throws SysException
 	 */
 	@GetMapping("/list")
+	@RequiresPermissions("sys:user:list")
 	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
 		return sysUserApi.queryUserPage(vo, pageParams);
 	}

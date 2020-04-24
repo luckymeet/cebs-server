@@ -112,6 +112,7 @@ public class ShiroAuthConfig {
 		/* 配置访问权限 */
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/sys/login", "anon");
+		filterChainDefinitionMap.put("/sys/logout", "anon");
 		filterChainDefinitionMap.put("/druid/**", "anon");
 		filterChainDefinitionMap.put("/actuator/**", "anon");
 		filterChainDefinitionMap.put("/**", "authc");

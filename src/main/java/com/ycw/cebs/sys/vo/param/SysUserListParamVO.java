@@ -1,13 +1,13 @@
 package com.ycw.cebs.sys.vo.param;
 
-import com.ycw.common.base.BaseVO;
+import java.io.Serializable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SysUserListParamVO extends BaseVO {
+@EqualsAndHashCode(callSuper = false)
+public class SysUserListParamVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

@@ -1,5 +1,6 @@
 package com.ycw.cebs.sys.vo.param;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.Email;
@@ -8,14 +9,12 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.ycw.common.base.BaseVO;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SysUserAddParamVO extends BaseVO {
+@EqualsAndHashCode(callSuper = false)
+public class SysUserAddParamVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
