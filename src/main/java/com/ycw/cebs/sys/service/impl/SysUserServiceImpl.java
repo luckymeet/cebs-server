@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ycw.cebs.common.constants.sys.ClientTypeEnum;
+import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.sys.entity.SysUserEntity;
 import com.ycw.cebs.sys.mapper.ISysUserMapper;
 import com.ycw.cebs.sys.service.ISysUserService;

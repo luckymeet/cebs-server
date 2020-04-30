@@ -1,9 +1,9 @@
-package com.ycw.cebs.common.constants.sys;
+package com.ycw.cebs.common.constant.sys;
 
 import lombok.Getter;
 
 /**
- * 客户端类型
+ * 权限类型
  * @author yuminjun
  * @date 2020/04/22 11:49:26
  * @version 1.00
@@ -17,14 +17,14 @@ import lombok.Getter;
  * </pre>
  */
 @Getter
-public enum ClientTypeEnum {
+public enum PermTypeEnum {
 
-	BACK_END(1, "后台"), PORTAL(2, "门户");
+	MENU(1, "菜单"), BUTTON(2, "按钮");
 
 	private Integer code;
 	private String desc;
 
-	ClientTypeEnum(Integer code, String desc) {
+	PermTypeEnum(Integer code, String desc) {
 		this.code = code;
 		this.desc = desc;
 	}

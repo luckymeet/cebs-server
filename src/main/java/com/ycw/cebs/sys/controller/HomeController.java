@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ycw.cebs.common.constants.sys.PermTypeEnum;
+import com.ycw.cebs.common.constant.sys.PermTypeEnum;
 import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.sys.api.ISysPermApi;
 import com.ycw.cebs.sys.vo.param.LoginParamVO;
