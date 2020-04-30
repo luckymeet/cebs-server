@@ -1,7 +1,5 @@
 package com.ycw.cebs.sys.controller;
 
-import java.util.Map;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -9,11 +7,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esotericsoftware.minlog.Log;
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.sys.api.ISysUserApi;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
@@ -21,7 +17,6 @@ import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
 import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
 import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
-import com.ycw.common.base.BaseController;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
@@ -42,7 +37,7 @@ import com.ycw.common.response.ResponseVO;
  */
 @RestController
 @RequestMapping("/sys/user")
-public class SysUserController extends BaseController {
+public class SysUserController {
 
 	@Autowired
 	private ISysUserApi sysUserApi;
@@ -58,7 +53,7 @@ public class SysUserController extends BaseController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
-	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException {
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) {
 		return sysUserApi.queryUserPage(vo, pageParams);
 	}
 
@@ -71,7 +66,7 @@ public class SysUserController extends BaseController {
 	 * @throws SysException
 	 */
 	@GetMapping
-	public ResponseVO<SysUserDetailVO> getUser(Long id) throws SysException {
+	public ResponseVO<SysUserDetailVO> getUser(Long id) {
 		return sysUserApi.getUser(id);
 	}
 
@@ -84,7 +79,7 @@ public class SysUserController extends BaseController {
 	 * @throws SysException
 	 */
 	@PostMapping
-	public ResponseVO<Long> saveUser(@Validated SysUserAddParamVO vo) throws SysException {
+	public ResponseVO<Long> saveUser(@Validated SysUserAddParamVO vo) {
 		return sysUserApi.saveUser(vo);
 	}
 
@@ -97,8 +92,7 @@ public class SysUserController extends BaseController {
 	 * @throws SysException
 	 */
 	@PutMapping
-	public ResponseVO<Long> updateUser(@Validated SysUserEditParamVO vo) throws SysException {
-		System.out.println("===============" + vo);
+	public ResponseVO<Long> updateUser(@Validated SysUserEditParamVO vo) {
 		return sysUserApi.updateUser(vo);
 	}
 
@@ -111,7 +105,7 @@ public class SysUserController extends BaseController {
 	 * @throws SysException
 	 */
 	@DeleteMapping
-	public ResponseVO<String> deleteUser(Long id) throws SysException {
+	public ResponseVO<String> deleteUser(Long id) {
 		return sysUserApi.deleteUser(id);
 	}
 

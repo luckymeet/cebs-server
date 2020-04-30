@@ -1,20 +1,13 @@
 package com.ycw.cebs.sys.api.impl;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.sys.api.ISysUserApi;
-import com.ycw.cebs.sys.entity.SysPermEntity;
 import com.ycw.cebs.sys.entity.SysUserEntity;
 import com.ycw.cebs.sys.entity.SysUserPermEntity;
 import com.ycw.cebs.sys.service.ISysPermService;
