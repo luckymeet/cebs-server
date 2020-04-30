@@ -3,9 +3,9 @@ package com.ycw.cebs.sys.api;
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
-import com.ycw.common.exception.SysException;
+import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
@@ -32,9 +32,8 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @param pageParams 分页参数（为null时默认查所有）
 	 * @return
-	 * @throws SysException
 	 */
-	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) throws SysException;
+	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams);
 
 	/**
 	 * 根据id查询系统用户数据
@@ -42,9 +41,8 @@ public interface ISysUserApi {
 	 * @date 2020/04/21 16:55:11
 	 * @param id
 	 * @return
-	 * @throws SysException
 	 */
-	ResponseVO<SysUserDetailVO> getUser(Long id) throws SysException;
+	ResponseVO<SysUserDetailVO> getUser(Long id);
 
 	/**
 	 * 保存系统用户数据
@@ -53,7 +51,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> saveUser(SysUserAddParamVO vo) throws SysException;
+	ResponseVO<Long> saveUser(SysUserAddParamVO vo);
 
 	/**
 	 * 修改系统用户数据
@@ -62,7 +60,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> updateUser(SysUserAddParamVO vo) throws SysException;
+	ResponseVO<Long> updateUser(SysUserEditParamVO vo);
 
 	/**
 	 * 删除系统用户数据
@@ -70,8 +68,7 @@ public interface ISysUserApi {
 	 * @date 2020/04/21 16:56:15
 	 * @param id
 	 * @return
-	 * @throws SysException
 	 */
-	ResponseVO<String> deleteUser(Long id) throws SysException;
+	ResponseVO<String> deleteUser(Long id);
 
 }

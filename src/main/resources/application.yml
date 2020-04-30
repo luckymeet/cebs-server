@@ -56,7 +56,7 @@ spring:
     config:
       # 只有系统环境变量或者系统属性才能覆盖远程配置文件的配置
       override-system-properties: false
-        # 缓存
+  # 缓存
   redis:
     host: 39.105.58.23
     port: 6379

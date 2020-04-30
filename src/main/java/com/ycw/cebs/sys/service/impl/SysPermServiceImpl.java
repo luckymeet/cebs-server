@@ -87,7 +87,8 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntit
 	 * @param userId 用户id
 	 * @return
 	 */
-	private List<SysUserPermEntity> queryUserPermByUserId(Long userId) {
+	@Override
+	public List<SysUserPermEntity> queryUserPermByUserId(Long userId) {
 		LambdaQueryWrapper<SysUserPermEntity> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.eq(SysUserPermEntity::getUserId, userId);
 		queryWrapper.eq(SysUserPermEntity::getDelInd, CommonConstants.INT_NO);

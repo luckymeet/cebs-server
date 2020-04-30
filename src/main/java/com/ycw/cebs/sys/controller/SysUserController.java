@@ -1,22 +1,26 @@
 package com.ycw.cebs.sys.controller;
 
+import java.util.Map;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.esotericsoftware.minlog.Log;
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.sys.api.ISysUserApi;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
+import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.base.BaseController;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
@@ -66,8 +70,8 @@ public class SysUserController extends BaseController {
 	 * @return
 	 * @throws SysException
 	 */
-	@GetMapping("/{id}")
-	public ResponseVO<SysUserDetailVO> getUser(@PathVariable Long id) throws SysException {
+	@GetMapping
+	public ResponseVO<SysUserDetailVO> getUser(Long id) throws SysException {
 		return sysUserApi.getUser(id);
 	}
 
@@ -93,7 +97,8 @@ public class SysUserController extends BaseController {
 	 * @throws SysException
 	 */
 	@PutMapping
-	public ResponseVO<Long> updateUser(@Validated SysUserAddParamVO vo) throws SysException {
+	public ResponseVO<Long> updateUser(@Validated SysUserEditParamVO vo) throws SysException {
+		System.out.println("===============" + vo);
 		return sysUserApi.updateUser(vo);
 	}
 
@@ -105,8 +110,8 @@ public class SysUserController extends BaseController {
 	 * @return
 	 * @throws SysException
 	 */
-	@DeleteMapping("/{id}")
-	public ResponseVO<String> deleteUser(@PathVariable Long id) throws SysException {
+	@DeleteMapping
+	public ResponseVO<String> deleteUser(Long id) throws SysException {
 		return sysUserApi.deleteUser(id);
 	}
 

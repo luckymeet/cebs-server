@@ -1,6 +1,6 @@
 package com.ycw.cebs.sys.vo.param;
 
-import javax.validation.constraints.Null;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +14,7 @@ public class SysUserEditParamVO extends SysUserAddParamVO {
 	/**
 	 * 主键
 	 */
-	@Null(message = "id不能为空")
+	@NotNull(message = "id不能为空")
 	private Long id;
 
 }

@@ -1,7 +1,7 @@
 package com.ycw.cebs.sys.vo.param;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +31,7 @@ public class SysUserAddParamVO implements Serializable {
 	/**
 	 * 昵称
 	 */
+	@NotBlank(message = "昵称不能为空")
 	private String nickName;
 
 	/**
@@ -38,12 +39,6 @@ public class SysUserAddParamVO implements Serializable {
 	 */
 	@NotBlank(message = "请输入登录名")
 	private String loginName;
-
-	/**
-	 * 登录密码
-	 */
-	@NotBlank(message = "请输入登录密码")
-	private String password;
 
 	/**
 	 * 头像url
@@ -59,7 +54,7 @@ public class SysUserAddParamVO implements Serializable {
 	 * 生日
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDateTime birthday;
+	private LocalDate birthday;
 
 	/**
 	 * 手机号
@@ -75,7 +70,6 @@ public class SysUserAddParamVO implements Serializable {
 	/**
 	 * 身份证号
 	 */
-	@Pattern(regexp = "/^[1-9]\\d{5}(18|19|20|(3\\d))\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$/", message = "请输入正确的身份证格式")
 	private String idCard;
 
 	/**

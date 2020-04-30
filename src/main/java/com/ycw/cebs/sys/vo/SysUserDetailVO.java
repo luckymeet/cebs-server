@@ -143,4 +143,9 @@ public class SysUserDetailVO implements Serializable {
 	 */
 	private Integer version;
 
+	/**
+	 * 权限Ids,多个以英文逗号隔开
+	 */
+	private String permIds;
+
 }

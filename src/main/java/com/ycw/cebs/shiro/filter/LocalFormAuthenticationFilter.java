@@ -46,10 +46,10 @@ public class LocalFormAuthenticationFilter extends FormAuthenticationFilter {
 			log.info("Attempting to access a path which requires authentication.  Forwarding to the "
 					+ "Authentication url [" + getLoginUrl() + "]");
 
-			//resp.setHeader("Access-Control-Allow-Origin", req.getHeader("Origin"));
-			//resp.setHeader("Access-Control-Allow-Credentials", "true");
-			//resp.setContentType("application/json; charset=utf-8");
-			//resp.setCharacterEncoding("UTF-8");
+			//res.setHeader("Access-Control-Allow-Origin", req.getHeader("Origin"));
+			//res.setHeader("Access-Control-Allow-Credentials", "true");
+			//res.setContentType("application/json; charset=utf-8");
+			//res.setCharacterEncoding("UTF-8");
 			res.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
 			PrintWriter out = res.getWriter();

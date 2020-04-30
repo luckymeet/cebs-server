@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.sys.entity.SysPermEntity;
+import com.ycw.cebs.sys.entity.SysUserPermEntity;
 
 /**
  * 系统权限Service接口
@@ -39,5 +40,14 @@ public interface ISysPermService extends IService<SysPermEntity>{
 	 * @return
 	 */
 	List<SysPermEntity> queryPermListByPermIdList(Collection<Long> permIds);
+
+	/**
+	 * 根据用户id查询用户权限关联数据列表
+	 * @author yuminjun
+	 * @date 2020/04/22 10:57:08
+	 * @param userId 用户id
+	 * @return
+	 */
+	List<SysUserPermEntity> queryUserPermByUserId(Long userId);
 
 }
