@@ -113,11 +113,6 @@ public class SysUserListVO implements Serializable {
 	private LocalDateTime lastLoginTime;
 
 	/**
-	 * 删除标识：0-未删除；1-删除
-	 */
-	private Integer delInd;
-
-	/**
 	 * 创建人
 	 */
 	private String createUser;
@@ -138,10 +133,5 @@ public class SysUserListVO implements Serializable {
 	 */
 	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
 	private LocalDateTime updateTime;
-
-	/**
-	 * 版本号
-	 */
-	private Integer version;
 
 }

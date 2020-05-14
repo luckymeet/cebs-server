@@ -39,22 +39,16 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 	public void insertFill(MetaObject metaObject) {
 		LocalDateTime now = LocalDateTime.now();
 		Long currentUserId = Optional.ofNullable(SessionUtil.getCurrentUserId()).orElse(0L);
-		if (Objects.isNull(this.getFieldValByName(CREATE_USER, metaObject))) {
-			this.setInsertFieldValByName(CREATE_USER, currentUserId, metaObject);
-		}
-		if (Objects.isNull(this.getFieldValByName(UPDATE_USER, metaObject))) {
-			this.setInsertFieldValByName(UPDATE_USER, currentUserId, metaObject);
-		}
-		this.setInsertFieldValByName(CREATE_TIME, now, metaObject);
-		this.setInsertFieldValByName(UPDATE_TIME, now, metaObject);
+		this.strictInsertFill(metaObject, CREATE_USER, Long.class, currentUserId);
+		this.strictInsertFill(metaObject, UPDATE_USER, Long.class, currentUserId);
+		this.strictInsertFill(metaObject, CREATE_TIME, LocalDateTime.class, now);
+		this.strictInsertFill(metaObject, UPDATE_TIME, LocalDateTime.class, now);
 	}
 
 	@Override
 	public void updateFill(MetaObject metaObject) {
-		if (Objects.isNull(this.getFieldValByName(UPDATE_USER, metaObject))) {
-			this.setUpdateFieldValByName(UPDATE_USER, Optional.ofNullable(SessionUtil.getCurrentUserId()).orElse(0L), metaObject);
-		}
-		this.setUpdateFieldValByName(UPDATE_TIME, LocalDateTime.now(), metaObject);
+		this.strictUpdateFill(metaObject, UPDATE_USER, Long.class, Optional.ofNullable(SessionUtil.getCurrentUserId()).orElse(0L));
+		this.strictUpdateFill(metaObject, UPDATE_TIME, LocalDateTime.class, LocalDateTime.now());
 	}
 
 }

@@ -2,6 +2,7 @@ package com.ycw.cebs.sys.api;
 
 import java.util.List;
 
+import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.vo.SysPermListVO;
 import com.ycw.common.response.ResponseVO;
 
@@ -46,5 +47,13 @@ public interface ISysPermApi {
 	 * @return
 	 */
 	ResponseVO<List<SysPermListVO>> queryPermListByParentId(Long parentId);
+
+	/**
+	 * 获取当前用户权限树
+	 * @author yuminjun
+	 * @date 2020/05/12 17:42:25
+	 * @return
+	 */
+	ResponseVO<List<TreeVO>> queryCurUserPermTree();
 
 }

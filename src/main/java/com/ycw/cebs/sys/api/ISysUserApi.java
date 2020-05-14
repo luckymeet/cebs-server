@@ -71,4 +71,24 @@ public interface ISysUserApi {
 	 */
 	ResponseVO<String> deleteUser(Long id);
 
+	/**
+	 * 新增用户权限
+	 * @author yuminjun
+	 * @date 2020/05/13 16:12:06
+	 * @param userId
+	 * @param strings
+	 * @return
+	 */
+	ResponseVO<String> saveUserPerm(Long userId, String[] strings);
+
+	/**
+	 * 修改用户权限
+	 * @author yuminjun
+	 * @date 2020/05/13 16:12:21
+	 * @param userId
+	 * @param strings
+	 * @return
+	 */
+	ResponseVO<String> updateUserPerm(Long userId, String[] strings);
+
 }

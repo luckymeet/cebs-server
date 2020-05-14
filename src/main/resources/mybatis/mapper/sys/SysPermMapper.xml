@@ -18,4 +18,23 @@
         t.is_deleted isDeleted <!-- 删除标志：0-未删除，1-已删除 -->
 	</sql>
 
+
+	<!--根据条件查询列表 -->
+	<select id="queryPermTreeListByUserId" resultType="com.ycw.cebs.common.vo.TreeVO">
+		SELECT
+			p.id id,
+			p.parent_id parentId,
+			p.perm_name label
+		FROM
+			sys_perm p
+		INNER JOIN sys_user_perm up
+			ON up.perm_id = p.id
+			AND up.del_ind = '0'
+		WHERE
+			p.del_ind = '0'
+		<if test="userId != null">
+			AND up.user_id = #{userId}
+		</if>
+	</select>
+
 </mapper>

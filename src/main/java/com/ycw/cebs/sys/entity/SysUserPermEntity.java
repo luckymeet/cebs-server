@@ -40,28 +40,4 @@ public class SysUserPermEntity extends BaseEntity {
 	@TableField("perm_id")
 	private Long permId;
 
- 	/**
- 	 * 删除标识：0-未删除，1-删除
- 	 */
-	@TableField("del_ind")
-	private Integer delInd;
-
- 	/**
- 	 * 创建人
- 	 */
-	@TableField("create_user")
-	private Long createUser;
-
- 	/**
- 	 * 更新人
- 	 */
-	@TableField("update_user")
-	private Long updateUser;
-
- 	/**
- 	 * 版本号
- 	 */
-	@TableField("version")
-	private Integer version;
-
 }

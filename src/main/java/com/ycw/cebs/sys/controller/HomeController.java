@@ -75,8 +75,10 @@ public class HomeController {
 		} catch (DisabledAccountException e) {
 			return ResponseVO.fail(ResponseCode.ERR_LOGIN.getCode(), "账号未启用");
 		} catch (AuthenticationException e) {
+			log.error("登录失败", e);
 			return ResponseVO.fail(ResponseCode.ERR_LOGIN.getCode(), "登录失败：" + e.getMessage());
 		} catch (Exception e) {
+			log.error("登录失败", e);
 			return ResponseVO.fail(ResponseCode.ERR_999.getCode(), "未知错误, 请联系管理员");
 		}
 	}
@@ -94,7 +96,7 @@ public class HomeController {
 		if (subject != null) {
 			subject.logout();
 		}
-		return ResponseVO.success("注销成功");
+		return ResponseVO.success(null, "注销成功");
 	}
 
 	/**

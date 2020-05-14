@@ -1,16 +1,26 @@
 package com.ycw.cebs.sys.api.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.pagehelper.PageInfo;
+import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.sys.api.ISysUserApi;
 import com.ycw.cebs.sys.entity.SysUserEntity;
 import com.ycw.cebs.sys.entity.SysUserPermEntity;
 import com.ycw.cebs.sys.service.ISysPermService;
+import com.ycw.cebs.sys.service.ISysUserPermService;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
@@ -46,6 +56,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	@Autowired
 	private ISysPermService sysPermService;
 
+	@Autowired
+	private ISysUserPermService sysUserPermService;
+
 	/**
 	 * 用户列表分页查询
 	 * @author yuminjun
@@ -74,8 +87,8 @@ public class SysUserApiImpl implements ISysUserApi {
 		}
 		SysUserEntity sysUser = this.sysUserService.getById(id);
 		List<SysUserPermEntity> userPerm = this.sysPermService.queryUserPermByUserId(id);
+		String permIds = StringUtils.join(userPerm.stream().map(SysUserPermEntity::getPermId).toArray(), ",");
 		SysUserDetailVO vo = BeanHandleUtils.beanCopy(sysUser, SysUserDetailVO.class);
-		String permIds = StringUtils.join(userPerm.stream().map(SysUserPermEntity::getPermId).toArray());
 		vo.setPermIds(permIds);
 		return ResponseVO.success(vo);
 	}
@@ -93,7 +106,9 @@ public class SysUserApiImpl implements ISysUserApi {
 		if (StringUtils.isNotEmpty(idCard) && idCard.matches("/^[1-9]\\d{5}(18|19|20|(3\\d))\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$/")) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
+		SysUserEntity currentUser = SessionUtil.getCurrentUser();
 		SysUserEntity user = BeanHandleUtils.beanCopy(vo, SysUserEntity.class);
+		user.setCreateChain(StringUtils.join(currentUser.getCreateChain(), currentUser.getId(), ","));
 		this.sysUserService.save(user);
 		return ResponseVO.success(user.getId(), "新增成功");
 	}
@@ -126,6 +141,71 @@ public class SysUserApiImpl implements ISysUserApi {
 			.set(SysUserEntity::getWechat, vo.getWechat())
 			.eq(SysUserEntity::getId, vo.getId());
 		return ResponseVO.success(vo.getId(), "修改成功");
+	}
+
+	/**
+	 * 新增用户权限
+	 * @author yuminjun
+	 * @date 2020/05/13 16:12:06
+	 * @param userId
+	 * @param permIdArray
+	 */
+	@Override
+	public ResponseVO<String> saveUserPerm(Long userId, String[] permIdArray) {
+		if (null == userId || null == permIdArray) {
+			return ResponseVO.success(null);
+		}
+		List<SysUserPermEntity> userPermList = new ArrayList<>();
+		for (int i = 0; i < permIdArray.length; i++) {
+			SysUserPermEntity userPerm = new SysUserPermEntity();
+			userPerm.setPermId(Long.parseLong(permIdArray[i]));
+			userPerm.setUserId(userId);
+			userPermList.add(userPerm);
+		}
+		sysUserPermService.saveBatch(userPermList);
+		return ResponseVO.success(null, "新增用户权限成功");
+	}
+
+	/**
+	 * 修改用户权限
+	 * @author yuminjun
+	 * @date 2020/05/13 16:12:21
+	 * @param userId
+	 * @param permIdArray
+	 */
+	@Override
+	public 	ResponseVO<String> updateUserPerm(Long userId, String[] permIdArray) {
+		if (null == userId || null == permIdArray) {
+			return ResponseVO.success(null);
+		}
+		List<SysUserPermEntity> userPermList = this.sysPermService.queryUserPermByUserId(userId);
+		Set<Long> oldPermIdSet = userPermList.stream().map(SysUserPermEntity::getPermId).collect(Collectors.toSet());
+		Set<Long> newPermIdSet = Arrays.asList(permIdArray).stream().map(permId -> Long.parseLong(permId)).collect(Collectors.toSet());
+		Set<Long> addSet = new HashSet<>(newPermIdSet);
+		Set<Long> deleteSet = new HashSet<>(oldPermIdSet);
+		// 差集=需要新增的权限
+		addSet.removeAll(oldPermIdSet);
+		// 差集=需要删除的权限
+		deleteSet.removeAll(newPermIdSet);
+
+		/* 新增新的权限 */
+		List<SysUserPermEntity> addUserPermList = new ArrayList<>();
+		for (Long permId : addSet) {
+			SysUserPermEntity userPerm = new SysUserPermEntity();
+			userPerm.setPermId(permId);
+			userPerm.setUserId(userId);
+			addUserPermList.add(userPerm);
+		}
+		sysUserPermService.saveBatch(addUserPermList);
+
+		/* 删除去掉的权限 */
+		if (CollectionUtils.isNotEmpty(deleteSet)) {
+			LambdaQueryWrapper<SysUserPermEntity> queryWrapper = Wrappers.lambdaQuery();
+			queryWrapper.eq(SysUserPermEntity::getUserId, userId);
+			queryWrapper.in(SysUserPermEntity::getPermId, deleteSet);
+			sysUserPermService.remove(queryWrapper);
+		}
+		return ResponseVO.success(null, "修改用户权限成功");
 	}
 
 	/**

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.entity.SysPermEntity;
 import com.ycw.cebs.sys.entity.SysUserPermEntity;
 import com.ycw.cebs.sys.mapper.ISysPermMapper;
@@ -73,6 +74,9 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntit
 	 */
 	@Override
 	public List<SysPermEntity> queryPermListByPermIdList(Collection<Long> permIds) {
+		if (CollectionUtils.isEmpty(permIds)) {
+			return Collections.emptyList();
+		}
 		LambdaQueryWrapper<SysPermEntity> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.in(SysPermEntity::getId, permIds);
 		queryWrapper.eq(SysPermEntity::getDelInd, CommonConstants.INT_NO);
@@ -94,6 +98,18 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntit
 		queryWrapper.eq(SysUserPermEntity::getDelInd, CommonConstants.INT_NO);
 		List<SysUserPermEntity> userPermlist = sysUserPermMapper.selectList(queryWrapper);
 		return userPermlist;
+	}
+
+	/**
+	 * 查询用户权限列表
+	 * @author yuminjun
+	 * @date 2020/05/13 09:53:19
+	 * @param userId 用户id
+	 * @return
+	 */
+	@Override
+	public List<TreeVO> queryPermTreeListByUserId(Long userId) {
+		 return sysPermMapper.queryPermTreeListByUserId(userId);
 	}
 
 }

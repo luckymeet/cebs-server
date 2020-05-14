@@ -1,5 +1,6 @@
 package com.ycw.cebs.sys.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -82,7 +83,7 @@ public class SysUserEntity extends BaseEntity {
 	 * 生日
 	 */
 	@TableField("birthday")
-	private LocalDateTime birthday;
+	private LocalDate birthday;
 
 	/**
 	 * 手机号
@@ -148,6 +149,6 @@ public class SysUserEntity extends BaseEntity {
 	 * 创建链，后台用户有值
 	 */
 	@TableField("create_chain")
-	private Integer createChain;
+	private String createChain;
 
 }

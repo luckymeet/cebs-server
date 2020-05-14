@@ -1,7 +1,11 @@
 package com.ycw.cebs.sys.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.entity.SysPermEntity;
 import com.ycw.common.base.BaseCrudMapper;
 
@@ -21,6 +25,15 @@ import com.ycw.common.base.BaseCrudMapper;
  */
 @Mapper
 public interface ISysPermMapper extends BaseCrudMapper<SysPermEntity> {
+
+	/**
+	 * 查询用户权限列表
+	 * @author yuminjun
+	 * @date 2020/05/13 09:53:19
+	 * @param userId 用户id
+	 * @return
+	 */
+	List<TreeVO> queryPermTreeListByUserId(@Param("userId") Long userId);
 
 }
 

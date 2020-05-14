@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.entity.SysPermEntity;
 import com.ycw.cebs.sys.entity.SysUserPermEntity;
 
@@ -24,7 +25,7 @@ import com.ycw.cebs.sys.entity.SysUserPermEntity;
 public interface ISysPermService extends IService<SysPermEntity>{
 
 	/**
-	 * 根据用户id权限
+	 * 根据用户id查询权限
 	 * @author yuminjun
 	 * @date 2020/04/22 10:57:35
 	 * @param userId 用户id
@@ -49,5 +50,14 @@ public interface ISysPermService extends IService<SysPermEntity>{
 	 * @return
 	 */
 	List<SysUserPermEntity> queryUserPermByUserId(Long userId);
+
+	/**
+	 * 查询用户权限列表
+	 * @author yuminjun
+	 * @date 2020/05/13 09:53:19
+	 * @param userId 用户id
+	 * @return
+	 */
+	List<TreeVO> queryPermTreeListByUserId(Long userId);
 
 }

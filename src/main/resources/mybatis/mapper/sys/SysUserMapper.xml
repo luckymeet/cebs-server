@@ -48,6 +48,7 @@
 		<if test="params.realName != null and params.realName != ''">
 			AND INSTR(t.real_name, #{params.realName}) > 0
 		</if>
+			AND INSTR(t.create_chain, #{params.realName}) > 0
 		ORDER BY t.create_time DESC
 	</select>
 
