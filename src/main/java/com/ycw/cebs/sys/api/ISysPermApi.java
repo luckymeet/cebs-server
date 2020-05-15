@@ -3,7 +3,6 @@ package com.ycw.cebs.sys.api;
 import java.util.List;
 
 import com.ycw.cebs.common.vo.TreeVO;
-import com.ycw.cebs.sys.vo.SysPermListVO;
 import com.ycw.common.response.ResponseVO;
 
 /**
