@@ -32,23 +32,6 @@ public interface ISysPermApi {
 	ResponseVO<List<String>> queryPermList(Integer permType);
 
 	/**
-	 * 查询当前用户一级权限列表
-	 * @author yuminjun
-	 * @date 2020/04/30 14:43:01
-	 * @return
-	 */
-	ResponseVO<List<SysPermListVO>> queryCurUserOneLevelPermList();
-
-	/**
-	 * 根据上级权限id查询权限列表
-	 * @author yuminjun
-	 * @date 2020/04/30 16:42:44
-	 * @param parentId
-	 * @return
-	 */
-	ResponseVO<List<SysPermListVO>> queryPermListByParentId(Long parentId);
-
-	/**
 	 * 获取当前用户权限树
 	 * @author yuminjun
 	 * @date 2020/05/12 17:42:25

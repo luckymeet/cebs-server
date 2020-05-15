@@ -26,4 +26,9 @@ public class SysUserListParamVO implements Serializable {
 	 */
 	private String realName;
 
+	/**
+	 * 当前用户id
+	 */
+	private Long curUserId;
+
 }

@@ -82,6 +82,11 @@ public class SysUserAddParamVO implements Serializable {
 	private String wechat;
 
 	/**
+	 * 状态：0-失效；1-生效
+	 */
+	private Integer status;
+
+	/**
 	 * 权限Ids,多个以英文逗号隔开
 	 */
 	private String permIds;

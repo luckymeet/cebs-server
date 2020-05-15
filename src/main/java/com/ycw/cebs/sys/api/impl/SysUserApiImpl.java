@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.pagehelper.PageInfo;
+import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
+import com.ycw.cebs.common.utils.PasswordUtil;
 import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.sys.api.ISysUserApi;
 import com.ycw.cebs.sys.entity.SysUserEntity;
@@ -69,6 +71,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 */
 	@Override
 	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) {
+		vo.setCurUserId(SessionUtil.getCurrentUserId());
 		List<SysUserListVO> page = this.sysUserService.queryUserList(vo, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
 	}
@@ -108,6 +111,10 @@ public class SysUserApiImpl implements ISysUserApi {
 		}
 		SysUserEntity currentUser = SessionUtil.getCurrentUser();
 		SysUserEntity user = BeanHandleUtils.beanCopy(vo, SysUserEntity.class);
+		String salt = PasswordUtil.generateCredentialsSalt();
+		user.setSalt(salt);
+		user.setPassword(PasswordUtil.encryptPasswordMD5("123456", salt));
+		user.setClientId(ClientTypeEnum.BACK_END.getCode());
 		user.setCreateChain(StringUtils.join(currentUser.getCreateChain(), currentUser.getId(), ","));
 		this.sysUserService.save(user);
 		return ResponseVO.success(user.getId(), "新增成功");
