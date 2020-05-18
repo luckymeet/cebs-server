@@ -99,8 +99,8 @@ public class SysUserController {
 	 * @throws SysException
 	 */
 	@PutMapping
-	public ResponseVO<Long> updateUser(@Validated SysUserEditParamVO vo) {
-		ResponseVO<Long> updateUserResult = sysUserApi.updateUser(vo);
+	public ResponseVO<String> updateUser(@Validated SysUserEditParamVO vo) {
+		ResponseVO<String> updateUserResult = sysUserApi.updateUser(vo);
 		ResponseVO<String> updateUserPermResult = sysUserApi.updateUserPerm(vo.getId(), StringUtils.split(vo.getPermIds(), ","));
 		if (!updateUserPermResult.isSuccess()) {
 			return ResponseVO.fail(ResponseCode.ERR_SAVE.getCode(), "用户权限修改失败");

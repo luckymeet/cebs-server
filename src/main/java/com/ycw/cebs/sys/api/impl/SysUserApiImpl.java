@@ -61,6 +61,8 @@ public class SysUserApiImpl implements ISysUserApi {
 	@Autowired
 	private ISysUserPermService sysUserPermService;
 
+	private static final String ID_CARD_REGEX = "^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
+
 	/**
 	 * 用户列表分页查询
 	 * @author yuminjun
@@ -106,7 +108,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	@Override
 	public ResponseVO<Long> saveUser(SysUserAddParamVO vo) {
 		String idCard = vo.getIdCard();
-		if (StringUtils.isNotEmpty(idCard) && idCard.matches("/^[1-9]\\d{5}(18|19|20|(3\\d))\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$/")) {
+		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
 		SysUserEntity currentUser = SessionUtil.getCurrentUser();
@@ -128,9 +130,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<Long> updateUser(SysUserEditParamVO vo) {
+	public ResponseVO<String> updateUser(SysUserEditParamVO vo) {
 		String idCard = vo.getIdCard();
-		if (StringUtils.isNotEmpty(idCard) && idCard.matches("/^[1-9]\\d{5}(18|19|20|(3\\d))\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$/")) {
+		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
 		this.sysUserService.lambdaUpdate()
@@ -143,11 +145,12 @@ public class SysUserApiImpl implements ISysUserApi {
 			.set(SysUserEntity::getBirthday, vo.getBirthday())
 			.set(SysUserEntity::getMobilePhone, vo.getMobilePhone())
 			.set(SysUserEntity::getEMail, vo.getEMail())
-			.set(SysUserEntity::getIdCard, vo.getIdCard())
+			.set(SysUserEntity::getIdCard, idCard)
 			.set(SysUserEntity::getQq, vo.getQq())
 			.set(SysUserEntity::getWechat, vo.getWechat())
-			.eq(SysUserEntity::getId, vo.getId());
-		return ResponseVO.success(vo.getId(), "修改成功");
+			.eq(SysUserEntity::getId, vo.getId())
+			.update();
+		return ResponseVO.success(null, "修改成功");
 	}
 
 	/**

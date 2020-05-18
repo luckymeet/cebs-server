@@ -60,7 +60,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> updateUser(SysUserEditParamVO vo);
+	ResponseVO<String> updateUser(SysUserEditParamVO vo);
 
 	/**
 	 * 删除系统用户数据
