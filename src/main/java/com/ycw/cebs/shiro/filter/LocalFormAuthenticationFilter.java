@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,14 +41,9 @@ public class LocalFormAuthenticationFilter extends FormAuthenticationFilter {
 				res.setStatus(HttpStatus.OK.value());
 				return true;
 			}
+			res.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 			log.info("Attempting to access a path which requires authentication.  Forwarding to the "
 					+ "Authentication url [" + getLoginUrl() + "]");
-
-			//res.setHeader("Access-Control-Allow-Origin", req.getHeader("Origin"));
-			//res.setHeader("Access-Control-Allow-Credentials", "true");
-			//res.setContentType("application/json; charset=utf-8");
-			//res.setCharacterEncoding("UTF-8");
-			res.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 
 			PrintWriter out = res.getWriter();
 			ResponseVO<String> result = ResponseVO.fail(ResponseCode.ERR_401.getCode(), ResponseCode.ERR_401.getDesc());
