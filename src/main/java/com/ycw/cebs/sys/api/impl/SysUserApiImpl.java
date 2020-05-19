@@ -61,6 +61,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	@Autowired
 	private ISysUserPermService sysUserPermService;
 
+	@Autowired
+	private static final String DEFAULT_PASSWORD = "123456";
+
 	private static final String ID_CARD_REGEX = "^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
 
 	/**
@@ -115,7 +118,7 @@ public class SysUserApiImpl implements ISysUserApi {
 		SysUserEntity user = BeanHandleUtils.beanCopy(vo, SysUserEntity.class);
 		String salt = PasswordUtil.generateCredentialsSalt();
 		user.setSalt(salt);
-		user.setPassword(PasswordUtil.encryptPasswordMD5("123456", salt));
+		user.setPassword(PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt));
 		user.setClientId(ClientTypeEnum.BACK_END.getCode());
 		user.setCreateChain(StringUtils.join(currentUser.getCreateChain(), currentUser.getId(), ","));
 		this.sysUserService.save(user);

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ycw.common.constants.CommonConstants;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -62,7 +63,7 @@ public class SysUserDetailVO implements Serializable {
 	/**
 	 * 生日
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	@JsonFormat(pattern = CommonConstants.DATE_FORMAT, timezone = "GMT+8")
 	private LocalDateTime birthday;
 
 	/**
@@ -108,30 +109,8 @@ public class SysUserDetailVO implements Serializable {
 	/**
 	 * 最后登录时间
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
 	private LocalDateTime lastLoginTime;
-
-	/**
-	 * 创建人
-	 */
-	private String createUser;
-
-	/**
-	 * 创建时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private LocalDateTime createTime;
-
-	/**
-	 * 更新人
-	 */
-	private String updateUser;
-
-	/**
-	 * 更新时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private LocalDateTime updateTime;
 
 	/**
 	 * 权限Ids,多个以英文逗号隔开

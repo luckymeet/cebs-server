@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.ycw.common.constants.CommonConstants;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -52,7 +54,7 @@ public class SysUserAddParamVO implements Serializable {
 	/**
 	 * 生日
 	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = CommonConstants.DATE_FORMAT)
 	private LocalDate birthday;
 
 	/**

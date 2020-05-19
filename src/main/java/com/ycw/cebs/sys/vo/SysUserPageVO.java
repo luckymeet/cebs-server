@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ycw.common.constants.CommonConstants;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -62,7 +63,7 @@ public class SysUserPageVO implements Serializable {
 	/**
 	 * 生日
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	@JsonFormat(pattern = CommonConstants.DATE_FORMAT, timezone = "GMT+8")
 	private LocalDateTime birthday;
 
 	/**
@@ -108,7 +109,7 @@ public class SysUserPageVO implements Serializable {
 	/**
 	 * 最后登录时间
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
 	private LocalDateTime lastLoginTime;
 
 	/**
@@ -119,7 +120,7 @@ public class SysUserPageVO implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
 	private LocalDateTime createTime;
 
 	/**
@@ -130,7 +131,7 @@ public class SysUserPageVO implements Serializable {
 	/**
 	 * 更新时间
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
 	private LocalDateTime updateTime;
 
 }
