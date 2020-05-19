@@ -14,6 +14,7 @@
         t.content content, <!-- 内容 -->
         t.status status, <!-- 状态：1-生效，0-未生效 -->
         t.publish_time publishTime, <!-- 发布时间 -->
+        t.is_recommend isRecommend, <!-- 是否推荐：0-否，1-是 -->
         t.is_show_disclaimer isShowDisclaimer, <!-- 是否展示免责申明：1-展示，0-不展示 -->
         t.del_ind delInd, <!-- 删除标识：0-未删除，1-删除 -->
         t.create_user createUser, <!-- 创建人 -->
@@ -90,7 +91,23 @@
         SELECT
 		<include refid="column_list"/>
         FROM info_article t
-        <include refid="where_filters"/>
+        WHERE
+        	t.is_deleted = '0'
+       	<if test="params.title != null and params.title != ''">
+			AND t.title = #{params.title}
+		</if>
+		<if test="params.publishStartTime != null">
+			AND t.publish_time &gt;= #{params.publishStartTime}
+		</if>
+		<if test="params.publishEndTime != null">
+			AND t.publish_time &lt;= #{params.publishEndTime}
+		</if>
+		<if test="params.isRecommend != null">
+			AND t.is_recommend = #{params.isRecommend}
+		</if>
+		<if test="params.status != null">
+			AND t.status = #{params.status}
+		</if>
     </select>
 
 </mapper>
