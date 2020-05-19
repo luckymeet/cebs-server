@@ -8,10 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.ycw.common.constants.CommonConstants;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 @Data
-@Accessors(chain = true)
 public class InfoArticleAddParamVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
