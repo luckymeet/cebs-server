@@ -108,6 +108,9 @@
 		<if test="params.status != null">
 			AND t.status = #{params.status}
 		</if>
+		<if test="params.orderBy != null and params.orderBy != ''">
+			ORDER BY #{params.orderBy}
+		</if>
     </select>
 
 </mapper>

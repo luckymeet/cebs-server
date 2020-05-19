@@ -41,4 +41,9 @@ public class InfoArticlePageParamVO implements Serializable {
 	 */
 	private Integer status;
 
+	/**
+	 * 排序
+	 */
+	private String orderBy;
+
 }
