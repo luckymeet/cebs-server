@@ -1,7 +1,5 @@
 package com.ycw.cebs.info.api;
 
-import java.util.List;
-
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.cebs.info.vo.param.InfoArticlePageParamVO;
