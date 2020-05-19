@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.info.api.IInfoArticleApi;
 import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.cebs.info.vo.param.InfoArticlePageParamVO;
 import com.ycw.common.page.PageParams;
+import com.ycw.common.response.ResponseVO;
 
 /**
  * 文章公告通知Api接口实现类
@@ -40,9 +42,10 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 	 * @return
 	 */
 	@Override
-	public List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO,
+	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO,
 			PageParams pageParams) {
-		return infoArticleService.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
+		List<InfoArticleListVO> page = infoArticleService.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
+		return ResponseVO.success(new PageInfo<>(page));
 	}
 
 }
