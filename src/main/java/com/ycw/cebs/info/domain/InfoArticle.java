@@ -90,6 +90,12 @@ public class InfoArticle extends BaseEntity {
 	@TableField("publish_time")
 	private LocalDateTime publishTime;
 
+	/**
+	 * 是否推荐：0-否，1-是
+	 */
+	@TableField("is_recommend")
+	private Integer isRecommend;
+
  	/**
  	 * 是否展示免责申明：1-展示，0-不展示
  	 */
