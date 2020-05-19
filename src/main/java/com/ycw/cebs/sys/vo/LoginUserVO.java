@@ -1,4 +1,4 @@
-package com.ycw.cebs.sys.vo.param;
+package com.ycw.cebs.sys.vo;
 
 import java.io.Serializable;
 

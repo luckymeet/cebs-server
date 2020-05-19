@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ycw.cebs.common.constant.sys.PermTypeEnum;
 import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.sys.api.ISysPermApi;
+import com.ycw.cebs.sys.vo.LoginUserVO;
 import com.ycw.cebs.sys.vo.param.LoginParamVO;
-import com.ycw.cebs.sys.vo.param.LoginUserVO;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
 import com.ycw.common.utils.BeanHandleUtils;
@@ -87,11 +87,10 @@ public class HomeController {
 	 * 注销登录
 	 * @author yuminjun
 	 * @date 2020/04/23 15:38:31
-	 * @param request
 	 * @return
 	 */
 	@GetMapping("/logout")
-	public ResponseVO<String> logout(HttpServletRequest request) {
+	public ResponseVO<String> logout() {
 		Subject subject = SecurityUtils.getSubject();
 		if (subject != null) {
 			subject.logout();

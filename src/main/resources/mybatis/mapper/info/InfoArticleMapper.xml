@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycw.cebs.info.mapper.IInfoArticleMapper">
+
+    <sql id="column_list">
+        t.id id, <!-- id -->
+        t.title title, <!-- 标题 -->
+        t.type type, <!-- 类型 -->
+        t.author author, <!-- 作者 -->
+        t.source_author sourceAuthor, <!-- 源作者 -->
+        t.source_link sourceLink, <!-- 原文链接 -->
+        t.image_id imageId, <!-- 图片id -->
+        t.introduction introduction, <!-- 简介 -->
+        t.content content, <!-- 内容 -->
+        t.status status, <!-- 状态：1-生效，0-未生效 -->
+        t.publish_time publishTime, <!-- 发布时间 -->
+        t.is_show_disclaimer isShowDisclaimer, <!-- 是否展示免责申明：1-展示，0-不展示 -->
+        t.del_ind delInd, <!-- 删除标识：0-未删除，1-删除 -->
+        t.create_user createUser, <!-- 创建人 -->
+        t.create_time createTime, <!-- 创建时间 -->
+        t.update_user updateUser, <!-- 更新人 -->
+        t.update_time updateTime, <!-- 更新时间 -->
+        t.version version, <!-- 版本号 -->
+        t.is_deleted isDeleted <!-- 删除标志：0-未删除，1-已删除 -->
+	</sql>
+
+    <sql id="where_filters">
+        <where>
+    		t.is_deleted = '0'
+			<if test="params.id != null">
+				AND t.id = #{params.id}
+			</if>
+			<if test="params.title != null and params.title != ''">
+				AND t.title = #{params.title}
+			</if>
+			<if test="params.type != null">
+				AND t.type = #{params.type}
+			</if>
+			<if test="params.author != null and params.author != ''">
+				AND t.author = #{params.author}
+			</if>
+			<if test="params.sourceAuthor != null and params.sourceAuthor != ''">
+				AND t.source_author = #{params.sourceAuthor}
+			</if>
+			<if test="params.sourceLink != null and params.sourceLink != ''">
+				AND t.source_link = #{params.sourceLink}
+			</if>
+			<if test="params.imageId != null">
+				AND t.image_id = #{params.imageId}
+			</if>
+			<if test="params.introduction != null and params.introduction != ''">
+				AND t.introduction = #{params.introduction}
+			</if>
+			<if test="params.content != null and params.content != ''">
+				AND t.content = #{params.content}
+			</if>
+			<if test="params.status != null">
+				AND t.status = #{params.status}
+			</if>
+			<if test="params.publishTime != null">
+				AND t.publish_time = #{params.publishTime}
+			</if>
+			<if test="params.isShowDisclaimer != null">
+				AND t.is_show_disclaimer = #{params.isShowDisclaimer}
+			</if>
+			<if test="params.delInd != null">
+				AND t.del_ind = #{params.delInd}
+			</if>
+			<if test="params.createUser != null">
+				AND t.create_user = #{params.createUser}
+			</if>
+			<if test="params.createTime != null">
+				AND t.create_time = #{params.createTime}
+			</if>
+			<if test="params.updateUser != null">
+				AND t.update_user = #{params.updateUser}
+			</if>
+			<if test="params.updateTime != null">
+				AND t.update_time = #{params.updateTime}
+			</if>
+			<if test="params.version != null">
+				AND t.version = #{params.version}
+			</if>
+        </where>
+        ORDER BY t.create_time DESC
+    </sql>
+
+    <!--根据条件查询列表-->
+    <select id="queryInfoArticlePage" parameterType="com.ycw.cebs.info.vo.param.InfoArticlePageParamVO" resultType="com.ycw.cebs.info.vo.InfoArticleListVO">
+        SELECT
+		<include refid="column_list"/>
+        FROM info_article t
+        <include refid="where_filters"/>
+    </select>
+
+</mapper>
