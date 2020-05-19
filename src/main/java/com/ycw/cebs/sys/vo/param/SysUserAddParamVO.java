@@ -11,10 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.ycw.common.constants.CommonConstants;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class SysUserAddParamVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
