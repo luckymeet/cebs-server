@@ -49,7 +49,7 @@ import com.ycw.common.utils.BeanHandleUtils;
  * -------------------------------------------------
  * </pre>
  */
-@Service("sysUserApi")
+@Service
 public class SysUserApiImpl implements ISysUserApi {
 
 	@Autowired

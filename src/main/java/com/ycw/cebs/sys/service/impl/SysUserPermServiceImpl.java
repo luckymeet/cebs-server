@@ -22,7 +22,7 @@ import com.ycw.cebs.sys.service.ISysUserPermService;
  * -------------------------------------------------
  * </pre>
  */
-@Service("sysUserPermService")
+@Service
 public class SysUserPermServiceImpl extends ServiceImpl<ISysUserPermMapper, SysUserPermEntity> implements ISysUserPermService{
 
 	@Autowired

@@ -31,7 +31,7 @@ import com.ycw.common.page.PageParams;
  * -------------------------------------------------
  * </pre>
  */
-@Service("sysUserService")
+@Service
 public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntity> implements ISysUserService {
 
 	@Autowired

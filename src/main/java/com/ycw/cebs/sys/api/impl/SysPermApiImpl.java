@@ -28,7 +28,7 @@ import com.ycw.common.response.ResponseVO;
  * -------------------------------------------------
  * </pre>
  */
-@Service("sysPermApi")
+@Service
 public class SysPermApiImpl implements ISysPermApi {
 
 	@Autowired

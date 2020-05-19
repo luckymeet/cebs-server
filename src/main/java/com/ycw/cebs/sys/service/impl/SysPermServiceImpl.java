@@ -35,7 +35,7 @@ import com.ycw.common.exception.SysException;
  * -------------------------------------------------
  * </pre>
  */
-@Service("sysPermService")
+@Service
 public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntity> implements ISysPermService{
 
 	@Autowired

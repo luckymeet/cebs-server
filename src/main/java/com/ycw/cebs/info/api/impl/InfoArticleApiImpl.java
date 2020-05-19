@@ -1,4 +1,4 @@
-package com.ycw.cebs.info.service.impl;
+package com.ycw.cebs.info.api.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import com.ycw.cebs.info.service.IInfoArticleService;
  * </pre>
  */
 @Service
-public class InfoArticleServiceImpl extends ServiceImpl<IInfoArticleMapper, InfoArticle> implements IInfoArticleService {
+public class InfoArticleApiImpl extends ServiceImpl<IInfoArticleMapper, InfoArticle> implements IInfoArticleService {
 
 	@Autowired
 	private IInfoArticleMapper infoArticleMapper;
