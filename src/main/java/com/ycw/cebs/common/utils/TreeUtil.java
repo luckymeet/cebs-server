@@ -1,6 +1,7 @@
 package com.ycw.cebs.common.utils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class TreeUtil {
 			return resultList;
 		}
 		// 将集合中所有数据按照父Id进行分组，放入Map中，Map<parntId, List<Child>>
-		Map<Long, List<T>> groupByParentIdMap = list.stream().collect(Collectors.groupingBy(T::getParentId));
+		Map<Long, List<T>> groupByParentIdMap = list.stream().collect(Collectors.groupingBy(T::getParentId, LinkedHashMap::new, Collectors.toList()));
 		// 将集合中所有数据以数据Id为key，放入Map中，Map<id,T>
 		Map<Long, T> dataMap = list.stream().collect(Collectors.toMap(T::getId, t -> t));
 		// 遍历数据，将子节点放入对应父节点Children属性中

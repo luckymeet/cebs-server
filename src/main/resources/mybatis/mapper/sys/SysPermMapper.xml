@@ -36,6 +36,7 @@
 		<if test="userId != null">
 			AND up.user_id = #{userId}
 		</if>
+		ORDER BY order_num, id
 	</select>
 
 </mapper>
