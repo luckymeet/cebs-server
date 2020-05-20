@@ -16,6 +16,8 @@ public class TreeVO implements Serializable {
 
 	private String label;
 
+	private Integer order;
+
 	private List<TreeVO> children;
 
 }

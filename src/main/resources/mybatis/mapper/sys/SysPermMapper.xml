@@ -24,7 +24,8 @@
 		SELECT
 			p.id id,
 			p.parent_id parentId,
-			p.perm_name label
+			p.perm_name label,
+			p.order_num order
 		FROM
 			sys_perm p
 		INNER JOIN sys_user_perm up
