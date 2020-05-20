@@ -1,5 +1,6 @@
 package com.ycw.cebs.info.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class InfoArticleController {
 	 * @return
 	 */
 	@GetMapping("/list")
+	@RequiresPermissions("info:article:list")
 	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO,
 			PageParams pageParams) {
 		return infoArticleApi.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
