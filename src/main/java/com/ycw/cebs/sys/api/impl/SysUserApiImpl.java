@@ -237,4 +237,38 @@ public class SysUserApiImpl implements ISysUserApi {
 		return ResponseVO.success(null, "删除成功");
 	}
 
+	/**
+	 * 密码重置
+	 * @author yuminjun
+	 * @date 2020/05/20 14:48:43
+	 * @param id 用户id
+	 * @return
+	 */
+	@Override
+	public ResponseVO<String> resetPassword(Long id) {
+		String salt = PasswordUtil.generateCredentialsSalt();
+		this.sysUserService.lambdaUpdate()
+			.set(SysUserEntity::getSalt, salt)
+			.set(SysUserEntity::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
+			.eq(SysUserEntity::getId, id).update();
+		return ResponseVO.success(null, "重置成功");
+	}
+
+	/**
+	 * 密码修改
+	 * @author yuminjun
+	 * @date 2020/05/20 14:58:24
+	 * @param password 新密码
+	 * @return
+	 */
+	@Override
+	public ResponseVO<String> updatePassword(String password) {
+		String salt = PasswordUtil.generateCredentialsSalt();
+		this.sysUserService.lambdaUpdate()
+			.set(SysUserEntity::getSalt, salt)
+			.set(SysUserEntity::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
+			.eq(SysUserEntity::getId, SessionUtil.getCurrentUserId()).update();
+		return ResponseVO.success(null, "修改成功");
+	}
+
 }

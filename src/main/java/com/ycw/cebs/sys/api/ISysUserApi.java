@@ -91,4 +91,22 @@ public interface ISysUserApi {
 	 */
 	ResponseVO<String> updateUserPerm(Long userId, String[] strings);
 
+	/**
+	 * 密码重置
+	 * @author yuminjun
+	 * @date 2020/05/20 14:48:43
+	 * @param id 用户id
+	 * @return
+	 */
+	ResponseVO<String> resetPassword(Long id);
+
+	/**
+	 * 密码修改
+	 * @author yuminjun
+	 * @date 2020/05/20 14:58:24
+	 * @param password 新密码
+	 * @return
+	 */
+	ResponseVO<String> updatePassword(String password);
+
 }

@@ -51,7 +51,6 @@ public class SysUserController {
 	 * @param vo 查询参数
 	 * @param pageParams 分页参数
 	 * @return
-	 * @throws SysException
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
@@ -65,10 +64,23 @@ public class SysUserController {
 	 * @date 2020/04/22 14:13:50
 	 * @param id
 	 * @return
-	 * @throws SysException
 	 */
 	@GetMapping
-	public ResponseVO<SysUserDetailVO> getUser(Long id) {
+	@RequiresPermissions("sys:user:edit")
+	public ResponseVO<SysUserDetailVO> getUserForUpdate(Long id) {
+		return sysUserApi.getUser(id);
+	}
+
+	/**
+	 * 用户详情
+	 * @author yuminjun
+	 * @date 2020/04/22 14:13:50
+	 * @param id
+	 * @return
+	 */
+	@GetMapping
+	@RequiresPermissions("sys:user:view")
+	public ResponseVO<SysUserDetailVO> getUserForView(Long id) {
 		return sysUserApi.getUser(id);
 	}
 
@@ -78,9 +90,9 @@ public class SysUserController {
 	 * @date 2020/04/22 14:24:46
 	 * @param vo
 	 * @return
-	 * @throws SysException
 	 */
 	@PostMapping
+	@RequiresPermissions("sys:user:add")
 	public ResponseVO<Long> saveUser(@Validated SysUserAddParamVO vo) {
 		ResponseVO<Long> saveUserResult = sysUserApi.saveUser(vo);
 		ResponseVO<String> saveUserPermResult = sysUserApi.saveUserPerm(saveUserResult.getData(), StringUtils.split(vo.getPermIds(), ","));
@@ -96,9 +108,9 @@ public class SysUserController {
 	 * @date 2020/04/22 14:24:57
 	 * @param vo
 	 * @return
-	 * @throws SysException
 	 */
 	@PutMapping
+	@RequiresPermissions("sys:user:edit")
 	public ResponseVO<String> updateUser(@Validated SysUserEditParamVO vo) {
 		ResponseVO<String> updateUserResult = sysUserApi.updateUser(vo);
 		ResponseVO<String> updateUserPermResult = sysUserApi.updateUserPerm(vo.getId(), StringUtils.split(vo.getPermIds(), ","));
@@ -114,11 +126,37 @@ public class SysUserController {
 	 * @date 2020/04/22 14:14:40
 	 * @param id 用户id
 	 * @return
-	 * @throws SysException
 	 */
 	@DeleteMapping
+	@RequiresPermissions("sys:user:delete")
 	public ResponseVO<String> deleteUser(Long id) {
 		return sysUserApi.deleteUser(id);
+	}
+
+	/**
+	 * 密码重置
+	 * @author yuminjun
+	 * @date 2020/04/22 14:14:40
+	 * @param id 用户id
+	 * @return
+	 */
+	@PutMapping("/password/reset")
+	@RequiresPermissions("sys:user:password:reset")
+	public ResponseVO<String> resetPassword(Long id) {
+		return sysUserApi.resetPassword(id);
+	}
+
+	/**
+	 * 密码修改
+	 * @author yuminjun
+	 * @date 2020/05/20 14:58:24
+	 * @param password 新密码
+	 * @return
+	 */
+	@PutMapping("/password/update")
+	@RequiresPermissions("sys:user:password:update")
+	public ResponseVO<String> updatePassword(String password) {
+		return sysUserApi.updatePassword(password);
 	}
 
 }
