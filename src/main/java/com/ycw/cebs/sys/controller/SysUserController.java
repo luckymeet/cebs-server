@@ -154,7 +154,6 @@ public class SysUserController {
 	 * @return
 	 */
 	@PutMapping("/password/update")
-	@RequiresPermissions("sys:user:password:update")
 	public ResponseVO<String> updatePassword(String password) {
 		return sysUserApi.updatePassword(password);
 	}
