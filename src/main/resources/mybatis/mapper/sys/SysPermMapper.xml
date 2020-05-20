@@ -24,8 +24,7 @@
 		SELECT
 			p.id id,
 			p.parent_id parentId,
-			p.perm_name label,
-			p.order_num order
+			p.perm_name label
 		FROM
 			sys_perm p
 		INNER JOIN sys_user_perm up
@@ -36,7 +35,7 @@
 		<if test="userId != null">
 			AND up.user_id = #{userId}
 		</if>
-		ORDER BY order_num, id
+		ORDER BY p.order_num, p.id
 	</select>
 
 </mapper>

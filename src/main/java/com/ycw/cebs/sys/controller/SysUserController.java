@@ -78,7 +78,7 @@ public class SysUserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping
+	@GetMapping("/view")
 	@RequiresPermissions("sys:user:view")
 	public ResponseVO<SysUserDetailVO> getUserForView(Long id) {
 		return sysUserApi.getUser(id);
