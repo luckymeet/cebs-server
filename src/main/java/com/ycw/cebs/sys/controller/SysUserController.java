@@ -18,7 +18,6 @@ import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
 import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
 import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
-import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;

@@ -1,9 +1,5 @@
 package com.ycw.cebs.sys.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -12,16 +8,13 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ycw.cebs.common.constant.sys.PermTypeEnum;
 import com.ycw.cebs.common.utils.SessionUtil;
-import com.ycw.cebs.sys.api.ISysPermApi;
 import com.ycw.cebs.sys.vo.LoginUserVO;
 import com.ycw.cebs.sys.vo.param.LoginParamVO;
 import com.ycw.common.response.ResponseCode;
@@ -34,9 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/sys")
 public class HomeController {
-
-	@Autowired
-	private ISysPermApi sysPermApi;
 
 	/**
 	 * 未授权
@@ -96,30 +86,6 @@ public class HomeController {
 			subject.logout();
 		}
 		return ResponseVO.success(null, "注销成功");
-	}
-
-	/**
-	 * 查询当前用户权限路由权限
-	 * @author yuminjun
-	 * @date 2020/04/23 15:34:29
-	 * @return
-	 */
-	@GetMapping("/perm/menu")
-	public ResponseVO<List<String>> queryPermPerm() {
-		ResponseVO<List<String>> routeList = sysPermApi.queryPermList(PermTypeEnum.MENU.getCode());
-		return routeList;
-	}
-
-	/**
-	 * 查询当前用户按钮路由权限
-	 * @author yuminjun
-	 * @date 2020/04/23 15:34:44
-	 * @return
-	 */
-	@GetMapping("/perm/button")
-	public ResponseVO<List<String>> queryButtonPerm() {
-		ResponseVO<List<String>> routeList = sysPermApi.queryPermList(PermTypeEnum.BUTTON.getCode());
-		return routeList;
 	}
 
 }
