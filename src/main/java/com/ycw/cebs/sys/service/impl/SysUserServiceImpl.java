@@ -11,9 +11,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.sys.entity.SysUserEntity;
 import com.ycw.cebs.sys.mapper.ISysUserMapper;
+import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.page.PageParams;
 
@@ -46,7 +46,7 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUserEntit
 	 * @return
 	 */
 	@Override
-	public List<SysUserListVO> queryUserList(SysUserListParamVO sysUserListParamVO, PageParams pageParams) {
+	public List<SysUserListVO> queryUserList(SysUserListParam sysUserListParamVO, PageParams pageParams) {
 		return sysUserMapper.querySysUserList(sysUserListParamVO);
 	}
 

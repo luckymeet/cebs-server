@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 
@@ -33,7 +33,7 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param pageParams 分页参数（为空时默认查询所有）
 	 * @return
 	 */
-	List<SysUserListVO> queryUserList(SysUserListParamVO sysUserListParamVO, PageParams pageParams);
+	List<SysUserListVO> queryUserList(SysUserListParam sysUserListParamVO, PageParams pageParams);
 
 	/**
 	 * 根据登录令牌获取用户

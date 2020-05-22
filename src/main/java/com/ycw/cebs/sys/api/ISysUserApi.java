@@ -1,11 +1,11 @@
 package com.ycw.cebs.sys.api;
 
 import com.github.pagehelper.PageInfo;
+import com.ycw.cebs.sys.param.SysUserAddParam;
+import com.ycw.cebs.sys.param.SysUserEditParam;
+import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
@@ -33,7 +33,7 @@ public interface ISysUserApi {
 	 * @param pageParams 分页参数（为null时默认查所有）
 	 * @return
 	 */
-	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams);
+	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParams pageParams);
 
 	/**
 	 * 根据id查询系统用户数据
@@ -51,7 +51,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<Long> saveUser(SysUserAddParamVO vo);
+	ResponseVO<Long> saveUser(SysUserAddParam vo);
 
 	/**
 	 * 修改系统用户数据
@@ -60,7 +60,7 @@ public interface ISysUserApi {
 	 * @param vo
 	 * @return
 	 */
-	ResponseVO<String> updateUser(SysUserEditParamVO vo);
+	ResponseVO<String> updateUser(SysUserEditParam vo);
 
 	/**
 	 * 删除系统用户数据

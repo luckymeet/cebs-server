@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.base.BaseCrudMapper;
 
 /**
@@ -34,7 +34,7 @@ public interface ISysUserMapper extends BaseCrudMapper<SysUserEntity> {
 	 * @param sysUserListParamVO
 	 * @return
 	 */
-	List<SysUserListVO> querySysUserList(@Param("params") SysUserListParamVO sysUserListParamVO);
+	List<SysUserListVO> querySysUserList(@Param("params") SysUserListParam sysUserListParamVO);
 
 }
 

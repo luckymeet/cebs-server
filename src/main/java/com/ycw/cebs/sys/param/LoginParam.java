@@ -1,4 +1,4 @@
-package com.ycw.cebs.sys.vo.param;
+package com.ycw.cebs.sys.param;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import lombok.Data;
 
 @Data
-public class LoginParamVO implements Serializable {
+public class LoginParam implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

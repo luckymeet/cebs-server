@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.info.domain.InfoArticle;
 import com.ycw.cebs.info.mapper.IInfoArticleMapper;
+import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.cebs.info.vo.param.InfoArticlePageParamVO;
 import com.ycw.common.page.PageParams;
 
 /**
@@ -42,7 +42,7 @@ public class InfoArticleServiceImpl extends ServiceImpl<IInfoArticleMapper, Info
 	 * @return
 	 */
 	@Override
-	public List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO,
+	public List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO,
 			PageParams pageParams) {
 		return infoArticleMapper.queryInfoArticlePage(infoArticlePageParamVO);
 	}

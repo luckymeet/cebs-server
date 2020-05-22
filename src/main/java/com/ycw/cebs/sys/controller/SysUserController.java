@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.sys.api.ISysUserApi;
+import com.ycw.cebs.sys.param.SysUserAddParam;
+import com.ycw.cebs.sys.param.SysUserEditParam;
+import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
@@ -53,7 +53,7 @@ public class SysUserController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
-	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) {
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParams pageParams) {
 		return sysUserApi.queryUserPage(vo, pageParams);
 	}
 
@@ -92,7 +92,7 @@ public class SysUserController {
 	 */
 	@PostMapping
 	@RequiresPermissions("sys:user:add")
-	public ResponseVO<Long> saveUser(@Validated SysUserAddParamVO vo) {
+	public ResponseVO<Long> saveUser(@Validated SysUserAddParam vo) {
 		ResponseVO<Long> saveUserResult = sysUserApi.saveUser(vo);
 		ResponseVO<String> saveUserPermResult = sysUserApi.saveUserPerm(saveUserResult.getData(), StringUtils.split(vo.getPermIds(), ","));
 		if (!saveUserPermResult.isSuccess()) {
@@ -110,7 +110,7 @@ public class SysUserController {
 	 */
 	@PutMapping
 	@RequiresPermissions("sys:user:edit")
-	public ResponseVO<String> updateUser(@Validated SysUserEditParamVO vo) {
+	public ResponseVO<String> updateUser(@Validated SysUserEditParam vo) {
 		ResponseVO<String> updateUserResult = sysUserApi.updateUser(vo);
 		ResponseVO<String> updateUserPermResult = sysUserApi.updateUserPerm(vo.getId(), StringUtils.split(vo.getPermIds(), ","));
 		if (!updateUserPermResult.isSuccess()) {

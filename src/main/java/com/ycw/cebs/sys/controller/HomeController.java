@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ycw.cebs.common.utils.SessionUtil;
+import com.ycw.cebs.sys.param.LoginParam;
 import com.ycw.cebs.sys.vo.LoginUserVO;
-import com.ycw.cebs.sys.vo.param.LoginParamVO;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
 import com.ycw.common.utils.BeanHandleUtils;
@@ -48,7 +48,7 @@ public class HomeController {
 	 * @return
 	 */
 	@PostMapping("/login")
-	public ResponseVO<LoginUserVO> login(@Validated LoginParamVO loginParamVO) {
+	public ResponseVO<LoginUserVO> login(@Validated LoginParam loginParamVO) {
 		Subject user = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(loginParamVO.getUsername(), loginParamVO.getPassword());
 		try {

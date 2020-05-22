@@ -1,11 +1,11 @@
-package com.ycw.cebs.sys.vo.param;
+package com.ycw.cebs.sys.param;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class SysUserPageParamVO implements Serializable {
+public class SysUserListParam implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,5 +23,10 @@ public class SysUserPageParamVO implements Serializable {
 	 * 真实姓名
 	 */
 	private String realName;
+
+	/**
+	 * 当前用户id
+	 */
+	private Long curUserId;
 
 }

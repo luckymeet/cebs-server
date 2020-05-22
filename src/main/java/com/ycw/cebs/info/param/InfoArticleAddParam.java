@@ -1,4 +1,4 @@
-package com.ycw.cebs.info.vo.param;
+package com.ycw.cebs.info.param;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -10,7 +10,7 @@ import com.ycw.common.constants.CommonConstants;
 import lombok.Data;
 
 @Data
-public class InfoArticleAddParamVO implements Serializable {
+public class InfoArticleAddParam implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

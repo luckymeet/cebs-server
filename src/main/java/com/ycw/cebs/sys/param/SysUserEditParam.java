@@ -1,4 +1,4 @@
-package com.ycw.cebs.sys.vo.param;
+package com.ycw.cebs.sys.param;
 
 import javax.validation.constraints.NotNull;
 
@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUserEditParamVO extends SysUserAddParamVO {
+public class SysUserEditParam extends SysUserAddParam {
 
 	private static final long serialVersionUID = 1L;
 

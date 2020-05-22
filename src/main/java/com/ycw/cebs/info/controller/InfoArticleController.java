@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.info.api.IInfoArticleApi;
+import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.cebs.info.vo.param.InfoArticlePageParamVO;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
@@ -30,7 +30,7 @@ public class InfoArticleController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("info:article:list")
-	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO,
+	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO,
 			PageParams pageParams) {
 		return infoArticleApi.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
 	}

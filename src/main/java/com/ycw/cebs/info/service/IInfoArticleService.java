@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.info.domain.InfoArticle;
+import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.cebs.info.vo.param.InfoArticlePageParamVO;
 import com.ycw.common.page.PageParams;
 
 /**
@@ -32,6 +32,6 @@ public interface IInfoArticleService extends IService<InfoArticle> {
 	 * @param pageParams 分页参数（为空时默认查询所有）
 	 * @return
 	 */
-	List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO, PageParams pageParams);
+	List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO, PageParams pageParams);
 
 }

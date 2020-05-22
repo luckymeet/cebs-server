@@ -21,14 +21,14 @@ import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.sys.api.ISysUserApi;
 import com.ycw.cebs.sys.entity.SysUserEntity;
 import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.cebs.sys.param.SysUserAddParam;
+import com.ycw.cebs.sys.param.SysUserEditParam;
+import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.service.ISysPermService;
 import com.ycw.cebs.sys.service.ISysUserPermService;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.cebs.sys.vo.param.SysUserAddParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserEditParamVO;
-import com.ycw.cebs.sys.vo.param.SysUserListParamVO;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseCode;
@@ -75,7 +75,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParamVO vo, PageParams pageParams) {
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParams pageParams) {
 		vo.setCurUserId(SessionUtil.getCurrentUserId());
 		List<SysUserListVO> page = this.sysUserService.queryUserList(vo, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
@@ -109,7 +109,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<Long> saveUser(SysUserAddParamVO vo) {
+	public ResponseVO<Long> saveUser(SysUserAddParam vo) {
 		String idCard = vo.getIdCard();
 		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
@@ -133,7 +133,7 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<String> updateUser(SysUserEditParamVO vo) {
+	public ResponseVO<String> updateUser(SysUserEditParam vo) {
 		String idCard = vo.getIdCard();
 		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");

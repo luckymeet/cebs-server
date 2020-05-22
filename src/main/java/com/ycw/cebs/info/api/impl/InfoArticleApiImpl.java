@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.info.api.IInfoArticleApi;
+import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.cebs.info.vo.param.InfoArticlePageParamVO;
 import com.ycw.common.page.PageParams;
 import com.ycw.common.response.ResponseVO;
 
@@ -42,7 +42,7 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParamVO infoArticlePageParamVO,
+	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO,
 			PageParams pageParams) {
 		List<InfoArticleListVO> page = infoArticleService.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
