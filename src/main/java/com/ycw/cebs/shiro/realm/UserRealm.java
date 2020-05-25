@@ -23,8 +23,8 @@ import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ycw.cebs.sys.entity.SysPermEntity;
-import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.entity.SysPerm;
+import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.service.ISysPermService;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.common.constants.CommonConstants;
@@ -68,7 +68,7 @@ public class UserRealm extends AuthorizingRealm {
 			throw new UnknownAccountException();
 		}
 		String principal = (String) token.getPrincipal();
-		SysUserEntity sysUser = null;
+		SysUser sysUser = null;
 		try {
 			sysUser = this.sysUserService.getUserByLoginAccount(principal);
 		} catch (Exception e) {
@@ -97,13 +97,13 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		// 根据当前 realm认证通过身份，获取授权（防止多realm交叉问题））
-		Collection<SysUserEntity> userPrincipals = principals.fromRealm(getName());
+		Collection<SysUser> userPrincipals = principals.fromRealm(getName());
 		if (!CollectionUtils.isEmpty(userPrincipals)) {
-			SysUserEntity user = userPrincipals.iterator().next();
-			List<SysPermEntity> permList = this.sysPermService.queryPermListByUserId(user.getId());
+			SysUser user = userPrincipals.iterator().next();
+			List<SysPerm> permList = this.sysPermService.queryPermListByUserId(user.getId());
 			if (!CollectionUtils.isEmpty(permList)) {
 				// 遍历权限，进行授权
-				Set<String> permissions = permList.stream().map(SysPermEntity::getValue).collect(Collectors.toSet());
+				Set<String> permissions = permList.stream().map(SysPerm::getValue).collect(Collectors.toSet());
 				authorizationInfo.setStringPermissions(permissions);
 			}
 		}

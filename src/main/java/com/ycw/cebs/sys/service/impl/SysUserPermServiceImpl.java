@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.mapper.ISysUserPermMapper;
 import com.ycw.cebs.sys.service.ISysUserPermService;
 
@@ -23,7 +23,7 @@ import com.ycw.cebs.sys.service.ISysUserPermService;
  * </pre>
  */
 @Service
-public class SysUserPermServiceImpl extends ServiceImpl<ISysUserPermMapper, SysUserPermEntity> implements ISysUserPermService{
+public class SysUserPermServiceImpl extends ServiceImpl<ISysUserPermMapper, SysUserPerm> implements ISysUserPermService{
 
 	@Autowired
 	private ISysUserPermMapper sysUserPermMapper;

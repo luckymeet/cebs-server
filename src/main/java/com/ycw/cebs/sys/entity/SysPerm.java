@@ -24,7 +24,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_perm")
-public class SysPermEntity extends BaseEntity {
+public class SysPerm extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 

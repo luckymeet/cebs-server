@@ -2,7 +2,7 @@ package com.ycw.cebs.sys.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.common.base.BaseCrudMapper;
 
 /**
@@ -20,7 +20,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface ISysUserPermMapper extends BaseCrudMapper<SysUserPermEntity> {
+public interface ISysUserPermMapper extends BaseCrudMapper<SysUserPerm> {
 
 }
 

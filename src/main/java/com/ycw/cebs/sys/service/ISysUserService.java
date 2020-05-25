@@ -3,7 +3,7 @@ package com.ycw.cebs.sys.service;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.exception.SysException;
@@ -23,7 +23,7 @@ import com.ycw.common.page.PageParams;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysUserService extends IService<SysUserEntity>{
+public interface ISysUserService extends IService<SysUser>{
 
 	/**
 	 * 用户列表分页查询
@@ -42,6 +42,6 @@ public interface ISysUserService extends IService<SysUserEntity>{
 	 * @param principal 登录令牌
 	 * @return
 	 */
-	SysUserEntity getUserByLoginAccount(String principal);
+	SysUser getUserByLoginAccount(String principal);
 
 }

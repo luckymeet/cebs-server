@@ -13,8 +13,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.vo.TreeVO;
-import com.ycw.cebs.sys.entity.SysPermEntity;
-import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.cebs.sys.entity.SysPerm;
+import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.mapper.ISysPermMapper;
 import com.ycw.cebs.sys.mapper.ISysUserPermMapper;
 import com.ycw.cebs.sys.service.ISysPermService;
@@ -36,7 +36,7 @@ import com.ycw.common.exception.SysException;
  * </pre>
  */
 @Service
-public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntity> implements ISysPermService{
+public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> implements ISysPermService{
 
 	@Autowired
 	private ISysPermMapper sysPermMapper;
@@ -53,15 +53,15 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntit
 	 * @throws SysException
 	 */
 	@Override
-	public List<SysPermEntity> queryPermListByUserId(Long userId) {
+	public List<SysPerm> queryPermListByUserId(Long userId) {
 		// 根据用户id查询用户权限关联数据列表
-		List<SysUserPermEntity> userPermList = queryUserPermByUserId(userId);
+		List<SysUserPerm> userPermList = queryUserPermByUserId(userId);
 		if (CollectionUtils.isEmpty(userPermList)) {
 			return Collections.emptyList();
 		}
-		List<Long> permIdList = userPermList.stream().map(SysUserPermEntity::getPermId).collect(Collectors.toList());
+		List<Long> permIdList = userPermList.stream().map(SysUserPerm::getPermId).collect(Collectors.toList());
 		// 根据权限id集合查询权限
-		List<SysPermEntity> permList = queryPermListByPermIdList(permIdList);
+		List<SysPerm> permList = queryPermListByPermIdList(permIdList);
 		return permList;
 	}
 
@@ -73,14 +73,14 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntit
 	 * @return
 	 */
 	@Override
-	public List<SysPermEntity> queryPermListByPermIdList(Collection<Long> permIds) {
+	public List<SysPerm> queryPermListByPermIdList(Collection<Long> permIds) {
 		if (CollectionUtils.isEmpty(permIds)) {
 			return Collections.emptyList();
 		}
-		LambdaQueryWrapper<SysPermEntity> queryWrapper = Wrappers.lambdaQuery();
-		queryWrapper.in(SysPermEntity::getId, permIds);
-		queryWrapper.eq(SysPermEntity::getDelInd, CommonConstants.INT_NO);
-		List<SysPermEntity> permList = sysPermMapper.selectList(queryWrapper);
+		LambdaQueryWrapper<SysPerm> queryWrapper = Wrappers.lambdaQuery();
+		queryWrapper.in(SysPerm::getId, permIds);
+		queryWrapper.eq(SysPerm::getDelInd, CommonConstants.INT_NO);
+		List<SysPerm> permList = sysPermMapper.selectList(queryWrapper);
 		return permList;
 	}
 
@@ -92,11 +92,11 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPermEntit
 	 * @return
 	 */
 	@Override
-	public List<SysUserPermEntity> queryUserPermByUserId(Long userId) {
-		LambdaQueryWrapper<SysUserPermEntity> queryWrapper = Wrappers.lambdaQuery();
-		queryWrapper.eq(SysUserPermEntity::getUserId, userId);
-		queryWrapper.eq(SysUserPermEntity::getDelInd, CommonConstants.INT_NO);
-		List<SysUserPermEntity> userPermlist = sysUserPermMapper.selectList(queryWrapper);
+	public List<SysUserPerm> queryUserPermByUserId(Long userId) {
+		LambdaQueryWrapper<SysUserPerm> queryWrapper = Wrappers.lambdaQuery();
+		queryWrapper.eq(SysUserPerm::getUserId, userId);
+		queryWrapper.eq(SysUserPerm::getDelInd, CommonConstants.INT_NO);
+		List<SysUserPerm> userPermlist = sysUserPermMapper.selectList(queryWrapper);
 		return userPermlist;
 	}
 

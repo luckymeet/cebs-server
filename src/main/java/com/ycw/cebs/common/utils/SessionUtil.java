@@ -7,7 +7,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
 import com.ycw.cebs.shiro.realm.UserRealm;
-import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.entity.SysUser;
 
 public final class SessionUtil {
 	private SessionUtil() {
@@ -45,19 +45,19 @@ public final class SessionUtil {
     /**
      * 获取当前登录用户
      */
-	public static SysUserEntity getCurrentUser() {
+	public static SysUser getCurrentUser() {
 		Subject subject = SecurityUtils.getSubject();
 		if (subject == null || subject.getPrincipal() == null) {
 			return null;
 		}
-		return (SysUserEntity) subject.getPrincipal();
+		return (SysUser) subject.getPrincipal();
 	}
 
     /**
      * 获取当前登录用户ID
      */
 	public static Long getCurrentUserId() {
-		SysUserEntity user = getCurrentUser();
+		SysUser user = getCurrentUser();
 		return user == null ? null : user.getId();
 	}
 

@@ -19,8 +19,8 @@ import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.common.utils.PasswordUtil;
 import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.sys.api.ISysUserApi;
-import com.ycw.cebs.sys.entity.SysUserEntity;
-import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.cebs.sys.entity.SysUser;
+import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.param.SysUserAddParam;
 import com.ycw.cebs.sys.param.SysUserEditParam;
 import com.ycw.cebs.sys.param.SysUserListParam;
@@ -93,9 +93,9 @@ public class SysUserApiImpl implements ISysUserApi {
 		if (id == null) {
 			throw new SysException(ResponseCode.ERR_418.getCode(), "id不能为空");
 		}
-		SysUserEntity sysUser = this.sysUserService.getById(id);
-		List<SysUserPermEntity> userPerm = this.sysPermService.queryUserPermByUserId(id);
-		String permIds = StringUtils.join(userPerm.stream().map(SysUserPermEntity::getPermId).toArray(), ",");
+		SysUser sysUser = this.sysUserService.getById(id);
+		List<SysUserPerm> userPerm = this.sysPermService.queryUserPermByUserId(id);
+		String permIds = StringUtils.join(userPerm.stream().map(SysUserPerm::getPermId).toArray(), ",");
 		SysUserDetailVO vo = BeanHandleUtils.beanCopy(sysUser, SysUserDetailVO.class);
 		vo.setPermIds(permIds);
 		return ResponseVO.success(vo);
@@ -114,8 +114,8 @@ public class SysUserApiImpl implements ISysUserApi {
 		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
-		SysUserEntity currentUser = SessionUtil.getCurrentUser();
-		SysUserEntity user = BeanHandleUtils.beanCopy(vo, SysUserEntity.class);
+		SysUser currentUser = SessionUtil.getCurrentUser();
+		SysUser user = BeanHandleUtils.beanCopy(vo, SysUser.class);
 		String salt = PasswordUtil.generateCredentialsSalt();
 		user.setSalt(salt);
 		user.setPassword(PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt));
@@ -139,19 +139,19 @@ public class SysUserApiImpl implements ISysUserApi {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
 		this.sysUserService.lambdaUpdate()
-			.set(SysUserEntity::getUserNum, vo.getUserNum())
-			.set(SysUserEntity::getRealName, vo.getRealName())
-			.set(SysUserEntity::getNickName, vo.getNickName())
-			.set(SysUserEntity::getLoginName, vo.getLoginName())
-			.set(SysUserEntity::getProfilePhotoUrl, vo.getProfilePhotoUrl())
-			.set(SysUserEntity::getSex, vo.getSex())
-			.set(SysUserEntity::getBirthday, vo.getBirthday())
-			.set(SysUserEntity::getMobilePhone, vo.getMobilePhone())
-			.set(SysUserEntity::getEMail, vo.getEMail())
-			.set(SysUserEntity::getIdCard, idCard)
-			.set(SysUserEntity::getQq, vo.getQq())
-			.set(SysUserEntity::getWechat, vo.getWechat())
-			.eq(SysUserEntity::getId, vo.getId())
+			.set(SysUser::getUserNum, vo.getUserNum())
+			.set(SysUser::getRealName, vo.getRealName())
+			.set(SysUser::getNickName, vo.getNickName())
+			.set(SysUser::getLoginName, vo.getLoginName())
+			.set(SysUser::getProfilePhotoUrl, vo.getProfilePhotoUrl())
+			.set(SysUser::getSex, vo.getSex())
+			.set(SysUser::getBirthday, vo.getBirthday())
+			.set(SysUser::getMobilePhone, vo.getMobilePhone())
+			.set(SysUser::getEMail, vo.getEMail())
+			.set(SysUser::getIdCard, idCard)
+			.set(SysUser::getQq, vo.getQq())
+			.set(SysUser::getWechat, vo.getWechat())
+			.eq(SysUser::getId, vo.getId())
 			.update();
 		return ResponseVO.success(null, "修改成功");
 	}
@@ -168,9 +168,9 @@ public class SysUserApiImpl implements ISysUserApi {
 		if (null == userId || null == permIdArray) {
 			return ResponseVO.success(null);
 		}
-		List<SysUserPermEntity> userPermList = new ArrayList<>();
+		List<SysUserPerm> userPermList = new ArrayList<>();
 		for (int i = 0; i < permIdArray.length; i++) {
-			SysUserPermEntity userPerm = new SysUserPermEntity();
+			SysUserPerm userPerm = new SysUserPerm();
 			userPerm.setPermId(Long.parseLong(permIdArray[i]));
 			userPerm.setUserId(userId);
 			userPermList.add(userPerm);
@@ -191,8 +191,8 @@ public class SysUserApiImpl implements ISysUserApi {
 		if (null == userId || null == permIdArray) {
 			return ResponseVO.success(null);
 		}
-		List<SysUserPermEntity> userPermList = this.sysPermService.queryUserPermByUserId(userId);
-		Set<Long> oldPermIdSet = userPermList.stream().map(SysUserPermEntity::getPermId).collect(Collectors.toSet());
+		List<SysUserPerm> userPermList = this.sysPermService.queryUserPermByUserId(userId);
+		Set<Long> oldPermIdSet = userPermList.stream().map(SysUserPerm::getPermId).collect(Collectors.toSet());
 		Set<Long> newPermIdSet = Arrays.asList(permIdArray).stream().map(permId -> Long.parseLong(permId)).collect(Collectors.toSet());
 		Set<Long> addSet = new HashSet<>(newPermIdSet);
 		Set<Long> deleteSet = new HashSet<>(oldPermIdSet);
@@ -202,9 +202,9 @@ public class SysUserApiImpl implements ISysUserApi {
 		deleteSet.removeAll(newPermIdSet);
 
 		/* 新增新的权限 */
-		List<SysUserPermEntity> addUserPermList = new ArrayList<>();
+		List<SysUserPerm> addUserPermList = new ArrayList<>();
 		for (Long permId : addSet) {
-			SysUserPermEntity userPerm = new SysUserPermEntity();
+			SysUserPerm userPerm = new SysUserPerm();
 			userPerm.setPermId(permId);
 			userPerm.setUserId(userId);
 			addUserPermList.add(userPerm);
@@ -213,9 +213,9 @@ public class SysUserApiImpl implements ISysUserApi {
 
 		/* 删除去掉的权限 */
 		if (CollectionUtils.isNotEmpty(deleteSet)) {
-			LambdaQueryWrapper<SysUserPermEntity> queryWrapper = Wrappers.lambdaQuery();
-			queryWrapper.eq(SysUserPermEntity::getUserId, userId);
-			queryWrapper.in(SysUserPermEntity::getPermId, deleteSet);
+			LambdaQueryWrapper<SysUserPerm> queryWrapper = Wrappers.lambdaQuery();
+			queryWrapper.eq(SysUserPerm::getUserId, userId);
+			queryWrapper.in(SysUserPerm::getPermId, deleteSet);
 			sysUserPermService.remove(queryWrapper);
 		}
 		return ResponseVO.success(null, "修改用户权限成功");
@@ -248,9 +248,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	public ResponseVO<String> resetPassword(Long id) {
 		String salt = PasswordUtil.generateCredentialsSalt();
 		this.sysUserService.lambdaUpdate()
-			.set(SysUserEntity::getSalt, salt)
-			.set(SysUserEntity::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
-			.eq(SysUserEntity::getId, id).update();
+			.set(SysUser::getSalt, salt)
+			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
+			.eq(SysUser::getId, id).update();
 		return ResponseVO.success(null, "重置成功");
 	}
 
@@ -265,9 +265,9 @@ public class SysUserApiImpl implements ISysUserApi {
 	public ResponseVO<String> updatePassword(String password) {
 		String salt = PasswordUtil.generateCredentialsSalt();
 		this.sysUserService.lambdaUpdate()
-			.set(SysUserEntity::getSalt, salt)
-			.set(SysUserEntity::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
-			.eq(SysUserEntity::getId, SessionUtil.getCurrentUserId()).update();
+			.set(SysUser::getSalt, salt)
+			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
+			.eq(SysUser::getId, SessionUtil.getCurrentUserId()).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 

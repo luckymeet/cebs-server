@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.ycw.cebs.sys.entity.SysUserEntity;
+import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.base.BaseCrudMapper;
@@ -25,7 +25,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface ISysUserMapper extends BaseCrudMapper<SysUserEntity> {
+public interface ISysUserMapper extends BaseCrudMapper<SysUser> {
 
 	/**
 	 * 系统用户列表查询

@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.common.vo.TreeVO;
-import com.ycw.cebs.sys.entity.SysPermEntity;
-import com.ycw.cebs.sys.entity.SysUserPermEntity;
+import com.ycw.cebs.sys.entity.SysPerm;
+import com.ycw.cebs.sys.entity.SysUserPerm;
 
 /**
  * 系统权限Service接口
@@ -22,7 +22,7 @@ import com.ycw.cebs.sys.entity.SysUserPermEntity;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysPermService extends IService<SysPermEntity>{
+public interface ISysPermService extends IService<SysPerm>{
 
 	/**
 	 * 根据用户id查询权限
@@ -31,7 +31,7 @@ public interface ISysPermService extends IService<SysPermEntity>{
 	 * @param userId 用户id
 	 * @return
 	 */
-	List<SysPermEntity> queryPermListByUserId(Long userId);
+	List<SysPerm> queryPermListByUserId(Long userId);
 
 	/**
 	 * 根据权限id集合查询权限
@@ -40,7 +40,7 @@ public interface ISysPermService extends IService<SysPermEntity>{
 	 * @param permIds 权限id集合
 	 * @return
 	 */
-	List<SysPermEntity> queryPermListByPermIdList(Collection<Long> permIds);
+	List<SysPerm> queryPermListByPermIdList(Collection<Long> permIds);
 
 	/**
 	 * 根据用户id查询用户权限关联数据列表
@@ -49,7 +49,7 @@ public interface ISysPermService extends IService<SysPermEntity>{
 	 * @param userId 用户id
 	 * @return
 	 */
-	List<SysUserPermEntity> queryUserPermByUserId(Long userId);
+	List<SysUserPerm> queryUserPermByUserId(Long userId);
 
 	/**
 	 * 查询用户权限列表

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.ycw.cebs.common.vo.TreeVO;
-import com.ycw.cebs.sys.entity.SysPermEntity;
+import com.ycw.cebs.sys.entity.SysPerm;
 import com.ycw.common.base.BaseCrudMapper;
 
 /**
@@ -24,7 +24,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface ISysPermMapper extends BaseCrudMapper<SysPermEntity> {
+public interface ISysPermMapper extends BaseCrudMapper<SysPerm> {
 
 	/**
 	 * 查询用户权限列表

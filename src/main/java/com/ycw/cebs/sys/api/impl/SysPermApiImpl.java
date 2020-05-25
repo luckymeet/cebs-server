@@ -10,7 +10,7 @@ import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.common.utils.TreeUtil;
 import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.api.ISysPermApi;
-import com.ycw.cebs.sys.entity.SysPermEntity;
+import com.ycw.cebs.sys.entity.SysPerm;
 import com.ycw.cebs.sys.service.ISysPermService;
 import com.ycw.common.response.ResponseVO;
 
@@ -43,9 +43,9 @@ public class SysPermApiImpl implements ISysPermApi {
 	 */
 	@Override
 	public ResponseVO<List<String>> queryPermList(Integer permType) {
-		List<SysPermEntity> permList = this.sysPermService.queryPermListByUserId(SessionUtil.getCurrentUserId());
+		List<SysPerm> permList = this.sysPermService.queryPermListByUserId(SessionUtil.getCurrentUserId());
 		List<String> routeList = permList.stream()
-				.filter(perm -> null == permType || (permType).equals(perm.getPermType())).map(SysPermEntity::getValue)
+				.filter(perm -> null == permType || (permType).equals(perm.getPermType())).map(SysPerm::getValue)
 				.collect(Collectors.toList());
 		return ResponseVO.success(routeList);
 	}
