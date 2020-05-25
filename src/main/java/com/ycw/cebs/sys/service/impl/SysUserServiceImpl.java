@@ -62,8 +62,7 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUser> imp
 		LambdaQueryWrapper<SysUser> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.eq(SysUser::getLoginName, account).or()
 					.eq(SysUser::getMobilePhone, account)
-					.eq(SysUser::getClientId, ClientTypeEnum.BACK_END.getCode())
-					.eq(SysUser::getDelInd, CommonConstants.INT_NO);
+					.eq(SysUser::getClientId, ClientTypeEnum.BACK_END.getCode());
 		SysUser user = sysUserMapper.selectOne(queryWrapper);
 		return user;
 	}

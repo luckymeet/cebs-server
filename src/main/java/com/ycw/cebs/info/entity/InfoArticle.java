@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 文章公告通知实体类
+ * 文章实体类
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/05/19 14:39:58
  * @version v1.00

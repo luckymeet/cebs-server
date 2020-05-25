@@ -9,7 +9,7 @@ import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.page.PageParams;
 
 /**
- * 文章公告通知Service接口
+ * 文章Service接口
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/05/19 14:39:58
  * @version v1.00

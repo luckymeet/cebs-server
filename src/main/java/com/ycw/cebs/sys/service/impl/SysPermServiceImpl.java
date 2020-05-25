@@ -79,7 +79,6 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> imp
 		}
 		LambdaQueryWrapper<SysPerm> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.in(SysPerm::getId, permIds);
-		queryWrapper.eq(SysPerm::getDelInd, CommonConstants.INT_NO);
 		List<SysPerm> permList = sysPermMapper.selectList(queryWrapper);
 		return permList;
 	}
@@ -95,7 +94,6 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> imp
 	public List<SysUserPerm> queryUserPermByUserId(Long userId) {
 		LambdaQueryWrapper<SysUserPerm> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.eq(SysUserPerm::getUserId, userId);
-		queryWrapper.eq(SysUserPerm::getDelInd, CommonConstants.INT_NO);
 		List<SysUserPerm> userPermlist = sysUserPermMapper.selectList(queryWrapper);
 		return userPermlist;
 	}

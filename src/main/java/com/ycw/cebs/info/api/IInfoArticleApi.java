@@ -1,5 +1,7 @@
 package com.ycw.cebs.info.api;
 
+import java.time.LocalDateTime;
+
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
@@ -51,5 +53,33 @@ public interface IInfoArticleApi {
 	 * @return
 	 */
 	ResponseVO<String> updateInfoArticle(InfoArticleEditParam infoArticleEidtParam);
+
+	/**
+	 * 文章删除
+	 * @author yuminjun
+	 * @date 2020/05/25 14:39:24
+	 * @param id
+	 * @return
+	 */
+	ResponseVO<String> deleteInfoArticle(Long id);
+
+	/**
+	 * 发布
+	 * @author yuminjun
+	 * @date 2020/05/25 15:26:16
+	 * @param id 文章id
+	 * @param publishTime 发布时间
+	 * @return
+	 */
+	ResponseVO<String> publish(Long id, LocalDateTime publishTime);
+
+	/**
+	 * 取消发布
+	 * @author yuminjun
+	 * @date 2020/05/25 15:21:05
+	 * @param id
+	 * @return
+	 */
+	ResponseVO<String> cancelPublish(Long id);
 
 }
