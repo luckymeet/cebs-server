@@ -14,7 +14,6 @@ import com.ycw.cebs.sys.mapper.ISysUserMapper;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.page.PageParams;
 
 /**

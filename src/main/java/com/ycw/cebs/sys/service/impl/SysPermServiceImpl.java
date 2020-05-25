@@ -18,7 +18,6 @@ import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.mapper.ISysPermMapper;
 import com.ycw.cebs.sys.mapper.ISysUserPermMapper;
 import com.ycw.cebs.sys.service.ISysPermService;
-import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.exception.SysException;
 
 /**
