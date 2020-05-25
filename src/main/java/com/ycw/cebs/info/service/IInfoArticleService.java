@@ -3,7 +3,7 @@ package com.ycw.cebs.info.service;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ycw.cebs.info.domain.InfoArticle;
+import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.page.PageParams;

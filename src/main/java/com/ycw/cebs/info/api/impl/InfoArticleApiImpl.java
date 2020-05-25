@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.info.api.IInfoArticleApi;
+import com.ycw.cebs.info.param.InfoArticleAddParam;
+import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
@@ -46,6 +48,32 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 			PageParams pageParams) {
 		List<InfoArticleListVO> page = infoArticleService.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
+	}
+
+	/**
+	 * 文章新增
+	 * @author yuminjun
+	 * @date 2020/05/25 11:01:04
+	 * @param infoArticleAddParam
+	 * @return
+	 */
+	@Override
+	public ResponseVO<Long> saveInfoArticle(InfoArticleAddParam infoArticleAddParam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 文章修改
+	 * @author yuminjun
+	 * @date 2020/05/25 11:01:04
+	 * @param infoArticleEditParam
+	 * @return
+	 */
+	@Override
+	public ResponseVO<String> updateInfoArticle(InfoArticleEditParam infoArticleEditParam) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

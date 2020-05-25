@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ycw.cebs.info.domain.InfoArticle;
+import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.mapper.IInfoArticleMapper;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.service.IInfoArticleService;

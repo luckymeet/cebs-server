@@ -1,4 +1,4 @@
-package com.ycw.cebs.info.domain;
+package com.ycw.cebs.info.entity;
 
 import java.time.LocalDateTime;
 
