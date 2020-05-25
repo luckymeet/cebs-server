@@ -11,8 +11,7 @@
         t.create_time createTime, <!-- 创建时间 -->
         t.update_user updateUser, <!-- 更新人 -->
         t.update_time updateTime, <!-- 更新时间 -->
-        t.version version, <!-- 版本号 -->
-        t.is_deleted isDeleted <!-- 删除标志：0-未删除，1-已删除 -->
+        t.version version <!-- 版本号 -->
 	</sql>
 
 </mapper>
