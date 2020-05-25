@@ -87,7 +87,7 @@
     </sql>
 
     <!--根据条件查询列表-->
-    <select id="queryInfoArticlePage" parameterType="com.ycw.cebs.info.vo.param.InfoArticlePageParamVO" resultType="com.ycw.cebs.info.vo.InfoArticleListVO">
+    <select id="queryInfoArticlePage" resultType="com.ycw.cebs.info.vo.InfoArticleListVO">
         SELECT
 		<include refid="column_list"/>
         FROM info_article t
