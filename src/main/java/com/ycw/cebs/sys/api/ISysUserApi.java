@@ -109,4 +109,14 @@ public interface ISysUserApi {
 	 */
 	ResponseVO<String> updatePassword(String password);
 
+	/**
+	 * 用户状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:36:30
+	 * @param id 用户id
+	 * @param status 状态
+	 * @return
+	 */
+	ResponseVO<String> changeStatus(Integer id, Integer status);
+
 }

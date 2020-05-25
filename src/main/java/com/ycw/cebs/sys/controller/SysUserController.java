@@ -157,4 +157,18 @@ public class SysUserController {
 		return sysUserApi.updatePassword(password);
 	}
 
+	/**
+	 * 用户状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:36:30
+	 * @param id 用户id
+	 * @param status 状态
+	 * @return
+	 */
+	@PutMapping("/status/change")
+	@RequiresPermissions("sys:user:status:change")
+	public ResponseVO<String> changeStatus(Integer id, Integer status) {
+		return sysUserApi.changeStatus(id, status);
+	}
+
 }

@@ -250,7 +250,8 @@ public class SysUserApiImpl implements ISysUserApi {
 		this.sysUserService.lambdaUpdate()
 			.set(SysUser::getSalt, salt)
 			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
-			.eq(SysUser::getId, id).update();
+			.eq(SysUser::getId, id)
+			.update();
 		return ResponseVO.success(null, "重置成功");
 	}
 
@@ -267,7 +268,25 @@ public class SysUserApiImpl implements ISysUserApi {
 		this.sysUserService.lambdaUpdate()
 			.set(SysUser::getSalt, salt)
 			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
-			.eq(SysUser::getId, SessionUtil.getCurrentUserId()).update();
+			.eq(SysUser::getId, SessionUtil.getCurrentUserId())
+			.update();
+		return ResponseVO.success(null, "修改成功");
+	}
+
+	/**
+	 * 用户状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:36:30
+	 * @param id 用户id
+	 * @param status 状态
+	 * @return
+	 */
+	@Override
+	public ResponseVO<String> changeStatus(Integer id, Integer status) {
+		this.sysUserService.lambdaUpdate()
+			.set(SysUser::getStatus, status)
+			.eq(SysUser::getId, id)
+			.update();
 		return ResponseVO.success(null, "修改成功");
 	}
 
