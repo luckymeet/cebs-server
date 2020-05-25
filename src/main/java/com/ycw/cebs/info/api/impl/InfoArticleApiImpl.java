@@ -17,7 +17,6 @@ import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.cebs.info.vo.InfoArticleVO;
 import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
@@ -182,6 +181,23 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 	public ResponseVO<String> changeStatus(Integer id, Integer status) {
 		this.infoArticleService.lambdaUpdate()
 			.set(InfoArticle::getStatus, status)
+			.eq(InfoArticle::getId, id)
+			.update();
+		return ResponseVO.success(null, "修改成功");
+	}
+
+	/**
+	 * 文章推荐状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:44:02
+	 * @param id
+	 * @param isRecommend
+	 * @return
+	 */
+	@Override
+	public ResponseVO<String> changeRecommend(Integer id, Integer isRecommend) {
+		this.infoArticleService.lambdaUpdate()
+			.set(InfoArticle::getIsRecommend, isRecommend)
 			.eq(InfoArticle::getId, id)
 			.update();
 		return ResponseVO.success(null, "修改成功");

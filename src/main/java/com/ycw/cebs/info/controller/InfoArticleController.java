@@ -149,4 +149,18 @@ public class InfoArticleController {
 		return infoArticleApi.changeStatus(id, status);
 	}
 
+	/**
+	 * 文章推荐状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:44:02
+	 * @param id
+	 * @param isRecommend
+	 * @return
+	 */
+	@PutMapping("/recommend/change")
+	@RequiresPermissions("sys:user:recommend:change")
+	public ResponseVO<String> changeRecommend(Integer id, Integer isRecommend) {
+		return infoArticleApi.changeRecommend(id, isRecommend);
+	}
+
 }
