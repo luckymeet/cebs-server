@@ -17,6 +17,7 @@ import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
+import com.ycw.cebs.info.vo.InfoArticleVO;
 import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.exception.SysException;
 import com.ycw.common.page.PageParams;
@@ -57,6 +58,19 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 			PageParams pageParams) {
 		List<InfoArticleListVO> page = infoArticleService.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
 		return ResponseVO.success(new PageInfo<>(page));
+	}
+
+	/**
+	 * 文章详情
+	 * @author yuminjun
+	 * @date 2020/05/25 16:26:36
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public ResponseVO<InfoArticle> getInfoArticle(Long id) {
+		InfoArticle infoArticle = this.infoArticleService.getById(id);
+		return ResponseVO.success(infoArticle);
 	}
 
 	/**
@@ -129,9 +143,9 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 	public ResponseVO<String> publish(Long id, LocalDateTime publishTime) {
 		this.validPublishTime(publishTime);
 		this.infoArticleService.lambdaUpdate()
-		.set(InfoArticle::getPublishTime, publishTime)
-		.eq(InfoArticle::getId, id)
-		.update();
+			.set(InfoArticle::getPublishTime, publishTime)
+			.eq(InfoArticle::getId, id)
+			.update();
 		return ResponseVO.success(null, "发布成功");
 	}
 
@@ -154,6 +168,23 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 			.eq(InfoArticle::getId, id)
 			.update();
 		return ResponseVO.success(null, "取消成功");
+	}
+
+	/**
+	 * 文章状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:44:02
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	@Override
+	public ResponseVO<String> changeStatus(Integer id, Integer status) {
+		this.infoArticleService.lambdaUpdate()
+			.set(InfoArticle::getStatus, status)
+			.eq(InfoArticle::getId, id)
+			.update();
+		return ResponseVO.success(null, "修改成功");
 	}
 
 }

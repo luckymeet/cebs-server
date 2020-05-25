@@ -3,6 +3,7 @@ package com.ycw.cebs.info.api;
 import java.time.LocalDateTime;
 
 import com.github.pagehelper.PageInfo;
+import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
@@ -35,6 +36,15 @@ public interface IInfoArticleApi {
 	 * @return
 	 */
 	ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO, PageParams pageParams);
+
+	/**
+	 * 文章详情
+	 * @author yuminjun
+	 * @date 2020/05/25 16:26:36
+	 * @param id
+	 * @return
+	 */
+	ResponseVO<InfoArticle> getInfoArticle(Long id);
 
 	/**
 	 * 文章新增
@@ -81,5 +91,15 @@ public interface IInfoArticleApi {
 	 * @return
 	 */
 	ResponseVO<String> cancelPublish(Long id);
+
+	/**
+	 * 文章状态修改
+	 * @author yuminjun
+	 * @date 2020/05/25 15:44:02
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	ResponseVO<String> changeStatus(Integer id, Integer status);
 
 }

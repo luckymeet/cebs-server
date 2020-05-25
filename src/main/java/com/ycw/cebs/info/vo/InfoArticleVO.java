@@ -9,7 +9,7 @@ import com.ycw.common.constants.CommonConstants;
 import lombok.Data;
 
 @Data
-public class InfoArticleListVO implements Serializable {
+public class InfoArticleVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -78,37 +78,5 @@ public class InfoArticleListVO implements Serializable {
  	 * 是否展示免责申明：1-展示，0-不展示
  	 */
 	private Integer isShowDisclaimer;
-
- 	/**
- 	 * 删除标识：0-未删除，1-删除
- 	 */
-	private Integer delInd;
-
- 	/**
- 	 * 创建人
- 	 */
-	private Long createUser;
-
- 	/**
- 	 * 创建时间
- 	 */
-	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
-	private LocalDateTime createTime;
-
- 	/**
- 	 * 更新人
- 	 */
-	private Long updateUser;
-
- 	/**
- 	 * 更新时间
- 	 */
-	@JsonFormat(pattern = CommonConstants.DATE_TIME_24HOUR_FORMAT, timezone = "GMT+8")
-	private LocalDateTime updateTime;
-
- 	/**
- 	 * 版本号
- 	 */
-	private Integer version;
 
 }
