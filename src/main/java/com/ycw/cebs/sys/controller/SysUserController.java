@@ -18,7 +18,7 @@ import com.ycw.cebs.sys.param.SysUserEditParam;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
 
@@ -48,13 +48,13 @@ public class SysUserController {
 	 * @author yuminjun
 	 * @date 2020/04/22 14:13:35
 	 * @param vo 查询参数
-	 * @param pageParams 分页参数
+	 * @param pageParam 分页参数
 	 * @return
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
-	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParams pageParams) {
-		return sysUserApi.queryUserPage(vo, pageParams);
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParam pageParam) {
+		return sysUserApi.queryUserPage(vo, pageParam);
 	}
 
 	/**

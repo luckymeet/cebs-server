@@ -7,7 +7,7 @@ import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.exception.SysException;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 
 /**
  * 系统用户Service接口
@@ -29,11 +29,11 @@ public interface ISysUserService extends IService<SysUser>{
 	 * 用户列表分页查询
 	 * @author yuminjun
 	 * @date 2020/04/21 14:52:30
-	 * @param sysUserListParamVO 查询参数
-	 * @param pageParams 分页参数（为空时默认查询所有）
+	 * @param sysUserListParam 查询参数
+	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
-	List<SysUserListVO> queryUserList(SysUserListParam sysUserListParamVO, PageParams pageParams);
+	List<SysUserListVO> queryUserList(SysUserListParam sysUserListParam, PageParam pageParam);
 
 	/**
 	 * 根据登录令牌获取用户

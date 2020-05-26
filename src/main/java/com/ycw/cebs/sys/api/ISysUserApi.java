@@ -6,7 +6,7 @@ import com.ycw.cebs.sys.param.SysUserEditParam;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseVO;
 
 /**
@@ -30,10 +30,10 @@ public interface ISysUserApi {
 	 * @author yuminjun
 	 * @date 2020/04/21 16:50:16
 	 * @param vo
-	 * @param pageParams 分页参数（为null时默认查所有）
+	 * @param pageParam 分页参数（为null时默认查所有）
 	 * @return
 	 */
-	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParams pageParams);
+	ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParam pageParam);
 
 	/**
 	 * 根据id查询系统用户数据

@@ -14,7 +14,7 @@ import com.ycw.cebs.sys.mapper.ISysUserMapper;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserListVO;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 
 /**
  * 系统用户Service接口实现类
@@ -40,13 +40,13 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUser> imp
 	 * 用户列表分页查询
 	 * @author yuminjun
 	 * @date 2020/04/21 14:52:30
-	 * @param sysUserListParamVO 查询参数
-	 * @param pageParams 分页参数（为空时默认查询所有）
+	 * @param sysUserListParam 查询参数
+	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@Override
-	public List<SysUserListVO> queryUserList(SysUserListParam sysUserListParamVO, PageParams pageParams) {
-		return sysUserMapper.querySysUserList(sysUserListParamVO);
+	public List<SysUserListVO> queryUserList(SysUserListParam sysUserListParam, PageParam pageParam) {
+		return sysUserMapper.querySysUserList(sysUserListParam);
 	}
 
 	/**

@@ -30,7 +30,7 @@ import com.ycw.cebs.sys.service.ISysUserService;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.exception.SysException;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
 import com.ycw.common.utils.BeanHandleUtils;
@@ -71,13 +71,13 @@ public class SysUserApiImpl implements ISysUserApi {
 	 * @author yuminjun
 	 * @date 2020/04/21 14:52:30
 	 * @param vo 查询参数
-	 * @param pageParams 分页参数（为空时默认查询所有）
+	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@Override
-	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParams pageParams) {
+	public ResponseVO<PageInfo<SysUserListVO>> queryUserPage(SysUserListParam vo, PageParam pageParam) {
 		vo.setCurUserId(SessionUtil.getCurrentUserId());
-		List<SysUserListVO> page = this.sysUserService.queryUserList(vo, pageParams);
+		List<SysUserListVO> page = this.sysUserService.queryUserList(vo, pageParam);
 		return ResponseVO.success(new PageInfo<>(page));
 	}
 

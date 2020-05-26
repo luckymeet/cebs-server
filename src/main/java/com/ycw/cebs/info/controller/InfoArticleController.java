@@ -18,7 +18,7 @@ import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseVO;
 
 @RestController
@@ -32,15 +32,15 @@ public class InfoArticleController {
 	 * 文章列表分页查询
 	 * @author yuminjun
 	 * @date 2020/05/19 16:45:07
-	 * @param infoArticlePageParamVO 查询参数
-	 * @param pageParams 分页参数（为空时默认查询所有）
+	 * @param infoArticlePageParam 查询参数
+	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("info:article:list")
-	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO,
-			PageParams pageParams) {
-		return infoArticleApi.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
+	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParam,
+			PageParam pageParam) {
+		return infoArticleApi.queryInfoArticlePage(infoArticlePageParam, pageParam);
 	}
 
 	/**

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 
 /**
  * 文章Service接口
@@ -28,10 +28,10 @@ public interface IInfoArticleService extends IService<InfoArticle> {
 	 * 文章列表分页查询
 	 * @author yuminjun
 	 * @date 2020/05/19 16:45:07
-	 * @param infoArticlePageParamVO 查询参数
-	 * @param pageParams 分页参数（为空时默认查询所有）
+	 * @param infoArticlePageParam 查询参数
+	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
-	List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO, PageParams pageParams);
+	List<InfoArticleListVO> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParam, PageParam pageParam);
 
 }

@@ -19,7 +19,7 @@ import com.ycw.cebs.info.service.IInfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.exception.SysException;
-import com.ycw.common.page.PageParams;
+import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseCode;
 import com.ycw.common.response.ResponseVO;
 import com.ycw.common.utils.BeanHandleUtils;
@@ -48,14 +48,14 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 	 * 文章列表分页查询
 	 * @author yuminjun
 	 * @date 2020/05/19 16:45:07
-	 * @param infoArticlePageParamVO 查询参数
-	 * @param pageParams 分页参数（为空时默认查询所有）
+	 * @param infoArticlePageParam 查询参数
+	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@Override
-	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParamVO,
-			PageParams pageParams) {
-		List<InfoArticleListVO> page = infoArticleService.queryInfoArticlePage(infoArticlePageParamVO, pageParams);
+	public ResponseVO<PageInfo<InfoArticleListVO>> queryInfoArticlePage(InfoArticlePageParam infoArticlePageParam,
+			PageParam pageParam) {
+		List<InfoArticleListVO> page = infoArticleService.queryInfoArticlePage(infoArticlePageParam, pageParam);
 		return ResponseVO.success(new PageInfo<>(page));
 	}
 

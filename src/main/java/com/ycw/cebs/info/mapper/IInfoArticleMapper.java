@@ -31,10 +31,10 @@ public interface IInfoArticleMapper extends BaseCrudMapper<InfoArticle> {
 	 * 文章列表查询
 	 * @author yuminjun
 	 * @date 2020/05/19 16:39:59
-	 * @param sysUserListParamVO
+	 * @param sysUserListParam
 	 * @return
 	 */
-	List<InfoArticleListVO> queryInfoArticlePage(@Param("params") InfoArticlePageParam infoArticlePageParamVO);
+	List<InfoArticleListVO> queryInfoArticlePage(@Param("params") InfoArticlePageParam infoArticlePageParam);
 
 }
 

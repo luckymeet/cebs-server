@@ -44,13 +44,13 @@ public class HomeController {
 	 * 登录
 	 * @author yuminjun
 	 * @date 2020/04/23 15:38:41
-	 * @param loginParamVO
+	 * @param loginParam
 	 * @return
 	 */
 	@PostMapping("/login")
-	public ResponseVO<LoginUserVO> login(@Validated LoginParam loginParamVO) {
+	public ResponseVO<LoginUserVO> login(@Validated LoginParam loginParam) {
 		Subject user = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(loginParamVO.getUsername(), loginParamVO.getPassword());
+		UsernamePasswordToken token = new UsernamePasswordToken(loginParam.getUsername(), loginParam.getPassword());
 		try {
 			// 跳入入自己实现的域即shiroRealm中验证
 			user.login(token);

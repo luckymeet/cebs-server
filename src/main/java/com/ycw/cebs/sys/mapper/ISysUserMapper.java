@@ -31,10 +31,10 @@ public interface ISysUserMapper extends BaseCrudMapper<SysUser> {
 	 * 系统用户列表查询
 	 * @author yuminjun
 	 * @date 2020/04/21 16:40:19
-	 * @param sysUserListParamVO
+	 * @param sysUserListParam
 	 * @return
 	 */
-	List<SysUserListVO> querySysUserList(@Param("params") SysUserListParam sysUserListParamVO);
+	List<SysUserListVO> querySysUserList(@Param("params") SysUserListParam sysUserListParam);
 
 }
 
