@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -28,7 +29,7 @@
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
-		    <version>1.5.2</version>
+			<version>1.5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.crazycake</groupId>
@@ -37,9 +38,9 @@
 		</dependency>
 		<!-- fastjson -->
 		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>fastjson</artifactId>
-		    <version>1.2.60</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.60</version>
 		</dependency>
 		<!-- <dependency> -->
 		<!-- <groupId>com.xuxueli</groupId> -->
@@ -56,5 +57,25 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+			<id>ycw-public</id>
+			<url>http://39.105.58.23:8081/repository/ycw-public/</url>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>ycw-releases</id>
+			<url>http://39.105.58.23:8081/repository/ycw-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>ycw-snapshots</id>
+			<url>http://39.105.58.23:8081/repository/ycw-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 </project>
