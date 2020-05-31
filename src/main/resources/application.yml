@@ -132,6 +132,9 @@ management:
       show-details: ALWAYS  #显示详细信息
       
 logging:
+  #file: C:/Users/yuminjun/Desktop/test.log
   level:
+    root: info
+    org.apache.coyote.http11.Http11InputBuffer: debug
     druid.sql: debug
     com.ycw: debug
