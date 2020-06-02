@@ -1,9 +1,11 @@
 package com.ycw.cebs.info.api.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,9 +112,19 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 	 */
 	@Override
 	public ResponseVO<String> updateInfoArticle(InfoArticleEditParam infoArticleEditParam) {
+		InfoArticle infoArticle = this.infoArticleService.getById(infoArticleEditParam.getId());
 		LocalDateTime publishTime = infoArticleEditParam.getPublishTime();
-		validPublishTime(publishTime);
-		InfoArticle infoArticle = BeanHandleUtils.beanCopy(infoArticleEditParam, InfoArticle.class);
+		if (null != publishTime && (null == infoArticle.getPublishTime() || !publishTime.toLocalDate().equals(infoArticle.getPublishTime().toLocalDate()))) {
+			validPublishTime(publishTime);
+		}
+		BeanHandleUtils.copyProperties(infoArticleEditParam, infoArticle);
+//		try {
+//			BeanUtils.copyProperties(infoArticle, infoArticleEditParam);
+//		} catch (IllegalAccessException e) {
+//			 e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			 e.printStackTrace();
+//		}
 		this.infoArticleService.updateById(infoArticle);
 		return ResponseVO.success(null, "修改成功");
 	}

@@ -107,10 +107,12 @@ public class ShiroAuthConfig {
 		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
 		shiroFilter.setSecurityManager(securityManager);
 		shiroFilter.setUnauthorizedUrl("/sys/unauthorized");
+//		shiroFilter.setLoginUrl("/sys/login");
 
 		/* 配置访问权限 */
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/sys/login", "anon");
+		filterChainDefinitionMap.put("/sys/logout", "anon");
 		filterChainDefinitionMap.put("/druid/**", "anon");
 		filterChainDefinitionMap.put("/actuator/**", "anon");
 		filterChainDefinitionMap.put("/**", "authc");

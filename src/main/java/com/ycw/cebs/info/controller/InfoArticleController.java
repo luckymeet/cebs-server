@@ -92,8 +92,8 @@ public class InfoArticleController {
 	 */
 	@PutMapping
 	@RequiresPermissions("info:article:edit")
-	public ResponseVO<String> updateInfoArticle(@RequestBody InfoArticleEditParam infoArticleEidtParam) {
-		return infoArticleApi.updateInfoArticle(infoArticleEidtParam);
+	public ResponseVO<String> updateInfoArticle(@RequestBody InfoArticleEditParam infoArticleEditParam) {
+		return infoArticleApi.updateInfoArticle(infoArticleEditParam);
 	}
 
 	/**
