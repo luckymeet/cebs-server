@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -144,13 +145,9 @@ public class SysUserApiImpl implements SysUserApi {
 		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
-		this.sysUserService.lambdaUpdate().set(SysUser::getUserNum, vo.getUserNum())
-				.set(SysUser::getRealName, vo.getRealName()).set(SysUser::getNickName, vo.getNickName())
-				.set(SysUser::getLoginName, vo.getLoginName()).set(SysUser::getProfilePhotoUrl, vo.getProfilePhotoUrl())
-				.set(SysUser::getSex, vo.getSex()).set(SysUser::getBirthday, vo.getBirthday())
-				.set(SysUser::getMobilePhone, vo.getMobilePhone()).set(SysUser::getEMail, vo.getEMail())
-				.set(SysUser::getIdCard, idCard).set(SysUser::getQq, vo.getQq()).set(SysUser::getWechat, vo.getWechat())
-				.eq(SysUser::getId, vo.getId()).update();
+		SysUser user = this.sysUserService.getById(vo.getId());
+		BeanUtils.copyProperties(vo, user);
+		this.sysUserService.updateAllById(user);
 		return ResponseVO.success(null, "修改成功");
 	}
 
