@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -122,8 +123,8 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 				|| !publishTime.toLocalDate().equals(infoArticle.getPublishTime().toLocalDate()))) {
 			validPublishTime(publishTime);
 		}
-		BeanHandleUtils.copyProperties(infoArticleEditParam, infoArticle);
-		this.infoArticleService.updateById(infoArticle);
+		BeanUtils.copyProperties(infoArticleEditParam, infoArticle);
+		this.infoArticleService.updateAllById(infoArticle);
 		return ResponseVO.success(null, "修改成功");
 	}
 
