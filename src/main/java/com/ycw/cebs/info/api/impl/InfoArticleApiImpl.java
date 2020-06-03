@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.pagehelper.PageInfo;
-import com.ycw.cebs.info.api.IInfoArticleApi;
+import com.ycw.cebs.info.api.InfoArticleApi;
 import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
@@ -39,7 +39,7 @@ import com.ycw.common.utils.BeanHandleUtils;
  * </pre>
  */
 @Service
-public class InfoArticleApiImpl implements IInfoArticleApi {
+public class InfoArticleApiImpl implements InfoArticleApi {
 
 	@Autowired
 	private InfoArticleService infoArticleService;

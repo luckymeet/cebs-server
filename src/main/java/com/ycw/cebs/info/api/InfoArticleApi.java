@@ -25,7 +25,7 @@ import com.ycw.common.response.ResponseVO;
  * -------------------------------------------------
  * </pre>
  */
-public interface IInfoArticleApi {
+public interface InfoArticleApi {
 
 	/**
 	 * 文章列表分页查询

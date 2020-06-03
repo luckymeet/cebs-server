@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
-import com.ycw.cebs.info.api.IInfoArticleApi;
+import com.ycw.cebs.info.api.InfoArticleApi;
 import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
@@ -27,7 +27,7 @@ import com.ycw.common.response.ResponseVO;
 public class InfoArticleController {
 
 	@Autowired
-	private IInfoArticleApi infoArticleApi;
+	private InfoArticleApi infoArticleApi;
 
 	/**
 	 * 文章列表分页查询
