@@ -12,17 +12,19 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 系统用户实体类
+ *
  * @author yuminjun
  * @date 2020/04/21 15:53:53
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

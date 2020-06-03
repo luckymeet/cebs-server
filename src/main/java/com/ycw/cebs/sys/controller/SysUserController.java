@@ -24,17 +24,19 @@ import com.ycw.common.response.ResponseVO;
 
 /**
  * 用户管理Controller
+ *
  * @author yuminjun
  * @date 2020/04/22 14:13:24
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/22    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @RestController
 @RequestMapping("/sys/user")

@@ -10,19 +10,21 @@ import com.ycw.common.base.BaseService;
 
 /**
  * 系统权限Service接口
+ *
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:30:50
  * @version v1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/22    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
-public interface SysPermService extends BaseService<SysPerm>{
+public interface SysPermService extends BaseService<SysPerm> {
 
 	/**
 	 * 根据用户id查询权限

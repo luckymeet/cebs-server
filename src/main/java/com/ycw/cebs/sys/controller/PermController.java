@@ -28,8 +28,7 @@ public class PermController {
 	 */
 	@GetMapping("/menu")
 	public ResponseVO<List<String>> queryPermPerm() {
-		ResponseVO<List<String>> routeList = sysPermApi.queryPermList(PermTypeEnum.MENU.getCode());
-		return routeList;
+		return sysPermApi.queryPermList(PermTypeEnum.MENU.getCode());
 	}
 
 	/**
@@ -41,8 +40,7 @@ public class PermController {
 	 */
 	@GetMapping("/button")
 	public ResponseVO<List<String>> queryButtonPerm() {
-		ResponseVO<List<String>> routeList = sysPermApi.queryPermList(PermTypeEnum.BUTTON.getCode());
-		return routeList;
+		return sysPermApi.queryPermList(PermTypeEnum.BUTTON.getCode());
 	}
 
 	/**

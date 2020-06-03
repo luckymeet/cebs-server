@@ -10,19 +10,21 @@ import com.ycw.common.page.PageParam;
 
 /**
  * 系统用户Service接口
+ *
  * @author yuminjun
  * @date 2020/04/21 15:50:44
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
-public interface SysUserService extends BaseService<SysUser>{
+public interface SysUserService extends BaseService<SysUser> {
 
 	/**
 	 * 用户列表分页查询

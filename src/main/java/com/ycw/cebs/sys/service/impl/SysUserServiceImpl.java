@@ -18,17 +18,19 @@ import com.ycw.common.page.PageParam;
 
 /**
  * 系统用户Service接口实现类
+ *
  * @author yuminjun
  * @date 2020/04/21 15:50:44
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
@@ -61,11 +63,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
 	@Override
 	public SysUser getUserByLoginAccount(String account) {
 		LambdaQueryWrapper<SysUser> queryWrapper = Wrappers.lambdaQuery();
-		queryWrapper.eq(SysUser::getLoginName, account).or()
-					.eq(SysUser::getMobilePhone, account)
-					.eq(SysUser::getClientId, ClientTypeEnum.BACK_END.getCode());
-		SysUser user = sysUserMapper.selectOne(queryWrapper);
-		return user;
+		queryWrapper.eq(SysUser::getLoginName, account).or().eq(SysUser::getMobilePhone, account)
+				.eq(SysUser::getClientId, ClientTypeEnum.BACK_END.getCode());
+		return sysUserMapper.selectOne(queryWrapper);
 	}
 
 }

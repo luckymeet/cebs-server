@@ -37,17 +37,19 @@ import com.ycw.common.utils.BeanHandleUtils;
 
 /**
  * 系统用户Api接口实现类
+ *
  * @author yuminjun
  * @date 2020/04/21 17:25:56
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Service
 public class SysUserApiImpl implements SysUserApi {
@@ -142,21 +144,13 @@ public class SysUserApiImpl implements SysUserApi {
 		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getUserNum, vo.getUserNum())
-			.set(SysUser::getRealName, vo.getRealName())
-			.set(SysUser::getNickName, vo.getNickName())
-			.set(SysUser::getLoginName, vo.getLoginName())
-			.set(SysUser::getProfilePhotoUrl, vo.getProfilePhotoUrl())
-			.set(SysUser::getSex, vo.getSex())
-			.set(SysUser::getBirthday, vo.getBirthday())
-			.set(SysUser::getMobilePhone, vo.getMobilePhone())
-			.set(SysUser::getEMail, vo.getEMail())
-			.set(SysUser::getIdCard, idCard)
-			.set(SysUser::getQq, vo.getQq())
-			.set(SysUser::getWechat, vo.getWechat())
-			.eq(SysUser::getId, vo.getId())
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getUserNum, vo.getUserNum())
+				.set(SysUser::getRealName, vo.getRealName()).set(SysUser::getNickName, vo.getNickName())
+				.set(SysUser::getLoginName, vo.getLoginName()).set(SysUser::getProfilePhotoUrl, vo.getProfilePhotoUrl())
+				.set(SysUser::getSex, vo.getSex()).set(SysUser::getBirthday, vo.getBirthday())
+				.set(SysUser::getMobilePhone, vo.getMobilePhone()).set(SysUser::getEMail, vo.getEMail())
+				.set(SysUser::getIdCard, idCard).set(SysUser::getQq, vo.getQq()).set(SysUser::getWechat, vo.getWechat())
+				.eq(SysUser::getId, vo.getId()).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 
@@ -193,13 +187,14 @@ public class SysUserApiImpl implements SysUserApi {
 	 * @param permIdArray
 	 */
 	@Override
-	public 	ResponseVO<String> updateUserPerm(Long userId, String[] permIdArray) {
+	public ResponseVO<String> updateUserPerm(Long userId, String[] permIdArray) {
 		if (null == userId || null == permIdArray) {
 			return ResponseVO.success(null);
 		}
 		List<SysUserPerm> userPermList = this.sysPermService.queryUserPermByUserId(userId);
 		Set<Long> oldPermIdSet = userPermList.stream().map(SysUserPerm::getPermId).collect(Collectors.toSet());
-		Set<Long> newPermIdSet = Arrays.asList(permIdArray).stream().map(permId -> Long.parseLong(permId)).collect(Collectors.toSet());
+		Set<Long> newPermIdSet = Arrays.asList(permIdArray).stream().map(permId -> Long.parseLong(permId))
+				.collect(Collectors.toSet());
 		Set<Long> addSet = new HashSet<>(newPermIdSet);
 		Set<Long> deleteSet = new HashSet<>(oldPermIdSet);
 		// 差集=需要新增的权限
@@ -255,11 +250,9 @@ public class SysUserApiImpl implements SysUserApi {
 	@Override
 	public ResponseVO<String> resetPassword(Long id) {
 		String salt = PasswordUtil.generateCredentialsSalt();
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getSalt, salt)
-			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
-			.eq(SysUser::getId, id)
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getSalt, salt)
+				.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
+				.eq(SysUser::getId, id).update();
 		return ResponseVO.success(null, "重置成功");
 	}
 
@@ -274,11 +267,9 @@ public class SysUserApiImpl implements SysUserApi {
 	@Override
 	public ResponseVO<String> updatePassword(String password) {
 		String salt = PasswordUtil.generateCredentialsSalt();
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getSalt, salt)
-			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
-			.eq(SysUser::getId, SessionUtil.getCurrentUserId())
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getSalt, salt)
+				.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
+				.eq(SysUser::getId, SessionUtil.getCurrentUserId()).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 
@@ -293,10 +284,7 @@ public class SysUserApiImpl implements SysUserApi {
 	 */
 	@Override
 	public ResponseVO<String> changeStatus(Integer id, Integer status) {
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getStatus, status)
-			.eq(SysUser::getId, id)
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getStatus, status).eq(SysUser::getId, id).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 

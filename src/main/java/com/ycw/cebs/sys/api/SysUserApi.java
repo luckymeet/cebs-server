@@ -11,17 +11,19 @@ import com.ycw.common.response.ResponseVO;
 
 /**
  * 系统用户Api接口
+ *
  * @author yuminjun
  * @date 2020/04/21 16:45:22
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 public interface SysUserApi {
 

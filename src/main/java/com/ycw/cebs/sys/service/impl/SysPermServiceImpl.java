@@ -22,20 +22,22 @@ import com.ycw.common.exception.SysException;
 
 /**
  * 系统权限Service接口实现类
+ *
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:30:50
  * @version v1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/22    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Service
-public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> implements SysPermService{
+public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> implements SysPermService {
 
 	@Autowired
 	private SysPermMapper sysPermMapper;
@@ -61,8 +63,7 @@ public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> 
 		}
 		List<Long> permIdList = userPermList.stream().map(SysUserPerm::getPermId).collect(Collectors.toList());
 		// 根据权限id集合查询权限
-		List<SysPerm> permList = queryPermListByPermIdList(permIdList);
-		return permList;
+		return queryPermListByPermIdList(permIdList);
 	}
 
 	/**
@@ -80,8 +81,7 @@ public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> 
 		}
 		LambdaQueryWrapper<SysPerm> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.in(SysPerm::getId, permIds);
-		List<SysPerm> permList = sysPermMapper.selectList(queryWrapper);
-		return permList;
+		return sysPermMapper.selectList(queryWrapper);
 	}
 
 	/**
@@ -96,8 +96,7 @@ public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> 
 	public List<SysUserPerm> queryUserPermByUserId(Long userId) {
 		LambdaQueryWrapper<SysUserPerm> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.eq(SysUserPerm::getUserId, userId);
-		List<SysUserPerm> userPermlist = sysUserPermMapper.selectList(queryWrapper);
-		return userPermlist;
+		return sysUserPermMapper.selectList(queryWrapper);
 	}
 
 	/**
@@ -110,8 +109,7 @@ public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> 
 	 */
 	@Override
 	public List<TreeVO> queryPermTreeListByUserId(Long userId) {
-		 return sysPermMapper.queryPermTreeListByUserId(userId);
+		return sysPermMapper.queryPermTreeListByUserId(userId);
 	}
 
 }
-

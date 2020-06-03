@@ -22,6 +22,22 @@ import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseVO;
 
+/**
+ * 文章Controller
+ *
+ * @author yuminjun
+ * @date 2020/06/03 19:37:13
+ * @version 1.00
+ *
+ * @record
+ *
+ *         <pre>
+ * version  author      date          desc
+ * -------------------------------------------------
+ * 1.00     yuminjun    2020/06/03    新建
+ * -------------------------------------------------
+ *         </pre>
+ */
 @RestController
 @RequestMapping("/info/article")
 public class InfoArticleController {

@@ -9,17 +9,19 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 用户权限关联实体类
+ *
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:31:06
  * @version v1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/22    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,15 +30,15 @@ public class SysUserPerm extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
- 	/**
- 	 * 用户id
- 	 */
+	/**
+	 * 用户id
+	 */
 	@TableField("user_id")
 	private Long userId;
 
- 	/**
- 	 * 权限id
- 	 */
+	/**
+	 * 权限id
+	 */
 	@TableField("perm_id")
 	private Long permId;
 
