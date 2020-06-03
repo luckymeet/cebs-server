@@ -30,6 +30,7 @@ public class HomeController {
 
 	/**
 	 * 未授权
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/23 15:38:49
 	 * @return
@@ -42,6 +43,7 @@ public class HomeController {
 
 	/**
 	 * 登录
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/23 15:38:41
 	 * @param loginParam
@@ -75,6 +77,7 @@ public class HomeController {
 
 	/**
 	 * 注销登录
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/23 15:38:31
 	 * @return

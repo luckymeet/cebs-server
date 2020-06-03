@@ -21,6 +21,7 @@ public class PermController {
 
 	/**
 	 * 查询当前用户权限路由权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/23 15:34:29
 	 * @return
@@ -33,6 +34,7 @@ public class PermController {
 
 	/**
 	 * 查询当前用户按钮路由权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/23 15:34:44
 	 * @return
@@ -45,6 +47,7 @@ public class PermController {
 
 	/**
 	 * 获取当前用户权限树
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/15 14:16:48
 	 * @return

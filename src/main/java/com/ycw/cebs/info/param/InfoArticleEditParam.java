@@ -11,9 +11,9 @@ public class InfoArticleEditParam extends InfoArticleAddParam {
 
 	private static final long serialVersionUID = 1L;
 
- 	/**
- 	 * 标题
- 	 */
+	/**
+	 * 标题
+	 */
 	@NotBlank(message = "id不能为空")
 	private String id;
 

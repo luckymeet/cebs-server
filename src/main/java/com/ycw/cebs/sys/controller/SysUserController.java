@@ -45,9 +45,10 @@ public class SysUserController {
 
 	/**
 	 * 用户列表分页查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:13:35
-	 * @param vo 查询参数
+	 * @param vo        查询参数
 	 * @param pageParam 分页参数
 	 * @return
 	 */
@@ -59,6 +60,7 @@ public class SysUserController {
 
 	/**
 	 * 用户详情
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:13:50
 	 * @param id
@@ -72,6 +74,7 @@ public class SysUserController {
 
 	/**
 	 * 用户详情
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:13:50
 	 * @param id
@@ -85,6 +88,7 @@ public class SysUserController {
 
 	/**
 	 * 用户新增
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:24:46
 	 * @param vo
@@ -94,7 +98,8 @@ public class SysUserController {
 	@RequiresPermissions("sys:user:add")
 	public ResponseVO<Long> saveUser(@Validated SysUserAddParam vo) {
 		ResponseVO<Long> saveUserResult = sysUserApi.saveUser(vo);
-		ResponseVO<String> saveUserPermResult = sysUserApi.saveUserPerm(saveUserResult.getData(), StringUtils.split(vo.getPermIds(), ","));
+		ResponseVO<String> saveUserPermResult = sysUserApi.saveUserPerm(saveUserResult.getData(),
+				StringUtils.split(vo.getPermIds(), ","));
 		if (!saveUserPermResult.isSuccess()) {
 			return ResponseVO.fail(ResponseCode.ERR_SAVE.getCode(), "用户权限新增失败");
 		}
@@ -103,6 +108,7 @@ public class SysUserController {
 
 	/**
 	 * 用户修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:24:57
 	 * @param vo
@@ -112,7 +118,8 @@ public class SysUserController {
 	@RequiresPermissions("sys:user:edit")
 	public ResponseVO<String> updateUser(@Validated SysUserEditParam vo) {
 		ResponseVO<String> updateUserResult = sysUserApi.updateUser(vo);
-		ResponseVO<String> updateUserPermResult = sysUserApi.updateUserPerm(vo.getId(), StringUtils.split(vo.getPermIds(), ","));
+		ResponseVO<String> updateUserPermResult = sysUserApi.updateUserPerm(vo.getId(),
+				StringUtils.split(vo.getPermIds(), ","));
 		if (!updateUserPermResult.isSuccess()) {
 			return ResponseVO.fail(ResponseCode.ERR_SAVE.getCode(), "用户权限修改失败");
 		}
@@ -121,6 +128,7 @@ public class SysUserController {
 
 	/**
 	 * 用户删除
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:14:40
 	 * @param id 用户id
@@ -134,6 +142,7 @@ public class SysUserController {
 
 	/**
 	 * 密码重置
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 14:14:40
 	 * @param id 用户id
@@ -147,6 +156,7 @@ public class SysUserController {
 
 	/**
 	 * 密码修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
 	 * @param password 新密码
@@ -159,9 +169,10 @@ public class SysUserController {
 
 	/**
 	 * 用户状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:36:30
-	 * @param id 用户id
+	 * @param id     用户id
 	 * @param status 状态
 	 * @return
 	 */

@@ -26,17 +26,19 @@ import com.ycw.common.utils.BeanHandleUtils;
 
 /**
  * 文章Api接口实现类
+ *
  * @author yuminjun
  * @date 2020/05/19 14:39:58
  * @version v1.00
-
+ *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/05/19    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Service
 public class InfoArticleApiImpl implements InfoArticleApi {
@@ -46,10 +48,11 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 
 	/**
 	 * 文章列表分页查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/19 16:45:07
 	 * @param infoArticlePageParam 查询参数
-	 * @param pageParam 分页参数（为空时默认查询所有）
+	 * @param pageParam            分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@Override
@@ -61,6 +64,7 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 
 	/**
 	 * 文章详情
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 16:26:36
 	 * @param id
@@ -74,6 +78,7 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 
 	/**
 	 * 文章新增
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 11:01:04
 	 * @param infoArticleAddParam
@@ -103,6 +108,7 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 
 	/**
 	 * 文章修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 11:01:04
 	 * @param infoArticleEditParam
@@ -112,7 +118,8 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 	public ResponseVO<String> updateInfoArticle(InfoArticleEditParam infoArticleEditParam) {
 		InfoArticle infoArticle = this.infoArticleService.getById(infoArticleEditParam.getId());
 		LocalDateTime publishTime = infoArticleEditParam.getPublishTime();
-		if (null != publishTime && (null == infoArticle.getPublishTime() || !publishTime.toLocalDate().equals(infoArticle.getPublishTime().toLocalDate()))) {
+		if (null != publishTime && (null == infoArticle.getPublishTime()
+				|| !publishTime.toLocalDate().equals(infoArticle.getPublishTime().toLocalDate()))) {
 			validPublishTime(publishTime);
 		}
 		BeanHandleUtils.copyProperties(infoArticleEditParam, infoArticle);
@@ -122,6 +129,7 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 
 	/**
 	 * 文章删除
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 14:39:24
 	 * @param id
@@ -135,24 +143,24 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 
 	/**
 	 * 发布
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:26:16
-	 * @param id 文章id
+	 * @param id          文章id
 	 * @param publishTime 发布时间
 	 * @return
 	 */
 	@Override
 	public ResponseVO<String> publish(Long id, LocalDateTime publishTime) {
 		this.validPublishTime(publishTime);
-		this.infoArticleService.lambdaUpdate()
-			.set(InfoArticle::getPublishTime, publishTime)
-			.eq(InfoArticle::getId, id)
-			.update();
+		this.infoArticleService.lambdaUpdate().set(InfoArticle::getPublishTime, publishTime).eq(InfoArticle::getId, id)
+				.update();
 		return ResponseVO.success(null, "发布成功");
 	}
 
 	/**
 	 * 取消发布
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:10:25
 	 * @param id
@@ -165,15 +173,14 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 		if (null != publishTime && publishTime.isBefore(LocalDateTime.now())) {
 			throw new SysException(ResponseCode.ERR_420.getCode(), "该文章已到达发布时间，不可取消发布");
 		}
-		this.infoArticleService.lambdaUpdate()
-			.set(InfoArticle::getPublishTime, null)
-			.eq(InfoArticle::getId, id)
-			.update();
+		this.infoArticleService.lambdaUpdate().set(InfoArticle::getPublishTime, null).eq(InfoArticle::getId, id)
+				.update();
 		return ResponseVO.success(null, "取消成功");
 	}
 
 	/**
 	 * 文章状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:44:02
 	 * @param id
@@ -182,15 +189,13 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 	 */
 	@Override
 	public ResponseVO<String> changeStatus(Integer id, Integer status) {
-		this.infoArticleService.lambdaUpdate()
-			.set(InfoArticle::getStatus, status)
-			.eq(InfoArticle::getId, id)
-			.update();
+		this.infoArticleService.lambdaUpdate().set(InfoArticle::getStatus, status).eq(InfoArticle::getId, id).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 
 	/**
 	 * 文章推荐状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:44:02
 	 * @param id
@@ -199,12 +204,9 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 	 */
 	@Override
 	public ResponseVO<String> changeRecommend(Integer id, Integer isRecommend) {
-		this.infoArticleService.lambdaUpdate()
-			.set(InfoArticle::getIsRecommend, isRecommend)
-			.eq(InfoArticle::getId, id)
-			.update();
+		this.infoArticleService.lambdaUpdate().set(InfoArticle::getIsRecommend, isRecommend).eq(InfoArticle::getId, id)
+				.update();
 		return ResponseVO.success(null, "修改成功");
 	}
 
 }
-

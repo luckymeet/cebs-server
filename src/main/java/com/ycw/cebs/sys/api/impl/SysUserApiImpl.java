@@ -68,9 +68,10 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 用户列表分页查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 14:52:30
-	 * @param vo 查询参数
+	 * @param vo        查询参数
 	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
@@ -83,6 +84,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 根据id查询系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:11
 	 * @param id
@@ -103,6 +105,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 保存系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:37
 	 * @param vo
@@ -127,6 +130,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 修改系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:59
 	 * @param vo
@@ -158,6 +162,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 新增用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:06
 	 * @param userId
@@ -181,6 +186,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 修改用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:21
 	 * @param userId
@@ -223,6 +229,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 删除系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:56:15
 	 * @param id
@@ -239,6 +246,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 密码重置
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:48:43
 	 * @param id 用户id
@@ -257,6 +265,7 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 密码修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
 	 * @param password 新密码
@@ -275,9 +284,10 @@ public class SysUserApiImpl implements SysUserApi {
 
 	/**
 	 * 用户状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:36:30
-	 * @param id 用户id
+	 * @param id     用户id
 	 * @param status 状态
 	 * @return
 	 */

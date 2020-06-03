@@ -2,10 +2,10 @@ package com.ycw.cebs.info.service;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
+import com.ycw.common.base.BaseService;
 import com.ycw.common.page.PageParam;
 
 /**
@@ -24,7 +24,7 @@ import com.ycw.common.page.PageParam;
  * -------------------------------------------------
  *         </pre>
  */
-public interface InfoArticleService extends IService<InfoArticle> {
+public interface InfoArticleService extends BaseService<InfoArticle> {
 
 	/**
 	 * 文章列表分页查询

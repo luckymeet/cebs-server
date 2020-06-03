@@ -31,10 +31,11 @@ public class InfoArticleController {
 
 	/**
 	 * 文章列表分页查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/19 16:45:07
 	 * @param infoArticlePageParam 查询参数
-	 * @param pageParam 分页参数（为空时默认查询所有）
+	 * @param pageParam            分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@GetMapping("/list")
@@ -46,6 +47,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章详情
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 16:26:36
 	 * @param id
@@ -59,6 +61,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章详情
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 16:26:36
 	 * @param id
@@ -72,6 +75,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章新增
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 11:01:04
 	 * @param infoArticleAddParam
@@ -85,6 +89,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 11:01:04
 	 * @param infoArticleEditParam
@@ -98,6 +103,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章删除
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 14:39:24
 	 * @param id
@@ -111,9 +117,10 @@ public class InfoArticleController {
 
 	/**
 	 * 发布
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:26:16
-	 * @param id 文章id
+	 * @param id          文章id
 	 * @param publishTime 发布时间
 	 * @return
 	 */
@@ -125,6 +132,7 @@ public class InfoArticleController {
 
 	/**
 	 * 取消发布
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:21:05
 	 * @param id
@@ -138,6 +146,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:44:02
 	 * @param id
@@ -152,6 +161,7 @@ public class InfoArticleController {
 
 	/**
 	 * 文章推荐状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:44:02
 	 * @param id

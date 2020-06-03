@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.entity.SysPerm;
 import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.mapper.SysPermMapper;
 import com.ycw.cebs.sys.mapper.SysUserPermMapper;
 import com.ycw.cebs.sys.service.SysPermService;
+import com.ycw.common.base.BaseServiceImpl;
 import com.ycw.common.exception.SysException;
 
 /**
@@ -35,7 +35,7 @@ import com.ycw.common.exception.SysException;
  * </pre>
  */
 @Service
-public class SysPermServiceImpl extends ServiceImpl<SysPermMapper, SysPerm> implements SysPermService{
+public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> implements SysPermService{
 
 	@Autowired
 	private SysPermMapper sysPermMapper;
@@ -45,6 +45,7 @@ public class SysPermServiceImpl extends ServiceImpl<SysPermMapper, SysPerm> impl
 
 	/**
 	 * 根据用户id查询权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 10:57:35
 	 * @param userId 用户id
@@ -66,6 +67,7 @@ public class SysPermServiceImpl extends ServiceImpl<SysPermMapper, SysPerm> impl
 
 	/**
 	 * 根据权限id集合查询权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 10:56:26
 	 * @param permIds 权限id集合
@@ -84,6 +86,7 @@ public class SysPermServiceImpl extends ServiceImpl<SysPermMapper, SysPerm> impl
 
 	/**
 	 * 根据用户id查询用户权限关联数据列表
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 10:57:08
 	 * @param userId 用户id
@@ -99,6 +102,7 @@ public class SysPermServiceImpl extends ServiceImpl<SysPermMapper, SysPerm> impl
 
 	/**
 	 * 查询用户权限列表
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 09:53:19
 	 * @param userId 用户id

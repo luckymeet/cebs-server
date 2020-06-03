@@ -3,10 +3,10 @@ package com.ycw.cebs.sys.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.mapper.SysUserPermMapper;
 import com.ycw.cebs.sys.service.SysUserPermService;
+import com.ycw.common.base.BaseServiceImpl;
 
 /**
  * 用户权限关联Service接口实现类
@@ -23,7 +23,7 @@ import com.ycw.cebs.sys.service.SysUserPermService;
  * </pre>
  */
 @Service
-public class SysUserPermServiceImpl extends ServiceImpl<SysUserPermMapper, SysUserPerm> implements SysUserPermService{
+public class SysUserPermServiceImpl extends BaseServiceImpl<SysUserPermMapper, SysUserPerm> implements SysUserPermService{
 
 	@Autowired
 	private SysUserPermMapper sysUserPermMapper;

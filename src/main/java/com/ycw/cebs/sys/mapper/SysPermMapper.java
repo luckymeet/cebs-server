@@ -28,6 +28,7 @@ public interface SysPermMapper extends BaseCrudMapper<SysPerm> {
 
 	/**
 	 * 查询用户权限列表
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 09:53:19
 	 * @param userId 用户id

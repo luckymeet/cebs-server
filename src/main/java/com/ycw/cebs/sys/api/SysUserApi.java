@@ -27,6 +27,7 @@ public interface SysUserApi {
 
 	/**
 	 * 系统用户列表查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:50:16
 	 * @param vo
@@ -37,6 +38,7 @@ public interface SysUserApi {
 
 	/**
 	 * 根据id查询系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:11
 	 * @param id
@@ -46,6 +48,7 @@ public interface SysUserApi {
 
 	/**
 	 * 保存系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:37
 	 * @param vo
@@ -55,6 +58,7 @@ public interface SysUserApi {
 
 	/**
 	 * 修改系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:59
 	 * @param vo
@@ -64,6 +68,7 @@ public interface SysUserApi {
 
 	/**
 	 * 删除系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:56:15
 	 * @param id
@@ -73,6 +78,7 @@ public interface SysUserApi {
 
 	/**
 	 * 新增用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:06
 	 * @param userId
@@ -83,6 +89,7 @@ public interface SysUserApi {
 
 	/**
 	 * 修改用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:21
 	 * @param userId
@@ -93,6 +100,7 @@ public interface SysUserApi {
 
 	/**
 	 * 密码重置
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:48:43
 	 * @param id 用户id
@@ -102,6 +110,7 @@ public interface SysUserApi {
 
 	/**
 	 * 密码修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
 	 * @param password 新密码
@@ -111,9 +120,10 @@ public interface SysUserApi {
 
 	/**
 	 * 用户状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:36:30
-	 * @param id 用户id
+	 * @param id     用户id
 	 * @param status 状态
 	 * @return
 	 */

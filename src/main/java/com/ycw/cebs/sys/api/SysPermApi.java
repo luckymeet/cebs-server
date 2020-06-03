@@ -23,6 +23,7 @@ public interface SysPermApi {
 
 	/**
 	 * 查询权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/23 15:21:27
 	 * @param permType 权限类型（为null时查询所有）
@@ -32,6 +33,7 @@ public interface SysPermApi {
 
 	/**
 	 * 获取当前用户权限树
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/12 17:42:25
 	 * @return

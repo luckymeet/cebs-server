@@ -1,7 +1,7 @@
 package com.ycw.cebs.sys.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.ycw.cebs.sys.entity.SysUserPerm;
+import com.ycw.common.base.BaseService;
 
 /**
  * 用户权限关联Service接口
@@ -17,6 +17,6 @@ import com.ycw.cebs.sys.entity.SysUserPerm;
  * -------------------------------------------------
  * </pre>
  */
-public interface SysUserPermService extends IService<SysUserPerm>{
+public interface SysUserPermService extends BaseService<SysUserPerm>{
 
 }

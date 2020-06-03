@@ -4,6 +4,7 @@ import lombok.Getter;
 
 /**
  * 权限类型
+ *
  * @author yuminjun
  * @date 2020/04/22 11:49:26
  * @version 1.00

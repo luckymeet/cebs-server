@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.mapper.SysUserMapper;
 import com.ycw.cebs.sys.param.SysUserListParam;
 import com.ycw.cebs.sys.service.SysUserService;
 import com.ycw.cebs.sys.vo.SysUserListVO;
+import com.ycw.common.base.BaseServiceImpl;
 import com.ycw.common.page.PageParam;
 
 /**
@@ -31,17 +31,18 @@ import com.ycw.common.page.PageParam;
  * </pre>
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
 	@Autowired
 	private SysUserMapper sysUserMapper;
 
 	/**
 	 * 用户列表分页查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 14:52:30
 	 * @param sysUserListParam 查询参数
-	 * @param pageParam 分页参数（为空时默认查询所有）
+	 * @param pageParam        分页参数（为空时默认查询所有）
 	 * @return
 	 */
 	@Override
@@ -51,6 +52,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 	/**
 	 * 根据登录账号获取用户
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 17:33:46
 	 * @param account 登录账号
