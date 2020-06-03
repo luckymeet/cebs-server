@@ -18,15 +18,15 @@ import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.common.utils.PasswordUtil;
 import com.ycw.cebs.common.utils.SessionUtil;
-import com.ycw.cebs.sys.api.ISysUserApi;
+import com.ycw.cebs.sys.api.SysUserApi;
 import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.param.SysUserAddParam;
 import com.ycw.cebs.sys.param.SysUserEditParam;
 import com.ycw.cebs.sys.param.SysUserListParam;
-import com.ycw.cebs.sys.service.ISysPermService;
-import com.ycw.cebs.sys.service.ISysUserPermService;
-import com.ycw.cebs.sys.service.ISysUserService;
+import com.ycw.cebs.sys.service.SysPermService;
+import com.ycw.cebs.sys.service.SysUserPermService;
+import com.ycw.cebs.sys.service.SysUserService;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.exception.SysException;
@@ -50,16 +50,16 @@ import com.ycw.common.utils.BeanHandleUtils;
  * </pre>
  */
 @Service
-public class SysUserApiImpl implements ISysUserApi {
+public class SysUserApiImpl implements SysUserApi {
 
 	@Autowired
-	private ISysUserService sysUserService;
+	private SysUserService sysUserService;
 
 	@Autowired
-	private ISysPermService sysPermService;
+	private SysPermService sysPermService;
 
 	@Autowired
-	private ISysUserPermService sysUserPermService;
+	private SysUserPermService sysUserPermService;
 
 	@Autowired
 	private static final String DEFAULT_PASSWORD = "123456";

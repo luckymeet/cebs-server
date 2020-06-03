@@ -10,9 +10,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.sys.entity.SysUser;
-import com.ycw.cebs.sys.mapper.ISysUserMapper;
+import com.ycw.cebs.sys.mapper.SysUserMapper;
 import com.ycw.cebs.sys.param.SysUserListParam;
-import com.ycw.cebs.sys.service.ISysUserService;
+import com.ycw.cebs.sys.service.SysUserService;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.page.PageParam;
 
@@ -31,10 +31,10 @@ import com.ycw.common.page.PageParam;
  * </pre>
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<ISysUserMapper, SysUser> implements ISysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
 	@Autowired
-	private ISysUserMapper sysUserMapper;
+	private SysUserMapper sysUserMapper;
 
 	/**
 	 * 用户列表分页查询

@@ -25,7 +25,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface IInfoArticleMapper extends BaseCrudMapper<InfoArticle> {
+public interface InfoArticleMapper extends BaseCrudMapper<InfoArticle> {
 
 	/**
 	 * 文章列表查询

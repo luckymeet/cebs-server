@@ -22,7 +22,7 @@ import com.ycw.cebs.sys.entity.SysUserPerm;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysPermService extends IService<SysPerm>{
+public interface SysPermService extends IService<SysPerm>{
 
 	/**
 	 * 根据用户id查询权限

@@ -23,7 +23,7 @@ import com.ycw.common.response.ResponseVO;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysUserApi {
+public interface SysUserApi {
 
 	/**
 	 * 系统用户列表查询

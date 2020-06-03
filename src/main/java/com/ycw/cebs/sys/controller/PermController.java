@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ycw.cebs.common.constant.sys.PermTypeEnum;
 import com.ycw.cebs.common.vo.TreeVO;
-import com.ycw.cebs.sys.api.ISysPermApi;
+import com.ycw.cebs.sys.api.SysPermApi;
 import com.ycw.common.response.ResponseVO;
 
 @RestController
@@ -17,7 +17,7 @@ import com.ycw.common.response.ResponseVO;
 public class PermController {
 
 	@Autowired
-	private ISysPermApi sysPermApi;
+	private SysPermApi sysPermApi;
 
 	/**
 	 * 查询当前用户权限路由权限

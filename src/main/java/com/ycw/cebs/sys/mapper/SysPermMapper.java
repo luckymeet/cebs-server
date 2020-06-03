@@ -24,7 +24,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface ISysPermMapper extends BaseCrudMapper<SysPerm> {
+public interface SysPermMapper extends BaseCrudMapper<SysPerm> {
 
 	/**
 	 * 查询用户权限列表

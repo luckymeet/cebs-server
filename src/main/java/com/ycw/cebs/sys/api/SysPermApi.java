@@ -19,7 +19,7 @@ import com.ycw.common.response.ResponseVO;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysPermApi {
+public interface SysPermApi {
 
 	/**
 	 * 查询权限

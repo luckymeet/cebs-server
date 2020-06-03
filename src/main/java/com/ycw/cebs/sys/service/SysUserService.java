@@ -23,7 +23,7 @@ import com.ycw.common.page.PageParam;
  * -------------------------------------------------
  * </pre>
  */
-public interface ISysUserService extends IService<SysUser>{
+public interface SysUserService extends IService<SysUser>{
 
 	/**
 	 * 用户列表分页查询

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.ycw.cebs.common.utils.SessionUtil;
 import com.ycw.cebs.common.utils.TreeUtil;
 import com.ycw.cebs.common.vo.TreeVO;
-import com.ycw.cebs.sys.api.ISysPermApi;
+import com.ycw.cebs.sys.api.SysPermApi;
 import com.ycw.cebs.sys.entity.SysPerm;
-import com.ycw.cebs.sys.service.ISysPermService;
+import com.ycw.cebs.sys.service.SysPermService;
 import com.ycw.common.response.ResponseVO;
 
 /**
@@ -29,10 +29,10 @@ import com.ycw.common.response.ResponseVO;
  * </pre>
  */
 @Service
-public class SysPermApiImpl implements ISysPermApi {
+public class SysPermApiImpl implements SysPermApi {
 
 	@Autowired
-	private ISysPermService sysPermService;
+	private SysPermService sysPermService;
 
 	/**
 	 * 查询权限

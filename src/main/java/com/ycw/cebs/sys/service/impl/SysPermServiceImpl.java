@@ -15,9 +15,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.entity.SysPerm;
 import com.ycw.cebs.sys.entity.SysUserPerm;
-import com.ycw.cebs.sys.mapper.ISysPermMapper;
-import com.ycw.cebs.sys.mapper.ISysUserPermMapper;
-import com.ycw.cebs.sys.service.ISysPermService;
+import com.ycw.cebs.sys.mapper.SysPermMapper;
+import com.ycw.cebs.sys.mapper.SysUserPermMapper;
+import com.ycw.cebs.sys.service.SysPermService;
 import com.ycw.common.exception.SysException;
 
 /**
@@ -35,13 +35,13 @@ import com.ycw.common.exception.SysException;
  * </pre>
  */
 @Service
-public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> implements ISysPermService{
+public class SysPermServiceImpl extends ServiceImpl<SysPermMapper, SysPerm> implements SysPermService{
 
 	@Autowired
-	private ISysPermMapper sysPermMapper;
+	private SysPermMapper sysPermMapper;
 
 	@Autowired
-	private ISysUserPermMapper sysUserPermMapper;
+	private SysUserPermMapper sysUserPermMapper;
 
 	/**
 	 * 根据用户id查询权限

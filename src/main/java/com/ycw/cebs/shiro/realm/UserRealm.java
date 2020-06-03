@@ -25,18 +25,18 @@ import org.springframework.stereotype.Component;
 
 import com.ycw.cebs.sys.entity.SysPerm;
 import com.ycw.cebs.sys.entity.SysUser;
-import com.ycw.cebs.sys.service.ISysPermService;
-import com.ycw.cebs.sys.service.ISysUserService;
+import com.ycw.cebs.sys.service.SysPermService;
+import com.ycw.cebs.sys.service.SysUserService;
 import com.ycw.common.constants.CommonConstants;
 
 @Component("userRealm")
 public class UserRealm extends AuthorizingRealm {
 
 	@Autowired
-	private ISysUserService sysUserService;
+	private SysUserService sysUserService;
 
 	@Autowired
-	private ISysPermService sysPermService;
+	private SysPermService sysPermService;
 
 	public UserRealm() {
 		// 默认采用MD5散列加密算法

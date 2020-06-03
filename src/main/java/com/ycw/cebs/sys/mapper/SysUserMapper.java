@@ -25,7 +25,7 @@ import com.ycw.common.base.BaseCrudMapper;
  * </pre>
  */
 @Mapper
-public interface ISysUserMapper extends BaseCrudMapper<SysUser> {
+public interface SysUserMapper extends BaseCrudMapper<SysUser> {
 
 	/**
 	 * 系统用户列表查询

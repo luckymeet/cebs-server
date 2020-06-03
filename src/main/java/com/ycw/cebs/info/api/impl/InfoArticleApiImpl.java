@@ -1,11 +1,9 @@
 package com.ycw.cebs.info.api.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
-import com.ycw.cebs.info.service.IInfoArticleService;
+import com.ycw.cebs.info.service.InfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.constants.CommonConstants;
 import com.ycw.common.exception.SysException;
@@ -44,7 +42,7 @@ import com.ycw.common.utils.BeanHandleUtils;
 public class InfoArticleApiImpl implements IInfoArticleApi {
 
 	@Autowired
-	private IInfoArticleService infoArticleService;
+	private InfoArticleService infoArticleService;
 
 	/**
 	 * 文章列表分页查询
@@ -118,13 +116,6 @@ public class InfoArticleApiImpl implements IInfoArticleApi {
 			validPublishTime(publishTime);
 		}
 		BeanHandleUtils.copyProperties(infoArticleEditParam, infoArticle);
-//		try {
-//			BeanUtils.copyProperties(infoArticle, infoArticleEditParam);
-//		} catch (IllegalAccessException e) {
-//			 e.printStackTrace();
-//		} catch (InvocationTargetException e) {
-//			 e.printStackTrace();
-//		}
 		this.infoArticleService.updateById(infoArticle);
 		return ResponseVO.success(null, "修改成功");
 	}

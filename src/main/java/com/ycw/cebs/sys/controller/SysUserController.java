@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
-import com.ycw.cebs.sys.api.ISysUserApi;
+import com.ycw.cebs.sys.api.SysUserApi;
 import com.ycw.cebs.sys.param.SysUserAddParam;
 import com.ycw.cebs.sys.param.SysUserEditParam;
 import com.ycw.cebs.sys.param.SysUserListParam;
@@ -41,7 +41,7 @@ import com.ycw.common.response.ResponseVO;
 public class SysUserController {
 
 	@Autowired
-	private ISysUserApi sysUserApi;
+	private SysUserApi sysUserApi;
 
 	/**
 	 * 用户列表分页查询

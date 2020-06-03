@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.sys.entity.SysUserPerm;
-import com.ycw.cebs.sys.mapper.ISysUserPermMapper;
-import com.ycw.cebs.sys.service.ISysUserPermService;
+import com.ycw.cebs.sys.mapper.SysUserPermMapper;
+import com.ycw.cebs.sys.service.SysUserPermService;
 
 /**
  * 用户权限关联Service接口实现类
@@ -23,10 +23,10 @@ import com.ycw.cebs.sys.service.ISysUserPermService;
  * </pre>
  */
 @Service
-public class SysUserPermServiceImpl extends ServiceImpl<ISysUserPermMapper, SysUserPerm> implements ISysUserPermService{
+public class SysUserPermServiceImpl extends ServiceImpl<SysUserPermMapper, SysUserPerm> implements SysUserPermService{
 
 	@Autowired
-	private ISysUserPermMapper sysUserPermMapper;
+	private SysUserPermMapper sysUserPermMapper;
 
 }
 

@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.info.entity.InfoArticle;
-import com.ycw.cebs.info.mapper.IInfoArticleMapper;
+import com.ycw.cebs.info.mapper.InfoArticleMapper;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
-import com.ycw.cebs.info.service.IInfoArticleService;
+import com.ycw.cebs.info.service.InfoArticleService;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.page.PageParam;
 
@@ -28,10 +28,10 @@ import com.ycw.common.page.PageParam;
  * </pre>
  */
 @Service
-public class InfoArticleServiceImpl extends ServiceImpl<IInfoArticleMapper, InfoArticle> implements IInfoArticleService {
+public class InfoArticleServiceImpl extends ServiceImpl<InfoArticleMapper, InfoArticle> implements InfoArticleService {
 
 	@Autowired
-	private IInfoArticleMapper infoArticleMapper;
+	private InfoArticleMapper infoArticleMapper;
 
 	/**
 	 * 文章列表分页查询
