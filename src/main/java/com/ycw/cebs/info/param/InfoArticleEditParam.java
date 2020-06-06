@@ -15,6 +15,6 @@ public class InfoArticleEditParam extends InfoArticleAddParam {
 	 * 标题
 	 */
 	@NotBlank(message = "id不能为空")
-	private String id;
+	private Long id;
 
 }
