@@ -115,10 +115,11 @@ public interface SysUserApi {
 	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
-	 * @param password 新密码
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
 	 * @return
 	 */
-	ResponseVO<String> updatePassword(String password);
+	ResponseVO<String> updatePassword(String oldPassword, String newPassword);
 
 	/**
 	 * 用户状态修改

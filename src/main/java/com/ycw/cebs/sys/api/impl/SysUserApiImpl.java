@@ -258,14 +258,20 @@ public class SysUserApiImpl implements SysUserApi {
 	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
-	 * @param password 新密码
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
 	 * @return
 	 */
 	@Override
-	public ResponseVO<String> updatePassword(String password) {
+	public ResponseVO<String> updatePassword(String oldPassword, String newPassword) {
+		SysUser currentUser = SessionUtil.getCurrentUser();
+		if (!PasswordUtil.encryptPasswordMD5(oldPassword, currentUser.getSalt()).equals(currentUser.getPassword())) {
+			throw new SysException(ResponseCode.ERR_UPDATE.getCode(), "旧密码输入不正确");
+		}
+
 		String salt = PasswordUtil.generateCredentialsSalt();
 		this.sysUserService.lambdaUpdate().set(SysUser::getSalt, salt)
-				.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
+				.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(newPassword, salt))
 				.eq(SysUser::getId, SessionUtil.getCurrentUserId()).update();
 		return ResponseVO.success(null, "修改成功");
 	}

@@ -166,7 +166,7 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<String> publish(Long id, LocalDateTime publishTime) {
+	public ResponseVO<String> publishTrans(Long id, LocalDateTime publishTime) {
 		InfoArticle infoArticle = this.infoArticleService.getById(id);
 		if (CommonConstants.INT_NO.equals(infoArticle.getStatus())) {
 			throw new SysException(ResponseCode.ERR_412.getCode(), "请先将文章置为生效状态");
@@ -187,7 +187,7 @@ public class InfoArticleApiImpl implements InfoArticleApi {
 	 * @return
 	 */
 	@Override
-	public ResponseVO<String> cancelPublish(Long id) {
+	public ResponseVO<String> cancelPublishTrans(Long id) {
 		InfoArticle infoArticle = this.infoArticleService.getById(id);
 		LocalDateTime publishTime = infoArticle.getPublishTime();
 		if (null != publishTime && publishTime.isBefore(LocalDateTime.now())) {

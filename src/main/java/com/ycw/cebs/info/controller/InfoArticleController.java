@@ -1,9 +1,12 @@
 package com.ycw.cebs.info.controller;
 
-import java.time.LocalDateTime;
+import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,7 @@ import com.ycw.cebs.info.entity.InfoArticle;
 import com.ycw.cebs.info.param.InfoArticleAddParam;
 import com.ycw.cebs.info.param.InfoArticleEditParam;
 import com.ycw.cebs.info.param.InfoArticlePageParam;
+import com.ycw.cebs.info.param.InfoArticlePublishParam;
 import com.ycw.cebs.info.vo.InfoArticleListVO;
 import com.ycw.common.page.PageParam;
 import com.ycw.common.response.ResponseVO;
@@ -99,7 +103,7 @@ public class InfoArticleController {
 	 */
 	@PostMapping
 	@RequiresPermissions("info:article:add")
-	public ResponseVO<Long> saveInfoArticle(@RequestBody InfoArticleAddParam infoArticleAddParam) {
+	public ResponseVO<Long> saveInfoArticle(@Validated @RequestBody InfoArticleAddParam infoArticleAddParam) {
 		return infoArticleApi.saveInfoArticle(infoArticleAddParam);
 	}
 
@@ -113,7 +117,7 @@ public class InfoArticleController {
 	 */
 	@PutMapping
 	@RequiresPermissions("info:article:edit")
-	public ResponseVO<String> updateInfoArticle(@RequestBody InfoArticleEditParam infoArticleEditParam) {
+	public ResponseVO<String> updateInfoArticle(@Validated @RequestBody InfoArticleEditParam infoArticleEditParam) {
 		return infoArticleApi.updateInfoArticle(infoArticleEditParam);
 	}
 
@@ -142,8 +146,8 @@ public class InfoArticleController {
 	 */
 	@PutMapping("/publish")
 	@RequiresPermissions("info:article:publish")
-	public ResponseVO<String> publish(Long id, LocalDateTime publishTime) {
-		return infoArticleApi.publish(id, publishTime);
+	public ResponseVO<String> publish(@Validated InfoArticlePublishParam infoArticlePublishParam) {
+		return infoArticleApi.publishTrans(infoArticlePublishParam.getId(), infoArticlePublishParam.getPublishTime());
 	}
 
 	/**
@@ -157,7 +161,8 @@ public class InfoArticleController {
 	@PutMapping("/cancel-publish")
 	@RequiresPermissions("info:article:cancel-publish")
 	public ResponseVO<String> cancelPublish(Long id) {
-		return infoArticleApi.cancelPublish(id);
+		Objects.requireNonNull(id,"id不能为空");
+		return infoArticleApi.cancelPublishTrans(id);
 	}
 
 	/**
@@ -172,6 +177,8 @@ public class InfoArticleController {
 	@PutMapping("/status/change")
 	@RequiresPermissions("sys:user:status:change")
 	public ResponseVO<String> changeStatus(Integer id, Integer status) {
+		Objects.requireNonNull(id,"id不能为空");
+		Objects.requireNonNull(status,"生效状态不能为空");
 		return infoArticleApi.changeStatus(id, status);
 	}
 
@@ -187,6 +194,8 @@ public class InfoArticleController {
 	@PutMapping("/recommend/change")
 	@RequiresPermissions("sys:user:recommend:change")
 	public ResponseVO<String> changeRecommend(Integer id, Integer isRecommend) {
+		Objects.requireNonNull(id,"id不能为空");
+		Objects.requireNonNull(isRecommend,"推荐状态不能为空");
 		return infoArticleApi.changeRecommend(id, isRecommend);
 	}
 

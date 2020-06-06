@@ -90,7 +90,7 @@ public interface InfoArticleApi {
 	 * @param publishTime 发布时间
 	 * @return
 	 */
-	ResponseVO<String> publish(Long id, LocalDateTime publishTime);
+	ResponseVO<String> publishTrans(Long id, LocalDateTime publishTime);
 
 	/**
 	 * 取消发布
@@ -100,7 +100,7 @@ public interface InfoArticleApi {
 	 * @param id
 	 * @return
 	 */
-	ResponseVO<String> cancelPublish(Long id);
+	ResponseVO<String> cancelPublishTrans(Long id);
 
 	/**
 	 * 文章状态修改

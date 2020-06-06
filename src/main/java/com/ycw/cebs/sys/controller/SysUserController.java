@@ -161,12 +161,13 @@ public class SysUserController {
 	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
-	 * @param password 新密码
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
 	 * @return
 	 */
 	@PutMapping("/password/update")
-	public ResponseVO<String> updatePassword(String password) {
-		return sysUserApi.updatePassword(password);
+	public ResponseVO<String> updatePassword(String oldPassword, String newPassword) {
+		return sysUserApi.updatePassword(oldPassword, newPassword);
 	}
 
 	/**
