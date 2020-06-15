@@ -9,8 +9,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath />
 	</parent>
-	<artifactId>ceps</artifactId>
-	<name>ceps</name>
+	<artifactId>cebs</artifactId>
+	<name>cebs</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

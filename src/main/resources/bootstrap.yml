@@ -7,7 +7,7 @@ spring:
     active: dev
   cloud:
     consul:
-      host: 39.105.58.23
+      host: 101.37.172.74
       #host: 192.168.28.254
       port: 8500
       # 服务注册&发现
