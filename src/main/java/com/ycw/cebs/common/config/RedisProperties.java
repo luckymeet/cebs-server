@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "spring.redis")
-public class RedisManagerProperties {
+public class RedisProperties {
 
 	private String host = "localhost";
 	private String password;

@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
-import com.ycw.cebs.common.config.RedisManagerProperties;
+import com.ycw.cebs.common.config.RedisProperties;
 import com.ycw.cebs.shiro.filter.LocalFormAuthenticationFilter;
 import com.ycw.cebs.shiro.realm.UserRealm;
 
@@ -69,8 +69,8 @@ public class ShiroAuthConfig {
 	}
 
 	@Bean
-	public RedisManagerProperties redisManagerProperties() {
-		return new RedisManagerProperties();
+	public RedisProperties redisManagerProperties() {
+		return new RedisProperties();
 	}
 
     @Bean
