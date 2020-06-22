@@ -2,8 +2,6 @@ package com.ycw.cebs.info.controller;
 
 import java.util.Objects;
 
-import javax.validation.constraints.NotNull;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
