@@ -37,7 +37,7 @@
         </RollingFile>
         <Kafka name="Kafka" topic="log-test">
             <PatternLayout pattern="${LOG_PATTERN}" />
-            <Property name="bootstrap.servers">localhost:9092</Property>
+            <Property name="bootstrap.servers">39.105.58.23:9092</Property>
         </Kafka>
 	</Appenders>
 
