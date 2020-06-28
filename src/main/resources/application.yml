@@ -74,6 +74,8 @@ spring:
 #   enabled: true
   kafka:
     bootstrap-servers: 39.105.58.23:9092
+    producer:
+      retries: 2
     
 # pagehelper 配置
 pagehelper:
