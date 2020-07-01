@@ -135,7 +135,7 @@ management:
       
 logging:
   #file: C:/Users/yuminjun/Desktop/test.log
-  config: classpath:log4j2-dev.xml
+  config: classpath:log4j2.xml
   level:
     root: info
     org.apache.coyote.http11.Http11InputBuffer: debug
