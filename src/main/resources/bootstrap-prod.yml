@@ -1,0 +1,38 @@
+spring:
+  # 引用环境配置,多个间用逗号分隔
+  profiles:
+    active: prod
+  cloud:
+    consul:
+      host: 101.37.172.74
+      port: 8500
+      # 服务注册&发现
+      discovery:
+        # 服务发现是否开启(默认true)
+        enabled: true
+        # 服务注册是否开启(默认true)
+        register: true
+        # 实例ID唯 一
+        instance-id: ${spring.application.name}:${server.port:8080}:${random.value}
+        # 指定服务的名称
+        service-name: ${spring.application.name}
+        #  在注册时使用IP
+        prefer-ip-address: true
+        # HTTP健康检查(默认10秒)
+        health-check-interval: 5s
+        # 超过N秒健康检查不过,从consul中删除
+        health-check-critical-timeout: 5s
+        # 只查询有效的记录
+        query-passing: true
+      # 分布式配置中心
+      config:
+        # 指定consul配置的文件夹前缀
+        prefix: config
+        # 指定consul配置的配置文件
+        data-key: data
+        # 指定consul配置的配置文件格式
+        format: YAML
+        # 配置文件父路径,所有项目共用的配置 ${..config.prefix}/${..config.default-context}/${..config.data-key}
+        default-context: cebs
+        # 快速失败,false:将导致配置模块记录一个警告而不是抛出异常;这将允许应用程序继续正常启动
+        fail-fast: true

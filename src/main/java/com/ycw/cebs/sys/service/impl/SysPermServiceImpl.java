@@ -11,40 +11,43 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ycw.cebs.common.vo.TreeVO;
 import com.ycw.cebs.sys.entity.SysPerm;
 import com.ycw.cebs.sys.entity.SysUserPerm;
-import com.ycw.cebs.sys.mapper.ISysPermMapper;
-import com.ycw.cebs.sys.mapper.ISysUserPermMapper;
-import com.ycw.cebs.sys.service.ISysPermService;
+import com.ycw.cebs.sys.mapper.SysPermMapper;
+import com.ycw.cebs.sys.mapper.SysUserPermMapper;
+import com.ycw.cebs.sys.service.SysPermService;
+import com.ycw.common.base.BaseServiceImpl;
 import com.ycw.common.exception.SysException;
 
 /**
  * 系统权限Service接口实现类
+ *
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/04/22 09:30:50
  * @version v1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/22    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Service
-public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> implements ISysPermService{
+public class SysPermServiceImpl extends BaseServiceImpl<SysPermMapper, SysPerm> implements SysPermService {
 
 	@Autowired
-	private ISysPermMapper sysPermMapper;
+	private SysPermMapper sysPermMapper;
 
 	@Autowired
-	private ISysUserPermMapper sysUserPermMapper;
+	private SysUserPermMapper sysUserPermMapper;
 
 	/**
 	 * 根据用户id查询权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 10:57:35
 	 * @param userId 用户id
@@ -60,12 +63,12 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> imp
 		}
 		List<Long> permIdList = userPermList.stream().map(SysUserPerm::getPermId).collect(Collectors.toList());
 		// 根据权限id集合查询权限
-		List<SysPerm> permList = queryPermListByPermIdList(permIdList);
-		return permList;
+		return queryPermListByPermIdList(permIdList);
 	}
 
 	/**
 	 * 根据权限id集合查询权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 10:56:26
 	 * @param permIds 权限id集合
@@ -78,12 +81,12 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> imp
 		}
 		LambdaQueryWrapper<SysPerm> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.in(SysPerm::getId, permIds);
-		List<SysPerm> permList = sysPermMapper.selectList(queryWrapper);
-		return permList;
+		return sysPermMapper.selectList(queryWrapper);
 	}
 
 	/**
 	 * 根据用户id查询用户权限关联数据列表
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 10:57:08
 	 * @param userId 用户id
@@ -93,12 +96,12 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> imp
 	public List<SysUserPerm> queryUserPermByUserId(Long userId) {
 		LambdaQueryWrapper<SysUserPerm> queryWrapper = Wrappers.lambdaQuery();
 		queryWrapper.eq(SysUserPerm::getUserId, userId);
-		List<SysUserPerm> userPermlist = sysUserPermMapper.selectList(queryWrapper);
-		return userPermlist;
+		return sysUserPermMapper.selectList(queryWrapper);
 	}
 
 	/**
 	 * 查询用户权限列表
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 09:53:19
 	 * @param userId 用户id
@@ -106,8 +109,7 @@ public class SysPermServiceImpl extends ServiceImpl<ISysPermMapper, SysPerm> imp
 	 */
 	@Override
 	public List<TreeVO> queryPermTreeListByUserId(Long userId) {
-		 return sysPermMapper.queryPermTreeListByUserId(userId);
+		return sysPermMapper.queryPermTreeListByUserId(userId);
 	}
 
 }
-

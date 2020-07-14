@@ -12,23 +12,26 @@ import com.ycw.common.base.BaseCrudMapper;
 
 /**
  * 文章Mapper接口
+ *
  * @author yuminjun yuminjun@lexiangbao.com
  * @date 2020/05/19 14:39:58
  * @version v1.00
-
+ *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/05/19    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Mapper
-public interface IInfoArticleMapper extends BaseCrudMapper<InfoArticle> {
+public interface InfoArticleMapper extends BaseCrudMapper<InfoArticle> {
 
 	/**
 	 * 文章列表查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/19 16:39:59
 	 * @param sysUserListParam
@@ -37,4 +40,3 @@ public interface IInfoArticleMapper extends BaseCrudMapper<InfoArticle> {
 	List<InfoArticleListVO> queryInfoArticlePage(@Param("params") InfoArticlePageParam infoArticlePageParam);
 
 }
-

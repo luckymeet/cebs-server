@@ -1,6 +1,6 @@
 package com.ycw.cebs.info.param;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,10 +11,10 @@ public class InfoArticleEditParam extends InfoArticleAddParam {
 
 	private static final long serialVersionUID = 1L;
 
- 	/**
- 	 * 标题
- 	 */
-	@NotBlank(message = "id不能为空")
-	private String id;
+	/**
+	 * 标题
+	 */
+	@NotNull(message = "id不能为空")
+	private Long id;
 
 }

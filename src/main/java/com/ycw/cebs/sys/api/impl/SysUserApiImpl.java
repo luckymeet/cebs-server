@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +19,15 @@ import com.github.pagehelper.PageInfo;
 import com.ycw.cebs.common.constant.sys.ClientTypeEnum;
 import com.ycw.cebs.common.utils.PasswordUtil;
 import com.ycw.cebs.common.utils.SessionUtil;
-import com.ycw.cebs.sys.api.ISysUserApi;
+import com.ycw.cebs.sys.api.SysUserApi;
 import com.ycw.cebs.sys.entity.SysUser;
 import com.ycw.cebs.sys.entity.SysUserPerm;
 import com.ycw.cebs.sys.param.SysUserAddParam;
 import com.ycw.cebs.sys.param.SysUserEditParam;
 import com.ycw.cebs.sys.param.SysUserListParam;
-import com.ycw.cebs.sys.service.ISysPermService;
-import com.ycw.cebs.sys.service.ISysUserPermService;
-import com.ycw.cebs.sys.service.ISysUserService;
+import com.ycw.cebs.sys.service.SysPermService;
+import com.ycw.cebs.sys.service.SysUserPermService;
+import com.ycw.cebs.sys.service.SysUserService;
 import com.ycw.cebs.sys.vo.SysUserDetailVO;
 import com.ycw.cebs.sys.vo.SysUserListVO;
 import com.ycw.common.exception.SysException;
@@ -37,29 +38,31 @@ import com.ycw.common.utils.BeanHandleUtils;
 
 /**
  * 系统用户Api接口实现类
+ *
  * @author yuminjun
  * @date 2020/04/21 17:25:56
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
 @Service
-public class SysUserApiImpl implements ISysUserApi {
+public class SysUserApiImpl implements SysUserApi {
 
 	@Autowired
-	private ISysUserService sysUserService;
+	private SysUserService sysUserService;
 
 	@Autowired
-	private ISysPermService sysPermService;
+	private SysPermService sysPermService;
 
 	@Autowired
-	private ISysUserPermService sysUserPermService;
+	private SysUserPermService sysUserPermService;
 
 	@Autowired
 	private static final String DEFAULT_PASSWORD = "123456";
@@ -68,9 +71,10 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 用户列表分页查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 14:52:30
-	 * @param vo 查询参数
+	 * @param vo        查询参数
 	 * @param pageParam 分页参数（为空时默认查询所有）
 	 * @return
 	 */
@@ -83,6 +87,7 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 根据id查询系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:11
 	 * @param id
@@ -103,6 +108,7 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 保存系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:37
 	 * @param vo
@@ -127,6 +133,7 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 修改系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:59
 	 * @param vo
@@ -138,26 +145,15 @@ public class SysUserApiImpl implements ISysUserApi {
 		if (StringUtils.isNotEmpty(idCard) && !idCard.matches(ID_CARD_REGEX)) {
 			throw new SysException(ResponseCode.ERR_417.getCode(), "请输入正确的身份证格式");
 		}
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getUserNum, vo.getUserNum())
-			.set(SysUser::getRealName, vo.getRealName())
-			.set(SysUser::getNickName, vo.getNickName())
-			.set(SysUser::getLoginName, vo.getLoginName())
-			.set(SysUser::getProfilePhotoUrl, vo.getProfilePhotoUrl())
-			.set(SysUser::getSex, vo.getSex())
-			.set(SysUser::getBirthday, vo.getBirthday())
-			.set(SysUser::getMobilePhone, vo.getMobilePhone())
-			.set(SysUser::getEMail, vo.getEMail())
-			.set(SysUser::getIdCard, idCard)
-			.set(SysUser::getQq, vo.getQq())
-			.set(SysUser::getWechat, vo.getWechat())
-			.eq(SysUser::getId, vo.getId())
-			.update();
+		SysUser user = this.sysUserService.getById(vo.getId());
+		BeanUtils.copyProperties(vo, user);
+		this.sysUserService.updateAllById(user);
 		return ResponseVO.success(null, "修改成功");
 	}
 
 	/**
 	 * 新增用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:06
 	 * @param userId
@@ -181,19 +177,21 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 修改用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:21
 	 * @param userId
 	 * @param permIdArray
 	 */
 	@Override
-	public 	ResponseVO<String> updateUserPerm(Long userId, String[] permIdArray) {
+	public ResponseVO<String> updateUserPerm(Long userId, String[] permIdArray) {
 		if (null == userId || null == permIdArray) {
 			return ResponseVO.success(null);
 		}
 		List<SysUserPerm> userPermList = this.sysPermService.queryUserPermByUserId(userId);
 		Set<Long> oldPermIdSet = userPermList.stream().map(SysUserPerm::getPermId).collect(Collectors.toSet());
-		Set<Long> newPermIdSet = Arrays.asList(permIdArray).stream().map(permId -> Long.parseLong(permId)).collect(Collectors.toSet());
+		Set<Long> newPermIdSet = Arrays.asList(permIdArray).stream().map(permId -> Long.parseLong(permId))
+				.collect(Collectors.toSet());
 		Set<Long> addSet = new HashSet<>(newPermIdSet);
 		Set<Long> deleteSet = new HashSet<>(oldPermIdSet);
 		// 差集=需要新增的权限
@@ -223,6 +221,7 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 删除系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:56:15
 	 * @param id
@@ -239,6 +238,7 @@ public class SysUserApiImpl implements ISysUserApi {
 
 	/**
 	 * 密码重置
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:48:43
 	 * @param id 用户id
@@ -247,46 +247,47 @@ public class SysUserApiImpl implements ISysUserApi {
 	@Override
 	public ResponseVO<String> resetPassword(Long id) {
 		String salt = PasswordUtil.generateCredentialsSalt();
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getSalt, salt)
-			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
-			.eq(SysUser::getId, id)
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getSalt, salt)
+				.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(DEFAULT_PASSWORD, salt))
+				.eq(SysUser::getId, id).update();
 		return ResponseVO.success(null, "重置成功");
 	}
 
 	/**
 	 * 密码修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
-	 * @param password 新密码
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
 	 * @return
 	 */
 	@Override
-	public ResponseVO<String> updatePassword(String password) {
+	public ResponseVO<String> updatePassword(String oldPassword, String newPassword) {
+		SysUser currentUser = SessionUtil.getCurrentUser();
+		if (!PasswordUtil.encryptPasswordMD5(oldPassword, currentUser.getSalt()).equals(currentUser.getPassword())) {
+			throw new SysException(ResponseCode.ERR_UPDATE.getCode(), "旧密码输入不正确");
+		}
+
 		String salt = PasswordUtil.generateCredentialsSalt();
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getSalt, salt)
-			.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(password, salt))
-			.eq(SysUser::getId, SessionUtil.getCurrentUserId())
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getSalt, salt)
+				.set(SysUser::getPassword, PasswordUtil.encryptPasswordMD5(newPassword, salt))
+				.eq(SysUser::getId, SessionUtil.getCurrentUserId()).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 
 	/**
 	 * 用户状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:36:30
-	 * @param id 用户id
+	 * @param id     用户id
 	 * @param status 状态
 	 * @return
 	 */
 	@Override
 	public ResponseVO<String> changeStatus(Integer id, Integer status) {
-		this.sysUserService.lambdaUpdate()
-			.set(SysUser::getStatus, status)
-			.eq(SysUser::getId, id)
-			.update();
+		this.sysUserService.lambdaUpdate().set(SysUser::getStatus, status).eq(SysUser::getId, id).update();
 		return ResponseVO.success(null, "修改成功");
 	}
 

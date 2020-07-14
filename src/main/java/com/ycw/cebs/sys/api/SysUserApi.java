@@ -11,22 +11,25 @@ import com.ycw.common.response.ResponseVO;
 
 /**
  * 系统用户Api接口
+ *
  * @author yuminjun
  * @date 2020/04/21 16:45:22
  * @version 1.00
  *
  * @record
- * <pre>
+ *
+ *         <pre>
  * version  author      date          desc
  * -------------------------------------------------
  * 1.00     yuminjun    2020/04/21    新建
  * -------------------------------------------------
- * </pre>
+ *         </pre>
  */
-public interface ISysUserApi {
+public interface SysUserApi {
 
 	/**
 	 * 系统用户列表查询
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:50:16
 	 * @param vo
@@ -37,6 +40,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 根据id查询系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:11
 	 * @param id
@@ -46,6 +50,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 保存系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:37
 	 * @param vo
@@ -55,6 +60,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 修改系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:55:59
 	 * @param vo
@@ -64,6 +70,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 删除系统用户数据
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/21 16:56:15
 	 * @param id
@@ -73,6 +80,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 新增用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:06
 	 * @param userId
@@ -83,6 +91,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 修改用户权限
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/13 16:12:21
 	 * @param userId
@@ -93,6 +102,7 @@ public interface ISysUserApi {
 
 	/**
 	 * 密码重置
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:48:43
 	 * @param id 用户id
@@ -102,18 +112,21 @@ public interface ISysUserApi {
 
 	/**
 	 * 密码修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/20 14:58:24
-	 * @param password 新密码
+	 * @param oldPassword 旧密码
+	 * @param newPassword 新密码
 	 * @return
 	 */
-	ResponseVO<String> updatePassword(String password);
+	ResponseVO<String> updatePassword(String oldPassword, String newPassword);
 
 	/**
 	 * 用户状态修改
+	 *
 	 * @author yuminjun
 	 * @date 2020/05/25 15:36:30
-	 * @param id 用户id
+	 * @param id     用户id
 	 * @param status 状态
 	 * @return
 	 */

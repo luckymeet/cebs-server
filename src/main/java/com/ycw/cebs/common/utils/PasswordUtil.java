@@ -11,6 +11,7 @@ public final class PasswordUtil {
 
 	/**
 	 * 获取密码盐值
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 16:50:10
 	 * @return
@@ -22,14 +23,16 @@ public final class PasswordUtil {
 
 	/**
 	 * MD5散列加密
+	 *
 	 * @author yuminjun
 	 * @date 2020/04/22 16:50:19
 	 * @param plaintextPassword 密码明文
-	 * @param credentialsSalt 密码盐值
+	 * @param credentialsSalt   密码盐值
 	 * @return
 	 */
 	public static String encryptPasswordMD5(String plaintextPassword, String credentialsSalt) {
-		return new SimpleHash(Md5Hash.ALGORITHM_NAME, plaintextPassword, ByteSource.Util.bytes(credentialsSalt), 1).toString();
+		return new SimpleHash(Md5Hash.ALGORITHM_NAME, plaintextPassword, ByteSource.Util.bytes(credentialsSalt), 1)
+				.toString();
 	}
 
 }
