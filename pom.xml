@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath />
 	</parent>
-	<artifactId>ceps</artifactId>
-	<name>ceps</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>cebs</artifactId>
+	<name>cebs</name>
+	<description>cebs project for Spring Boot</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
