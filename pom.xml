@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>cebs</artifactId>
 	<name>cebs</name>
-	<description>Demo project for Spring Boot</description>
+	<description>cebs project for Spring Boot</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
